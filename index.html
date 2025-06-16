@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senternet Technologies</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for a clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Ensure HTML and Body take full viewport height and width */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            overflow: hidden; /* Hide scrollbars on the main HTML page */
+            font-family: 'Inter', sans-serif; /* Apply Inter font */
+        }
+        /* Style the iframe to fill its parent container (body) */
+        iframe {
+            display: block; /* Remove extra space below iframe */
+            border: none; /* Remove default iframe border */
+            width: 100%; /* Make iframe take full width */
+            height: 100%; /* Make iframe take full height */
+            /* Scrollbars for the iframe content will appear automatically if content overflows */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center">
+    <!-- The iframe element to embed the Google Apps Script link -->
+    <iframe
+        src="https://script.google.com/macros/s/AKfycbwUhhjSzrwXpkWb4NECsLKJETju6tq534oMVEcLRIl8SZQpgd-d4t1FsLDpKdTaekwU/exec"
+        title="senternet.in">
+    </iframe>
+</body>
+</html>
