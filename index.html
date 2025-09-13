@@ -54,21 +54,34 @@
             color: white;
             text-decoration: none;
             transition: color 0.3s;
+            cursor: pointer;
         }
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: #3498db;
         }
 
-        /* Hero Section */
+        /* Main Content */
+        main {
+            margin-top: 60px; /* Account for fixed header */
+        }
+        .tab-content {
+            display: none;
+            padding: 40px 0;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Hero Section (Home Tab) */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%232c3e50" width="1200" height="600"/><text x="600" y="300" font-family="Arial" font-size="20" fill="white" text-anchor="middle">Construction Background</text></svg>');
-            height: 100vh;
+            height: calc(100vh - 60px);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            margin-top: 60px; /* Account for fixed header */
         }
         .hero h1 {
             font-size: 3rem;
@@ -92,7 +105,6 @@
 
         /* About Section */
         .about {
-            padding: 80px 0;
             background-color: white;
         }
         .about h2 {
@@ -103,25 +115,27 @@
         .about p {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 1rem;
         }
 
         /* Services Section */
         .services {
-            padding: 80px 0;
             background-color: #f4f4f4;
         }
-        .services h2 {
+        .services h2,
+        .projects h2 {
             text-align: center;
             margin-bottom: 3rem;
             font-size: 2.5rem;
         }
-        .services-grid {
+        .services-grid,
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        .service-card {
+        .service-card,
+        .project-card {
             background: white;
             padding: 2rem;
             border-radius: 10px;
@@ -129,17 +143,23 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
-        .service-card:hover {
+        .service-card:hover,
+        .project-card:hover {
             transform: translateY(-5px);
         }
-        .service-card h3 {
+        .service-card h3,
+        .project-card h3 {
             margin-bottom: 1rem;
             color: #2c3e50;
         }
 
+        /* Projects Section */
+        .projects {
+            background-color: white;
+        }
+
         /* Contact Section */
         .contact {
-            padding: 80px 0;
             background-color: white;
         }
         .contact h2 {
@@ -206,75 +226,113 @@
         <nav class="container">
             <div class="logo">AR Rahman Constructions</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a class="tab-link active" data-tab="home">Home</a></li>
+                <li><a class="tab-link" data-tab="about">About</a></li>
+                <li><a class="tab-link" data-tab="services">Services</a></li>
+                <li><a class="tab-link" data-tab="projects">Projects</a></li>
+                <li><a class="tab-link" data-tab="contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Building Your Dreams with Excellence</h1>
-            <p>We specialize in comprehensive construction solutions, from house construction to interior design and execution.</p>
-            <a href="#contact" class="btn">Get a Quote</a>
-        </div>
-    </section>
+    <main>
+        <section id="home" class="tab-content hero active">
+            <div class="container">
+                <h1>Building Your Dreams with Excellence</h1>
+                <p>We specialize in comprehensive construction solutions, from house construction to interior design and execution.</p>
+                <a href="#" class="btn" onclick="switchTab('contact')">Get a Quote</a>
+            </div>
+        </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>AR Rahman Constructions is a leading construction company based in Nagapattinam, Tamil Nadu, India. With years of experience, we provide comprehensive construction services tailored to your vision. We specialize in delivering turnkey house construction projects, innovative interior and exterior designs, and structural fabrication. Our commitment to quality, using the best materials and practices, ensures that your building stands the test of time. You dream it, we build it!</p>
-        </div>
-    </section>
+        <section id="about" class="tab-content about">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>AR Rahman Constructions is a leading construction company based in Nagapattinam, Tamil Nadu, India. With years of experience, we provide comprehensive construction services tailored to your vision. We specialize in delivering turnkey house construction projects, innovative interior and exterior designs, and structural fabrication. Our commitment to quality, using the best materials and practices, ensures that your building stands the test of time. You dream it, we build it!</p>
+                <p>We have built over 50 residential and commercial projects, focusing on sustainable building practices and modern architecture. Our team consists of experienced engineers, architects, and skilled laborers dedicated to delivering projects on time and within budget.</p>
+            </div>
+        </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>House Construction</h3>
-                    <p>Experience seamless house construction with our comprehensive turnkey services, ensuring every detail is expertly managed. Quality homes tailored to your vision.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Interior Design</h3>
-                    <p>Transform your home with our innovative design solutions. We offer the best craftsmanship, premium quality, and endless design options.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Exterior & Elevation</h3>
-                    <p>Custom solutions for stunning visual aesthetics, enhancing curb appeal with beauty and durability.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Structural Fabrication</h3>
-                    <p>Durable solutions tailored to your construction needs, blending functionality with architectural precision.</p>
+        <section id="services" class="tab-content services">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>House Construction</h3>
+                        <p>Experience seamless house construction with our comprehensive turnkey services, ensuring every detail is expertly managed. Quality homes tailored to your vision. We handle everything from foundation to finishing, using high-quality materials like reinforced concrete and eco-friendly bricks.</p>
+                        <p>Our process includes site evaluation, blueprint design, permits, and final handover, with a focus on energy-efficient buildings.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Interior Design</h3>
+                        <p>Transform your home with our innovative design solutions. We offer the best craftsmanship, premium quality, and endless design options. From modular kitchens to luxurious living rooms, we incorporate modern trends like smart home integration and sustainable interiors.</p>
+                        <p>We collaborate with top suppliers for furniture, lighting, and decor to create spaces that are both functional and aesthetically pleasing.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Exterior & Elevation</h3>
+                        <p>Custom solutions for stunning visual aesthetics, enhancing curb appeal with beauty and durability. We design elevations that blend traditional Tamil architecture with contemporary styles, using materials like stone cladding and weather-resistant paints.</p>
+                        <p>Our exterior services include landscaping, facade design, and outdoor lighting to make your property stand out.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Structural Fabrication</h3>
+                        <p>Durable solutions tailored to your construction needs, blending functionality with architectural precision. We specialize in steel and metal fabrication for roofs, gates, and supports, ensuring structural integrity for high-rise and industrial buildings.</p>
+                        <p>Using advanced welding techniques and corrosion-resistant materials, we deliver robust structures that meet international safety standards.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+        <section id="projects" class="tab-content projects">
+            <div class="container">
+                <h2>Our Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Residential Villa in Nagapattinam</h3>
+                        <p>A luxurious 3-bedroom villa featuring modern architecture, spacious interiors, and a beautiful garden. Completed in 2024, this project showcases our expertise in sustainable building with solar panels and rainwater harvesting.</p>
+                        <p>Key features: Open-plan living, high-ceiling designs, and premium finishes.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Commercial Complex in Chennai</h3>
+                        <p>A multi-story commercial building with retail spaces and offices. We handled full construction, including structural fabrication and exterior elevation, ensuring durability and aesthetic appeal.</p>
+                        <p>Highlights: Earthquake-resistant design, energy-efficient HVAC systems, and modern facade.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Apartment Block in Trichy</h3>
+                        <p>An affordable housing project with 20 units, focusing on quality interiors and community amenities like parks and gyms. Delivered ahead of schedule in 2023.</p>
+                        <p>Features: Modular kitchens, secure parking, and eco-friendly materials.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Custom Bungalow in Madurai</h3>
+                        <p>A bespoke bungalow with unique elevation and interior designs, incorporating client-specific requests for smart home technology and luxury fittings.</p>
+                        <p>Notable aspects: Custom steel fabrication for roofing and gates, integrated landscaping.</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Send Message</button>
-                </div>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
+
+        <section id="contact" class="tab-content contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <form action="https://formsubmit.co/senternettechnologies@gmail.com" method="POST" id="contactForm">
+                    <input type="hidden" name="_subject" value="New Contact Form Submission from AR Rahman Constructions">
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html"> <!-- Replace with actual thank you page if available -->
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
@@ -283,22 +341,33 @@
     </footer>
 
     <script>
-        // Simple form submission handler (for demo; in production, connect to backend)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        });
+        // Tab switching functionality
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        function switchTab(tabId) {
+            tabLinks.forEach(link => link.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            const activeLink = Array.from(tabLinks).find(link => link.getAttribute('data-tab') === tabId);
+            const activeContent = document.getElementById(tabId);
+
+            if (activeLink && activeContent) {
+                activeLink.classList.add('active');
+                activeContent.classList.add('active');
+            }
+        }
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const tabId = link.getAttribute('data-tab');
+                switchTab(tabId);
             });
         });
+
+        // Initial load
+        switchTab('home');
     </script>
 </body>
 </html>
