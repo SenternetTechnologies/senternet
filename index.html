@@ -1,374 +1,72 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Rahman Constructions - Building Your Dreams</title>
+    <title>SENTERNET TECHNOLOGIES - ARANTHANGI</title>
+    <!-- Load Tailwind CSS for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Reset and Basic Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #3498db;
-        }
-
-        /* Main Content */
-        main {
-            margin-top: 60px; /* Account for fixed header */
-        }
-        .tab-content {
-            display: none;
-            padding: 40px 0;
-        }
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Hero Section (Home Tab) */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%232c3e50" width="1200" height="600"/><text x="600" y="300" font-family="Arial" font-size="20" fill="white" text-anchor="middle">Construction Background</text></svg>');
-            height: calc(100vh - 60px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .btn {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background-color: #2980b9;
-        }
-
-        /* About Section */
-        .about {
-            background-color: white;
-        }
-        .about h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-        .about p {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 1rem;
-        }
-
-        /* Services Section */
-        .services {
-            background-color: #f4f4f4;
-        }
-        .services h2,
-        .projects h2 {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-        .services-grid,
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .service-card,
-        .project-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .service-card:hover,
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        .service-card h3,
-        .project-card h3 {
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        /* Projects Section */
-        .projects {
-            background-color: white;
-        }
-
-        /* Contact Section */
-        .contact {
-            background-color: white;
-        }
-        .contact h2 {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-        .contact form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .form-group button {
-            width: 100%;
-            background-color: #3498db;
-            color: white;
-            padding: 10px;
+        /* Custom styles to ensure the iframe takes up the remaining viewport height */
+        iframe {
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .form-group button:hover {
-            background-color: #2980b9;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                flex-direction: column;
-            }
-            .nav-links li {
-                margin: 0.5rem 0;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
+            width: 100%;
+            height: 100%;
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <header>
-        <nav class="container">
-            <div class="logo">AR Rahman Constructions</div>
-            <ul class="nav-links">
-                <li><a class="tab-link active" data-tab="home">Home</a></li>
-                <li><a class="tab-link" data-tab="about">About</a></li>
-                <li><a class="tab-link" data-tab="services">Services</a></li>
-                <li><a class="tab-link" data-tab="projects">Projects</a></li>
-                <li><a class="tab-link" data-tab="contact">Contact</a></li>
-            </ul>
-        </nav>
+<body class="font-sans flex flex-col min-h-screen bg-gray-50 text-gray-800">
+
+    <!-- Header / Branding Section -->
+    <header class="bg-indigo-700 text-white shadow-lg p-3 md:p-4 flex justify-center items-center h-16">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold tracking-tight">
+                SENTERNET TECHNOLOGIES
+            </h1>
+            <span class="hidden sm:inline text-sm opacity-80">
+                Custom Web Service Integration
+            </span>
+        </div>
     </header>
 
-    <main>
-        <section id="home" class="tab-content hero active">
-            <div class="container">
-                <h1>Building Your Dreams with Excellence</h1>
-                <p>We specialize in comprehensive construction solutions, from house construction to interior design and execution.</p>
-                <a href="#" class="btn" onclick="switchTab('contact')">Get a Quote</a>
-            </div>
-        </section>
-
-        <section id="about" class="tab-content about">
-            <div class="container">
-                <h2>About Us</h2>
-                <p>AR Rahman Constructions is a leading construction company based in Nagapattinam, Tamil Nadu, India. With years of experience, we provide comprehensive construction services tailored to your vision. We specialize in delivering turnkey house construction projects, innovative interior and exterior designs, and structural fabrication. Our commitment to quality, using the best materials and practices, ensures that your building stands the test of time. You dream it, we build it!</p>
-                <p>We have built over 50 residential and commercial projects, focusing on sustainable building practices and modern architecture. Our team consists of experienced engineers, architects, and skilled laborers dedicated to delivering projects on time and within budget.</p>
-            </div>
-        </section>
-
-        <section id="services" class="tab-content services">
-            <div class="container">
-                <h2>Our Services</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <h3>House Construction</h3>
-                        <p>Experience seamless house construction with our comprehensive turnkey services, ensuring every detail is expertly managed. Quality homes tailored to your vision. We handle everything from foundation to finishing, using high-quality materials like reinforced concrete and eco-friendly bricks.</p>
-                        <p>Our process includes site evaluation, blueprint design, permits, and final handover, with a focus on energy-efficient buildings.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>Interior Design</h3>
-                        <p>Transform your home with our innovative design solutions. We offer the best craftsmanship, premium quality, and endless design options. From modular kitchens to luxurious living rooms, we incorporate modern trends like smart home integration and sustainable interiors.</p>
-                        <p>We collaborate with top suppliers for furniture, lighting, and decor to create spaces that are both functional and aesthetically pleasing.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>Exterior & Elevation</h3>
-                        <p>Custom solutions for stunning visual aesthetics, enhancing curb appeal with beauty and durability. We design elevations that blend traditional Tamil architecture with contemporary styles, using materials like stone cladding and weather-resistant paints.</p>
-                        <p>Our exterior services include landscaping, facade design, and outdoor lighting to make your property stand out.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>Structural Fabrication</h3>
-                        <p>Durable solutions tailored to your construction needs, blending functionality with architectural precision. We specialize in steel and metal fabrication for roofs, gates, and supports, ensuring structural integrity for high-rise and industrial buildings.</p>
-                        <p>Using advanced welding techniques and corrosion-resistant materials, we deliver robust structures that meet international safety standards.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="tab-content projects">
-            <div class="container">
-                <h2>Our Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>Residential Villa in Nagapattinam</h3>
-                        <p>A luxurious 3-bedroom villa featuring modern architecture, spacious interiors, and a beautiful garden. Completed in 2024, this project showcases our expertise in sustainable building with solar panels and rainwater harvesting.</p>
-                        <p>Key features: Open-plan living, high-ceiling designs, and premium finishes.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>Commercial Complex in Chennai</h3>
-                        <p>A multi-story commercial building with retail spaces and offices. We handled full construction, including structural fabrication and exterior elevation, ensuring durability and aesthetic appeal.</p>
-                        <p>Highlights: Earthquake-resistant design, energy-efficient HVAC systems, and modern facade.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>Apartment Block in Trichy</h3>
-                        <p>An affordable housing project with 20 units, focusing on quality interiors and community amenities like parks and gyms. Delivered ahead of schedule in 2023.</p>
-                        <p>Features: Modular kitchens, secure parking, and eco-friendly materials.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>Custom Bungalow in Madurai</h3>
-                        <p>A bespoke bungalow with unique elevation and interior designs, incorporating client-specific requests for smart home technology and luxury fittings.</p>
-                        <p>Notable aspects: Custom steel fabrication for roofing and gates, integrated landscaping.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="tab-content contact">
-            <div class="container">
-                <h2>Contact Us</h2>
-                <form action="https://formsubmit.co/senternettechnologies@gmail.com" method="POST" id="contactForm">
-                    <input type="hidden" name="_subject" value="New Contact Form Submission from AR Rahman Constructions">
-                    <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html"> <!-- Replace with actual thank you page if available -->
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit">Send Message</button>
-                    </div>
-                </form>
-            </div>
-        </section>
+ 
+            <iframe 
+                src="https://script.google.com/macros/s/AKfycbwve0cTT0ktd80SwQBX2cBgNwLIZ2epuHfYdetScpatYdKKn0dG3SR-sGjhrmrbxIxFA/exec" 
+                title="Embedded Google Apps Script Web App"
+                loading="lazy"
+                sandbox="allow-scripts allow-forms allow-popups allow-modals allow-same-origin"
+                allow="geolocation *; microphone *; camera *;"
+                class="rounded-xl">
+                Your browser does not support iframes. Please access the application directly at the provided link.
+            </iframe>
+        
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 AR Rahman Constructions. All rights reserved. | Nagapattinam, Tamil Nadu, India | Phone: +91 96778 55877 | Email: info@arrahmanconstruction.com</p>
+    <!-- Footer / Contact Information -->
+    <footer class="bg-gray-800 text-white text-xs md:text-sm p-3 md:p-4 h-auto md:h-16 mt-auto">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+            <p>&copy; 2025 SENTERNET TECHNOLOGIES. All rights reserved. | Aranthangi</p>
+            <div class="flex flex-wrap justify-center md:justify-end space-x-3 md:space-x-5">
+                <a href="https://wa.me/918190038085" class="hover:text-indigo-400 transition-colors">
+                    <span class="font-bold">WhatsApp:</span> +91 81900 38085
+                </a>
+                <a href="mailto:senternettechnologies@gmail.com" class="hover:text-indigo-400 transition-colors">
+                    <span class="font-bold">Gmail:</span> senternettechnologies@gmail.com
+                </a>
+            </div>
         </div>
     </footer>
 
-    <script>
-        // Tab switching functionality
-        const tabLinks = document.querySelectorAll('.tab-link');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        function switchTab(tabId) {
-            tabLinks.forEach(link => link.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-
-            const activeLink = Array.from(tabLinks).find(link => link.getAttribute('data-tab') === tabId);
-            const activeContent = document.getElementById(tabId);
-
-            if (activeLink && activeContent) {
-                activeLink.classList.add('active');
-                activeContent.classList.add('active');
-            }
-        }
-
-        tabLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const tabId = link.getAttribute('data-tab');
-                switchTab(tabId);
-            });
-        });
-
-        // Initial load
-        switchTab('home');
-    </script>
 </body>
 </html>
-```
