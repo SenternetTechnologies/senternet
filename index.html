@@ -1,24 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>SENTERNET TECHNOLOGIES - ARANTHANGI</title>
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* Hide scrollbars if content fits */
-  }
-  iframe {
-    width: 100%;
-    height: 100%;
-    border: none; /* Removes the default iframe border */
-  }
-</style>
-</head>
-<body>
+    <!-- 
+        MANDATORY: Viewport meta tag for responsive design. 
+        Tells the browser to set the width of the page to the device's width.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTERNET TECHNOLOGIES - ARANTHANGI</title>
+    <!-- Load Tailwind CSS for any future styling needs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ensure body and html take up 100% of the screen height and width 
+           without any default padding or margin. 
+        */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            /* Optional: box-sizing border-box helps with layout calculations */
+            box-sizing: border-box; 
+        }
 
-<iframe src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" allowfullscreen></iframe>
+        /* The iframe must fill its parent (body/html) entirely, 
+           ensuring it scales perfectly on any device.
+        */
+        .full-screen-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block; /* Removes any extra spacing issues */
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+
+    <!-- The iframe now uses a class for better styling and targeting -->
+    <iframe 
+        src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
+        class="full-screen-iframe"
+        allowfullscreen
+        title="SENTERNET TECHNOLOGIES Aranthangi">
+    </iframe>
 
 </body>
 </html>
