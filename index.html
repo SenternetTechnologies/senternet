@@ -64,27 +64,6 @@
       ]
     }
     </script>
-<!-- Senternet GPS Tracking Code -->
-<script>
-(function() {
-    function track() {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function(pos) {
-                const data = {
-                    passcode: "984393",
-                    lat: pos.coords.latitude,
-                    lng: pos.coords.longitude,
-                    ua: navigator.userAgent,
-                    ref: document.referrer,
-                    url: window.location.href
-                };
-                fetch("https://script.google.com/macros/s/AKfycbwSwgsqOPaLqE_WIaYnVGq1o77GFQYprwKCPW1rpZPsv-GoqmT5McSMyKaitiDGE-Pp/exec?action=track&data=" + encodeURIComponent(JSON.stringify(data)), {mode: 'no-cors'});
-            });
-        }
-    }
-    window.addEventListener('load', track);
-})();
-</script>
 
     <style>
         /* Ensure body and html take up 100% of the screen height and width 
@@ -128,5 +107,26 @@
         title="SENTERNET TECHNOLOGIES Aranthangi">
     </iframe>
 
+<!-- Senternet GPS Tracking Code -->
+<script>
+(function() {
+    function track() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                const data = {
+                    passcode: "984393",
+                    lat: pos.coords.latitude,
+                    lng: pos.coords.longitude,
+                    ua: navigator.userAgent,
+                    ref: document.referrer,
+                    url: window.location.href
+                };
+                fetch("https://script.google.com/macros/s/AKfycbwSwgsqOPaLqE_WIaYnVGq1o77GFQYprwKCPW1rpZPsv-GoqmT5McSMyKaitiDGE-Pp/exec?action=track&data=" + encodeURIComponent(JSON.stringify(data)), {mode: 'no-cors'});
+            });
+        }
+    }
+    window.addEventListener('load', track);
+})();
+</script>
 </body>
 </html>
