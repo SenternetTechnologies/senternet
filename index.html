@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENTERNET TECHNOLOGIES | AI Tracking Interface</title>
+    <title>SENTERNET TECHNOLOGIES | Official Interface</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Space+Grotesk:wght@700&display=swap');
 
         body, html {
             margin: 0; padding: 0;
@@ -16,225 +16,156 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Intro Background Shapes */
-        .shape {
-            position: absolute; border-radius: 50%; filter: blur(80px); z-index: 1; opacity: 0.5;
-            animation: float 10s infinite alternate;
-        }
-        .shape-1 { width: 400px; height: 400px; background: #e0f2fe; top: -5%; left: -5%; }
-        .shape-2 { width: 350px; height: 350px; background: #fef3c7; bottom: -5%; right: -5%; }
-
-        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 50px); } }
-
-        /* Intro Container */
-        #cinematic-intro {
-            position: fixed; inset: 0; z-index: 9999;
-            display: flex; align-items: center; justify-content: center;
-            background: #fff; transition: opacity 0.8s ease;
+        /* Cinematic Intro Wrapper */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.8s ease;
         }
 
-        .brand-logo {
-            text-align: center; transform: scale(0.9); opacity: 0;
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Floating Background Elements */
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: move 20s infinite alternate;
+        }
+        @keyframes move {
+            from { transform: translate(-10%, -10%) rotate(0deg); }
+            to { transform: translate(10%, 10%) rotate(360deg); }
         }
 
-        /* Modal / Consent Styles */
-        #consent-modal, #details-popup {
-            position: fixed; inset: 0; z-index: 9000;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px);
-            display: none; align-items: center; justify-content: center;
+        /* Dancing Letters Animation */
+        .word {
+            display: flex;
+            gap: 4px;
+            perspective: 1000px;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            padding: 2.5rem; border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
-            max-width: 420px; width: 90%; text-align: center;
+        .letter {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            color: #1e293b;
+            animation: bounce 1.5s ease-in-out infinite;
+            transform-origin: bottom;
         }
 
-        /* Webapp Container */
-        #main-app { width: 100%; height: 100%; display: none; }
-        iframe { width: 100%; height: 100%; border: none; }
-
-        .loader-ring {
-            width: 20px; height: 20px; border: 2px solid #e2e8f0;
-            border-top-color: #2563eb; border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(-5deg); color: #2563eb; }
+            50% { transform: translateY(0) rotate(5deg); }
+            75% { transform: translateY(-10px) rotate(-3deg); }
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Delay each letter for a "wave" effect */
+        .letter:nth-child(1) { animation-delay: 0.1s; }
+        .letter:nth-child(2) { animation-delay: 0.2s; }
+        .letter:nth-child(3) { animation-delay: 0.3s; }
+        .letter:nth-child(4) { animation-delay: 0.4s; }
+        .letter:nth-child(5) { animation-delay: 0.5s; }
+        .letter:nth-child(6) { animation-delay: 0.6s; }
+        .letter:nth-child(7) { animation-delay: 0.7s; }
+        .letter:nth-child(8) { animation-delay: 0.8s; }
+        .letter:nth-child(9) { animation-delay: 0.9s; }
+
+        .brand-subtext {
+            margin-top: 1rem;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 1s forwards 1.2s;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* App Container */
+        #app-viewport {
+            width: 100%;
+            height: 100vh;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: all 1.2s ease-out;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Transition state */
+        .started #intro-overlay {
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+        .started #app-viewport {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @media (max-width: 640px) {
+            .letter { font-size: 3rem; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- 1. CINEMATIC INTRO -->
-    <div id="cinematic-intro">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div id="brand" class="brand-logo">
-            <div class="w-20 h-20 bg-blue-600 rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-xl rotate-12">
-                <span class="text-white text-4xl font-extrabold -rotate-12">S</span>
-            </div>
-            <h1 class="text-4xl font-bold text-slate-900 tracking-tight">Senternet</h1>
-            <p class="text-xs uppercase tracking-[0.5em] text-slate-400 mt-2">Technologies</p>
+    <!-- Background Decoration -->
+    <div class="blob" style="top: -10%; left: -10%;"></div>
+    <div class="blob" style="bottom: -10%; right: -10%; background: #fff7ed;"></div>
+
+    <!-- 1. CARTOONISTIC DANCING INTRO -->
+    <div id="intro-overlay">
+        <div class="word">
+            <span class="letter">S</span>
+            <span class="letter">E</span>
+            <span class="letter">N</span>
+            <span class="letter">T</span>
+            <span class="letter">E</span>
+            <span class="letter">R</span>
+            <span class="letter">N</span>
+            <span class="letter">E</span>
+            <span class="letter">T</span>
         </div>
+        <p class="brand-subtext">Technologies</p>
     </div>
 
-    <!-- 2. CONSENT NOTIFICATION -->
-    <div id="consent-modal">
-        <div class="glass-card">
-            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-            </div>
-            <h2 class="text-2xl font-bold text-slate-800">Privacy Consent</h2>
-            <p class="text-slate-500 mt-3 text-sm leading-relaxed">
-                To provide the best localized experience, we need to access your basic device info and location. Data is encrypted and used for service optimization.
-            </p>
-            <button id="accept-btn" class="mt-8 w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-slate-200">
-                Accept & Proceed
-            </button>
-            <p class="text-[10px] text-slate-400 mt-4 italic">By clicking, you agree to our digital tracking policy.</p>
-        </div>
-    </div>
-
-    <!-- 3. DATA REVEAL POPUP -->
-    <div id="details-popup">
-        <div class="glass-card border-blue-100">
-            <div class="flex items-center justify-center mb-4">
-                <div class="loader-ring mr-2"></div>
-                <span class="text-blue-600 font-bold text-sm">Synchronizing Digital Profile...</span>
-            </div>
-            <div id="data-list" class="space-y-3 text-left">
-                <!-- Data will be injected here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. WEBAPP IFRAME -->
-    <div id="main-app">
-        <iframe id="target-frame" src="" allow="geolocation"></iframe>
+    <!-- 2. MAIN APP IFRAME -->
+    <div id="app-viewport">
+        <iframe id="target-frame" src=""></iframe>
     </div>
 
     <script>
+        // Use your existing AppScript URL
         const appUrl = "https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec";
-        const intro = document.getElementById('cinematic-intro');
-        const brand = document.getElementById('brand');
-        const consent = document.getElementById('consent-modal');
-        const detailsPopup = document.getElementById('details-popup');
-        const app = document.getElementById('main-app');
-        const dataList = document.getElementById('data-list');
-
-        let userData = {
-            device: navigator.platform || "Unknown Device",
-            browser: "Mobile Chrome/Safari",
-            time: new Date().toLocaleTimeString(),
-            ip: "Fetching...",
-            battery: "Checking...",
-            loc: "Locating..."
-        };
-
-        // 1. Intro Animation
+        
         window.onload = () => {
-            setTimeout(() => {
-                brand.style.opacity = "1";
-                brand.style.transform = "scale(1)";
-            }, 500);
-
-            // After 7s Intro
-            setTimeout(() => {
-                intro.style.opacity = "0";
-                setTimeout(() => {
-                    intro.style.display = "none";
-                    checkConsent();
-                }, 800);
-            }, 7000);
-        };
-
-        // 2. Consent Logic
-        function checkConsent() {
-            if (localStorage.getItem('senternet_consent_v1')) {
-                launchAppDirectly();
-            } else {
-                consent.style.display = "flex";
-            }
-        }
-
-        document.getElementById('accept-btn').onclick = async () => {
-            localStorage.setItem('senternet_consent_v1', 'true');
-            consent.style.display = "none";
-            detailsPopup.style.display = "flex";
-            await gatherInfo();
-        };
-
-        // 3. Info Gathering
-        async function gatherInfo() {
-            // Get Battery
-            try {
-                const batt = await navigator.getBattery();
-                userData.battery = Math.round(batt.level * 100) + "%";
-            } catch(e) { userData.battery = "Not Supported"; }
-
-            // Get IP (Public API)
-            try {
-                const res = await fetch('https://api.ipify.org?format=json');
-                const data = await res.json();
-                userData.ip = data.ip;
-            } catch(e) { userData.ip = "Hidden/VPN"; }
-
-            // Get Location
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((pos) => {
-                    userData.loc = `${pos.coords.latitude.toFixed(2)}, ${pos.coords.longitude.toFixed(2)}`;
-                    renderAndFinish();
-                }, () => {
-                    userData.loc = "Denied";
-                    renderAndFinish();
-                });
-            } else {
-                renderAndFinish();
-            }
-        }
-
-        function renderAndFinish() {
-            dataList.innerHTML = `
-                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                    <p class="text-[10px] text-slate-400 uppercase font-bold">Device & System</p>
-                    <p class="text-sm font-semibold text-slate-700">${userData.device} (${navigator.vendor})</p>
-                </div>
-                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                    <p class="text-[10px] text-slate-400 uppercase font-bold">Network IP</p>
-                    <p class="text-sm font-semibold text-slate-700">${userData.ip}</p>
-                </div>
-                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                    <p class="text-[10px] text-slate-400 uppercase font-bold">Battery & Time</p>
-                    <p class="text-sm font-semibold text-slate-700">${userData.battery} | ${userData.time}</p>
-                </div>
-                <div class="p-3 bg-blue-50 rounded-xl border border-blue-100">
-                    <p class="text-[10px] text-blue-400 uppercase font-bold">Coordinates</p>
-                    <p class="text-sm font-semibold text-blue-700">${userData.loc}</p>
-                </div>
-            `;
-
-            // Wait 3 seconds then close
-            setTimeout(() => {
-                detailsPopup.style.opacity = "0";
-                detailsPopup.style.transform = "scale(0.9)";
-                detailsPopup.style.transition = "all 0.5s ease";
-                setTimeout(() => {
-                    detailsPopup.style.display = "none";
-                    launchAppDirectly();
-                }, 500);
-            }, 3000);
-        }
-
-        function launchAppDirectly() {
+            // Set iframe src immediately to start loading in background
             document.getElementById('target-frame').src = appUrl;
-            app.style.display = "block";
-            // Silent log to your Google Sheet system
-            const silentLogger = new Image();
-            silentLogger.src = `https://script.google.com/macros/s/AKfycbwSwgsqOPaLqE_WIaYnVGq1o77GFQYprwKCPW1rpZPsv-GoqmT5McSMyKaitiDGE-Pp/exec?action=track&data=${encodeURIComponent(JSON.stringify(userData))}`;
-        }
+
+            // Wait for 5 seconds of animation before entering
+            setTimeout(() => {
+                document.body.classList.add('started');
+            }, 5000);
+        };
     </script>
 </body>
 </html>
