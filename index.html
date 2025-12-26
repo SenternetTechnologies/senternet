@@ -3,167 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENTERNET TECHNOLOGIES | Web design, Digital marketing, Graphic design and data Entry service provider in Aranthangi, Pudukkottai | Business in tamilnadu IT</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- ULTIMATE MEGA SEO & KEYWORD METADATA -->
+    <title>SENTERNET TECHNOLOGIES | #1 Web Design & Digital Marketing Aranthangi, Pudukkottai</title>
+    
+    <!-- PRIMARY META TAGS -->
+    <meta name="title" content="Senternet Technologies - Best Web Design & IT Solutions in Aranthangi">
+    <meta name="description" content="Senternet Technologies Aranthangi: Leading Digital Marketing agency & Web Design company in Pudukkottai. Expertise in SEO, Graphics, AppScript, and Business Automation. Founded by Senthilkumar (CEO).">
+    
+    <!-- MEGA KEYWORD LIST (ARANTHANGI TARGETED) -->
+    <meta name="keywords" content="Senternet Technologies, Senthilkumar CEO, Web Design Aranthangi, Web Development Pudukkottai, Digital Marketing Aranthangi, Best SEO Company Aranthangi, Graphic Design Aranthangi, IT Solutions Aranthangi, AppScript Developers Tamil Nadu, Muvi Foods, Abulu Juice, Social Media Marketing Aranthangi, Logo Design Aranthangi, Low Cost Website Aranthangi, Aranthangi Business Directory IT, Senthilkumar MCA, Software Company in Aranthangi, Online Marketing Aranthangi, Google My Business Aranthangi, Website Designer Near Me Aranthangi">
+    
+    <meta name="author" content="Senthilkumar, Senternet Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rebrand.ly/senternet">
 
+    <!-- OPEN GRAPH / SOCIAL MEDIA SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rebrand.ly/senternet">
+    <meta property="og:title" content="SENTERNET TECHNOLOGIES | Aranthangi's Digital Powerhouse">
+    <meta property="og:description" content="Transforming businesses in Aranthangi with world-class Web Design & Marketing. Contact Senthilkumar at +91 81900 38085.">
+    <meta property="og:image" content="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
+
+    <!-- TWITTER SEO -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://rebrand.ly/senternet">
+    <meta property="twitter:title" content="Senternet Technologies - Aranthangi IT Experts">
+    <meta property="twitter:description" content="Aranthangi's most trusted Web Design and Digital Marketing agency. Managed by CEO Senthilkumar.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Space+Grotesk:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+        }
 
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
-            overflow: hidden;
-            background-color: #ffffff;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+            overflow: hidden;
         }
 
-        /* Cinematic Intro Wrapper */
+        /* CINEMATIC INTRO */
         #intro-overlay {
             position: fixed;
             inset: 0;
-            z-index: 9999;
+            z-index: 10000;
             background: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.8s ease;
+            transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1);
         }
 
-        /* Floating Background Elements */
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
-            filter: blur(80px);
-            border-radius: 50%;
-            z-index: -1;
-            animation: move 20s infinite alternate;
-        }
-        @keyframes move {
-            from { transform: translate(-10%, -10%) rotate(0deg); }
-            to { transform: translate(10%, 10%) rotate(360deg); }
-        }
-
-        /* Dancing Letters Animation */
-        .word {
-            display: flex;
-            gap: 4px;
-            perspective: 1000px;
-        }
-
+        .word { display: flex; gap: 5px; }
         .letter {
-            display: inline-block;
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 5rem;
+            font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 800;
-            color: #1e293b;
+            color: var(--secondary);
             animation: bounce 1.5s ease-in-out infinite;
-            transform-origin: bottom;
+            display: inline-block;
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-20px) rotate(-5deg); color: #2563eb; }
-            50% { transform: translateY(0) rotate(5deg); }
-            75% { transform: translateY(-10px) rotate(-3deg); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); color: var(--primary); }
         }
 
-        /* Delay each letter for a "wave" effect */
-        .letter:nth-child(1) { animation-delay: 0.1s; }
-        .letter:nth-child(2) { animation-delay: 0.2s; }
-        .letter:nth-child(3) { animation-delay: 0.3s; }
-        .letter:nth-child(4) { animation-delay: 0.4s; }
-        .letter:nth-child(5) { animation-delay: 0.5s; }
-        .letter:nth-child(6) { animation-delay: 0.6s; }
-        .letter:nth-child(7) { animation-delay: 0.7s; }
-        .letter:nth-child(8) { animation-delay: 0.8s; }
-        .letter:nth-child(9) { animation-delay: 0.9s; }
-
-        .brand-subtext {
-            margin-top: 1rem;
-            letter-spacing: 0.6em;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #94a3b8;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: fadeInUp 1s forwards 1.2s;
-        }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* App Container */
+        /* MAIN APP FRAME */
         #app-viewport {
             width: 100%;
             height: 100vh;
-            opacity: 0;
-            transform: scale(1.05);
-            transition: all 1.2s ease-out;
+            display: flex;
+            flex-direction: column;
         }
 
         iframe {
-            width: 100%;
-            height: 100%;
+            flex-grow: 1;
             border: none;
+            width: 100%;
         }
 
-        /* Transition state */
-        .started #intro-overlay {
-            transform: translateY(-100%);
-            pointer-events: none;
-        }
-        .started #app-viewport {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        @media (max-width: 640px) {
-            .letter { font-size: 3rem; }
-        }
+        .started #intro-overlay { transform: translateY(-100%); }
     </style>
 </head>
 <body>
 
-    <!-- Background Decoration -->
-    <div class="blob" style="top: -10%; left: -10%;"></div>
-    <div class="blob" style="bottom: -10%; right: -10%; background: #fff7ed;"></div>
-
-    <!-- 1. CARTOONISTIC DANCING INTRO -->
+    <!-- Intro Animation -->
     <div id="intro-overlay">
         <div class="word">
-            <span class="letter">S</span>
-            <span class="letter">E</span>
-            <span class="letter">N</span>
-            <span class="letter">T</span>
-            <span class="letter">E</span>
-            <span class="letter">R</span>
-            <span class="letter">N</span>
-            <span class="letter">E</span>
-            <span class="letter">T</span>
+            <span class="letter" style="animation-delay: 0.1s">S</span>
+            <span class="letter" style="animation-delay: 0.2s">E</span>
+            <span class="letter" style="animation-delay: 0.3s">N</span>
+            <span class="letter" style="animation-delay: 0.4s">T</span>
+            <span class="letter" style="animation-delay: 0.5s">E</span>
+            <span class="letter" style="animation-delay: 0.6s">R</span>
+            <span class="letter" style="animation-delay: 0.7s">N</span>
+            <span class="letter" style="animation-delay: 0.8s">E</span>
+            <span class="letter" style="animation-delay: 0.9s">T</span>
         </div>
-        <p class="brand-subtext">Technologies</p>
+        <p class="mt-4 font-bold text-gray-400 tracking-[0.6em] uppercase text-xs">Technologies</p>
     </div>
 
-    <!-- 2. MAIN APP IFRAME -->
+    <!-- App Content -->
     <div id="app-viewport">
-        <iframe id="target-frame" src=""></iframe>
+        <!-- CEO Top Bar -->
+        <header class="bg-white border-b px-4 py-2 flex items-center justify-between shadow-sm z-10">
+            <div class="flex items-center gap-3">
+                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" 
+                     class="w-10 h-10 rounded-full border-2 border-blue-600 shadow-sm" alt="Senthilkumar CEO">
+                <div>
+                    <h1 class="text-sm font-extrabold text-slate-800 leading-none">SENTERNET TECHNOLOGIES</h1>
+                    <p class="text-[10px] text-gray-500 font-semibold uppercase">Aranthangi | #1 IT Solutions Partner</p>
+                </div>
+            </div>
+            <div class="flex gap-4 items-center">
+                <div class="hidden lg:flex gap-4 text-[10px] font-bold text-gray-600 mr-4 uppercase tracking-tighter">
+                    <span><i class="fa-brands fa-whatsapp text-green-500"></i> +91 81900 38085</span>
+                    <span><i class="fa-solid fa-location-dot text-red-500"></i> Aranthangi, Pudukkottai</span>
+                </div>
+                <div class="flex gap-2">
+                    <a href="https://rebrand.ly/senternet" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-full text-[10px] font-bold hover:bg-blue-700 transition">OFFICIAL SITE</a>
+                    <a href="https://wa.me/918190038085" class="bg-green-500 text-white px-4 py-2 rounded-full text-[10px] font-bold hover:bg-green-600 transition">WHATSAPP</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-grow flex flex-col">
+            <iframe id="target-iframe" title="Senternet Core Application" src="about:blank"></iframe>
+        </main>
+
+      
     </div>
 
     <script>
-        // Use your existing AppScript URL
+        // Official Senternet App URL
         const appUrl = "https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec";
         
         window.onload = () => {
-            // Set iframe src immediately to start loading in background
-            document.getElementById('target-frame').src = appUrl;
+            // Set iframe source to load the AppScript Backend
+            document.getElementById('target-iframe').src = appUrl;
 
+            // Transition out of intro after 2.5 seconds for premium feel
+            setTimeout(() => {
+                document.body.classList.add('started');
+            }, 2500);
         };
     </script>
 </body>
 </html>
-
