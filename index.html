@@ -4,133 +4,232 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ULTIMATE MEGA SEO & KEYWORD METADATA -->
-    <title>SENTERNET TECHNOLOGIES | #1 Web Design & Digital Marketing Aranthangi, Pudukkottai</title>
+    <!-- SEO & METADATA -->
+    <title>SENTERNET TECHNOLOGIES | 2025 Cinematic Launch</title>
+    <meta name="description" content="Senternet Technologies Aranthangi - Best Web Design & Digital Marketing. Happy New Year 2025 Cinematic Launch.">
     
-    <!-- PRIMARY META TAGS -->
-    <meta name="title" content="Senternet Technologies - Best Web Design & IT Solutions in Aranthangi">
-    <meta name="description" content="Senternet Technologies Aranthangi: Leading Digital Marketing agency & Web Design company in Pudukkottai. Expertise in SEO, Graphics, AppScript, and Business Automation. Founded by Senthilkumar (CEO).">
-    
-    <!-- MEGA KEYWORD LIST (ARANTHANGI TARGETED) -->
-    <meta name="keywords" content="Senternet Technologies, Senthilkumar CEO, Web Design Aranthangi, Web Development Pudukkottai, Digital Marketing Aranthangi, Best SEO Company Aranthangi, Graphic Design Aranthangi, IT Solutions Aranthangi, AppScript Developers Tamil Nadu, Muvi Foods, Abulu Juice, Social Media Marketing Aranthangi, Logo Design Aranthangi, Low Cost Website Aranthangi, Aranthangi Business Directory IT, Senthilkumar MCA, Software Company in Aranthangi, Online Marketing Aranthangi, Google My Business Aranthangi, Website Designer Near Me Aranthangi">
-    
-    <meta name="author" content="Senthilkumar, Senternet Technologies">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://rebrand.ly/senternet">
-
-    <!-- OPEN GRAPH / SOCIAL MEDIA SEO -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rebrand.ly/senternet">
-    <meta property="og:title" content="SENTERNET TECHNOLOGIES | Aranthangi's Digital Powerhouse">
-    <meta property="og:description" content="Transforming businesses in Aranthangi with world-class Web Design & Marketing. Contact Senthilkumar at +91 81900 38085.">
-    <meta property="og:image" content="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
-
-    <!-- TWITTER SEO -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://rebrand.ly/senternet">
-    <meta property="twitter:title" content="Senternet Technologies - Aranthangi IT Experts">
-    <meta property="twitter:description" content="Aranthangi's most trusted Web Design and Digital Marketing agency. Managed by CEO Senthilkumar.">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700&display=swap');
-
-        :root {
-            --primary: #2563eb;
-            --secondary: #0f172a;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&display=swap');
 
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #ffffff;
+            background-color: #000;
             overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* CINEMATIC INTRO */
+        /* CINEMATIC OVERLAY */
         #intro-overlay {
             position: fixed;
             inset: 0;
             z-index: 10000;
-            background: #ffffff;
+            background: radial-gradient(circle at center, #0f172a 0%, #000000 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1);
+            transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1), opacity 1s ease;
         }
 
-        .word { display: flex; gap: 5px; }
-        .letter {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 800;
-            color: var(--secondary);
-            animation: bounce 1.5s ease-in-out infinite;
-            display: inline-block;
+        /* TECH LINES BACKGROUND */
+        .tech-lines {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            perspective: 1000px;
+            transform: rotateX(60deg) translateY(-100px);
+            opacity: 0.3;
+            z-index: 1;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-25px); color: var(--primary); }
+        canvas#fireworks {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
         }
 
-        /* MAIN APP FRAME */
-        #app-viewport {
-            width: 100%;
-            height: 100vh;
+        .content-wrap {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .year-glitch {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(5rem, 18vw, 12rem);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.05em;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+            background: linear-gradient(to bottom, #fff 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* CANDLE GLOW EFFECT */
+        .candle-container {
+            margin-top: -20px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+        }
+        .flame {
+            width: 15px; height: 35px;
+            background: #ff6b00;
+            border-radius: 50% 50% 20% 20%;
+            filter: blur(2px);
+            box-shadow: 0 0 20px #ff6b00;
+            animation: flicker 0.1s infinite alternate;
         }
 
-        iframe {
-            flex-grow: 1;
-            border: none;
-            width: 100%;
+        .hero-title {
+            color: #60a5fa;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8em;
+            margin-top: 2rem;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
         }
 
-        .started #intro-overlay { transform: translateY(-100%); }
+        @keyframes flicker {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; letter-spacing: 0.5em; }
+        }
+
+        /* TRANSITION */
+        .started #intro-overlay {
+            transform: translateY(-100%) scale(1.1);
+            opacity: 0;
+        }
+
+        #app-viewport {
+            width: 100%; height: 100vh;
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+        }
+        .started #app-viewport { opacity: 1; }
+        
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
-    <!-- Intro Animation -->
     <div id="intro-overlay">
-        <div class="word">
-            <span class="letter" style="animation-delay: 0.1s">S</span>
-            <span class="letter" style="animation-delay: 0.2s">E</span>
-            <span class="letter" style="animation-delay: 0.3s">N</span>
-            <span class="letter" style="animation-delay: 0.4s">T</span>
-            <span class="letter" style="animation-delay: 0.5s">E</span>
-            <span class="letter" style="animation-delay: 0.6s">R</span>
-            <span class="letter" style="animation-delay: 0.7s">N</span>
-            <span class="letter" style="animation-delay: 0.8s">E</span>
-            <span class="letter" style="animation-delay: 0.9s">T</span>
+        <div class="tech-lines"></div>
+        <canvas id="fireworks"></canvas>
+        
+        <div class="content-wrap">
+            <div class="year-glitch">2025</div>
+            <div class="candle-container">
+                <div class="flame"></div>
+                <div class="flame" style="animation-delay: 0.05s"></div>
+                <div class="flame" style="animation-delay: 0.12s"></div>
+                <div class="flame" style="animation-delay: 0.08s"></div>
+            </div>
+            <h2 class="hero-title">SENTERNET TECHNOLOGIES</h2>
         </div>
-        <p class="mt-4 font-bold text-gray-400 tracking-[0.6em] uppercase text-xs">Technologies</p>
     </div>
 
-    <!-- App Content -->
     <div id="app-viewport">
-        <!-- CEO Top Bar -->
-
-        <main class="flex-grow flex flex-col">
-            <iframe id="target-iframe" title="Senternet Core Application" src="about:blank"></iframe>
-        </main>
-
-      
+        <iframe id="target-iframe" src="about:blank"></iframe>
     </div>
 
     <script>
-        // Official Senternet App URL
         const appUrl = "https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec";
         
+        // Fireworks Logic
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x; this.y = y;
+                this.color = color;
+                this.velocity = { x: (Math.random() - 0.5) * 8, y: (Math.random() - 0.5) * 8 };
+                this.alpha = 1;
+                this.friction = 0.95;
+            }
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.01;
+            }
+        }
+
+        function createFirework() {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height * 0.5;
+            const colors = ['#fbbf24', '#60a5fa', '#f472b6', '#ffffff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            for (let i = 0; i < 30; i++) {
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, i) => {
+                if (p.alpha > 0) {
+                    p.update();
+                    p.draw();
+                } else {
+                    particles.splice(i, 1);
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+
         window.onload = () => {
-            // Set iframe source to load the AppScript Backend
-            document.getElementById('target-iframe').src = appUrl;
+            const iframe = document.getElementById('target-iframe');
+            iframe.src = appUrl;
+            
+            animate();
+            setInterval(createFirework, 600);
+
+            // 4 Second Switch
+            setTimeout(() => {
+                document.body.classList.add('started');
+                setTimeout(() => {
+                    document.getElementById('intro-overlay').remove();
+                }, 1000);
+            }, 4000);
         };
     </script>
 </body>
