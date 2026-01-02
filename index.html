@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO & METADATA -->
-    <title>SENTERNET TECHNOLOGIES | Web Design & Digital Marketing Aranthangi</title>
-    <meta name="description" content="Senternet Technologies Aranthangi - Premium Web Design & Digital Marketing Services.">
+    <title>SENTERNET TECHNOLOGIES | 2026 - Web design & digital marketing company in Aranthangi</title>
+    <meta name="description" content="Senternet Technologies Aranthangi - Best Web Design & Digital Marketing. Happy New Year 2026 Video Launch.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&display=swap');
 
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
-            background-color: #ffffff;
+            background-color: #000;
             overflow: hidden;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         /* VIDEO AD OVERLAY */
@@ -37,50 +37,29 @@
         #intro-video {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: contain; /* Set to cover if you want it fullscreen */
             background: #000;
-        }
-
-        /* UNMUTE PROMPT */
-        #unmute-hint {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 99px;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            animation: pulse 2s infinite;
-            pointer-events: none;
-            z-index: 20002;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.6; transform: translateX(-50%) scale(0.95); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1); }
-            100% { opacity: 0.6; transform: translateX(-50%) scale(0.95); }
         }
 
         #skip-btn {
             position: absolute;
             bottom: 40px;
             right: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 12px 24px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: sans-serif;
+            display: none; /* Hidden initially */
+            z-index: 20001;
+            transition: all 0.3s;
+        }
+
+        #skip-btn:hover {
             background: #fff;
             color: #000;
-            padding: 12px 28px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            display: none;
-            z-index: 20001;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            transition: all 0.3s;
         }
 
         #countdown-timer {
@@ -89,119 +68,136 @@
             right: 40px;
             color: #fff;
             font-size: 14px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.5);
             padding: 10px 20px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
         }
 
-        /* WHITE PROFESSIONAL INTRO */
+        /* CINEMATIC INTRO OVERLAY (After Ad) */
         #intro-overlay {
             position: fixed;
             inset: 0;
             z-index: 10000;
-            background: #ffffff;
+            background: radial-gradient(circle at center, #0f172a 0%, #000000 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 1s ease, transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1), opacity 1s ease;
         }
 
-        .admin-frame {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 4px solid #f3f4f6;
-            padding: 6px;
-            background: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            margin-bottom: 24px;
-            overflow: hidden;
+        .tech-lines {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            perspective: 1000px;
+            transform: rotateX(60deg) translateY(-100px);
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        canvas#fireworks {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+        }
+
+        .content-wrap {
             position: relative;
+            z-index: 10;
+            text-align: center;
         }
 
-        .admin-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #e5e7eb; /* Placeholder color */
-        }
-
-        .brand-name {
+        .year-glitch {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(4rem, 15vw, 10rem);
             font-weight: 700;
-            letter-spacing: 0.1em;
-            color: #111827;
-            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: -0.05em;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+            background: linear-gradient(to bottom, #fff 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .candle-container {
+            margin-top: -10px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        .flame {
+            width: 12px; height: 30px;
+            background: #ff6b00;
+            border-radius: 50% 50% 20% 20%;
+            filter: blur(2px);
+            box-shadow: 0 0 20px #ff6b00;
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        .hero-title {
+            color: #60a5fa;
+            font-size: 1rem;
             text-transform: uppercase;
+            letter-spacing: 0.8em;
+            margin-top: 1.5rem;
+            font-weight: 300;
         }
 
-        .brand-tagline {
-            color: #6b7280;
-            margin-top: 8px;
-            font-weight: 400;
-            font-size: 0.9rem;
+        @keyframes flicker {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
         }
 
-        .loading-bar-container {
-            width: 200px;
-            height: 3px;
-            background: #f3f4f6;
-            margin-top: 40px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .loading-bar-progress {
-            width: 0%;
-            height: 100%;
-            background: #2563eb;
-            transition: width 2.5s ease;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         /* MAIN APP VIEWPORT */
         #app-viewport {
             width: 100%; height: 100vh;
             opacity: 0;
-            visibility: hidden;
             transition: opacity 1s ease;
         }
         
-        .started #app-viewport { opacity: 1; visibility: visible; }
+        .started #app-viewport { opacity: 1; }
         .hidden-ad { opacity: 0; pointer-events: none; }
         
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
-<body>
+<body class="bg-black">
 
     <!-- VIDEO AD LAYER -->
-    <div id="video-ad-container" onclick="handleVideoClick()">
-        <div id="unmute-hint">
-            <i class="fa-solid fa-volume-high"></i> Tap anywhere to unmute
-        </div>
-        
+    <div id="video-ad-container">
+        <!-- Update with your actual Raw GitHub URL -->
         <video id="intro-video" autoplay muted playsinline>
             <source src="VID_20260102_042647_174_bsl.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         
-        <div id="countdown-timer">Skip in <span id="timer-sec">5</span>s</div>
-        <button id="skip-btn" onclick="startExperience(event)">Continue to Site <i class="fa-solid fa-arrow-right ml-2"></i></button>
+        <div id="countdown-timer">Ad ends in <span id="timer-sec">5</span>s</div>
+        <button id="skip-btn" onclick="startExperience()">Skip Ad <i class="fa-solid fa-chevron-right ml-2"></i></button>
     </div>
 
-    <!-- CLEAN WHITE INTRO LAYER -->
+    <!-- CINEMATIC BACKGROUND LAYER (Plays behind/after ad) -->
     <div id="intro-overlay">
-        <div class="admin-frame">
-            <!-- Replace 'admin-photo.jpg' with your actual image path -->
-            <img src="https://ui-avatars.com/api/?name=Senternet+Admin&background=2563eb&color=fff&size=200" alt="Admin" class="admin-img" onerror="this.src='https://via.placeholder.com/200?text=Admin'">
-        </div>
-        <h1 class="brand-name">Senternet Technologies</h1>
-        <p class="brand-tagline">Aranthangi's Leading Digital Partner</p>
-        
-        <div class="loading-bar-container">
-            <div id="progress-bar" class="loading-bar-progress"></div>
+        <div class="tech-lines"></div>
+        <canvas id="fireworks"></canvas>
+        <div class="content-wrap">
+            <div class="year-glitch">2026</div>
+            <div class="candle-container">
+                <div class="flame"></div>
+                <div class="flame" style="animation-delay: 0.05s"></div>
+                <div class="flame" style="animation-delay: 0.12s"></div>
+                <div class="flame" style="animation-delay: 0.08s"></div>
+            </div>
+            <h2 class="hero-title">SENTERNET TECHNOLOGIES</h2>
         </div>
     </div>
 
@@ -212,14 +208,14 @@
 
     <script>
         const appUrl = "https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec";
-        let adSkipped = false;
-        const video = document.getElementById('intro-video');
+        let adClosed = false;
 
-        // Ad Countdown Logic
+        // Ad Logic
         let timeLeft = 5;
         const timerSpan = document.getElementById('timer-sec');
         const skipBtn = document.getElementById('skip-btn');
         const countdownDiv = document.getElementById('countdown-timer');
+        const video = document.getElementById('intro-video');
 
         const countdownInterval = setInterval(() => {
             timeLeft--;
@@ -232,52 +228,97 @@
             }
         }, 1000);
 
-        // Handle Unmuting on tap
-        function handleVideoClick() {
-            if (video.muted) {
-                video.muted = false;
-                document.getElementById('unmute-hint').style.display = 'none';
+        // Auto-start experience when video ends
+        video.onended = () => {
+            if(!adClosed) startExperience();
+        };
+
+        function startExperience() {
+            adClosed = true;
+            document.getElementById('video-ad-container').classList.add('hidden-ad');
+            
+            // Wait for the fireworks animation briefly then switch to app
+            setTimeout(() => {
+                document.body.classList.add('started');
+                // Optional: Remove overlays to save memory
+                setTimeout(() => {
+                    document.getElementById('intro-overlay').remove();
+                    document.getElementById('video-ad-container').remove();
+                }, 1000);
+            }, 3000);
+        }
+
+        // Fireworks Canvas Logic
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x; this.y = y;
+                this.color = color;
+                this.velocity = { x: (Math.random() - 0.5) * 8, y: (Math.random() - 0.5) * 8 };
+                this.alpha = 1;
+                this.friction = 0.95;
+            }
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.01;
             }
         }
 
-        // Auto-start experience when video ends
-        video.onended = () => {
-            if(!adSkipped) startExperience();
-        };
+        function createFirework() {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height * 0.5;
+            const colors = ['#fbbf24', '#60a5fa', '#f472b6', '#ffffff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            for (let i = 0; i < 30; i++) {
+                particles.push(new Particle(x, y, color));
+            }
+        }
 
-        function startExperience(event) {
-            if(event) event.stopPropagation(); // Prevent unmute trigger on skip
-            adSkipped = true;
-            
-            // Hide Ad
-            document.getElementById('video-ad-container').classList.add('hidden-ad');
-            
-            // Start Progress Bar on White Intro
-            setTimeout(() => {
-                document.getElementById('progress-bar').style.width = '100%';
-            }, 100);
-
-            // Transition to App
-            setTimeout(() => {
-                document.body.classList.add('started');
-                // Cleanup to save memory
-                setTimeout(() => {
-                    document.getElementById('intro-overlay').style.display = 'none';
-                    document.getElementById('video-ad-container').remove();
-                }, 1000);
-            }, 2800);
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, i) => {
+                if (p.alpha > 0) {
+                    p.update();
+                    p.draw();
+                } else {
+                    particles.splice(i, 1);
+                }
+            });
+            requestAnimationFrame(animate);
         }
 
         window.onload = () => {
             const iframe = document.getElementById('target-iframe');
             iframe.src = appUrl;
+            animate();
+            setInterval(createFirework, 800);
             
-            // Simple gesture listener for wider support
-            document.body.addEventListener('touchstart', () => {
-                if (video && video.muted) handleVideoClick();
+            // Try to unmute on user interaction if they tap anywhere
+            document.addEventListener('click', () => {
+                video.muted = false;
             }, { once: true });
         };
     </script>
 </body>
 </html>
-
