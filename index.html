@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- SEO & METADATA -->
-    <title>SENTERNET TECHNOLOGIES | 2026 - Web design & digital marketing company in Aranthangi</title>
-    <meta name="description" content="Senternet Technologies Aranthangi - Best Web Design & Digital Marketing. Happy New Year 2026 Video Launch.">
+    <title>SENTERNET TECHNOLOGIES | 2026</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -39,30 +37,41 @@
             height: 100%;
             object-fit: contain;
             background: #000;
+            cursor: pointer;
+        }
+
+        #unmute-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            background: rgba(0,0,0,0.6);
+            padding: 15px 25px;
+            border-radius: 50px;
+            pointer-events: none;
+            font-size: 14px;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: pulse 2s infinite;
+            z-index: 20002;
         }
 
         #skip-btn {
             position: absolute;
             top: 30px;
             right: 30px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             color: #fff;
-            padding: 10px 20px;
-            border: 1px solid rgba(255,255,255,0.3);
+            padding: 12px 24px;
+            border: 1px solid rgba(255,255,255,0.4);
             border-radius: 50px;
             cursor: pointer;
             display: none;
-            z-index: 20001;
+            z-index: 20005;
             transition: all 0.3s;
             font-size: 14px;
             font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        #skip-btn:hover {
-            background: #fff;
-            color: #000;
         }
 
         #countdown-timer {
@@ -71,10 +80,10 @@
             right: 30px;
             color: #fff;
             font-size: 12px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             padding: 8px 16px;
             border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
+            z-index: 20005;
         }
 
         /* CINEMATIC INTRO OVERLAY */
@@ -87,20 +96,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 1s ease;
             pointer-events: none;
-        }
-
-        .tech-lines {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            perspective: 1000px;
-            transform: rotateX(60deg) translateY(-100px);
-            opacity: 0.3;
         }
 
         canvas#fireworks {
@@ -109,85 +105,43 @@
             z-index: 2;
         }
 
-        .content-wrap {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-        }
-
         .year-glitch {
             font-family: 'Syncopate', sans-serif;
             font-size: clamp(4rem, 15vw, 10rem);
             font-weight: 700;
             color: #fff;
-            letter-spacing: -0.05em;
             background: linear-gradient(to bottom, #fff 0%, #fbbf24 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: float 3s ease-in-out infinite;
         }
 
-        .candle-container {
-            margin-top: -10px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-        .flame {
-            width: 10px; height: 25px;
-            background: #ff6b00;
-            border-radius: 50% 50% 20% 20%;
-            filter: blur(1px);
-            box-shadow: 0 0 15px #ff6b00;
-            animation: flicker 0.1s infinite alternate;
-        }
-
-        .hero-title {
-            color: #60a5fa;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.6em;
-            margin-top: 2rem;
-            opacity: 0.8;
-        }
-
-        /* MAIN APP VIEWPORT FIXES */
+        /* IFRAME WRAPPER */
         #app-viewport {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             opacity: 0;
             background: #fff;
-            transition: opacity 1.2s ease-in-out;
+            transition: opacity 1s ease-in;
             z-index: 1;
             overflow: hidden;
         }
         
-        body.started #app-viewport { 
-            opacity: 1; 
-        }
+        body.started #app-viewport { opacity: 1; }
 
         #target-iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             border: none;
-            display: block;
         }
         
-        .hidden-ad { 
-            opacity: 0 !important; 
-            pointer-events: none !important; 
-            visibility: hidden !important;
-        }
+        .hidden-element { opacity: 0 !important; pointer-events: none !important; visibility: hidden !important; }
 
-        @keyframes flicker {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 1; }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
         }
 
         @keyframes float {
@@ -199,89 +153,91 @@
 <body class="bg-black">
 
     <!-- VIDEO AD LAYER -->
-    <div id="video-ad-container">
+    <div id="video-ad-container" onclick="toggleMute()">
         <video id="intro-video" autoplay muted playsinline>
             <source src="VID_20260102_042647_174_bsl.mp4" type="video/mp4">
         </video>
         
+        <div id="unmute-hint"><i class="fa-solid fa-volume-high mr-2"></i> TAP TO UNMUTE</div>
+        
         <div id="countdown-timer">Ad ends in <span id="timer-sec">5</span>s</div>
-        <button id="skip-btn" onclick="startExperience()">Skip Ad <i class="fa-solid fa-chevron-right ml-2"></i></button>
+        <button id="skip-btn" onclick="event.stopPropagation(); startExperience()">Skip Ad <i class="fa-solid fa-chevron-right ml-2"></i></button>
     </div>
 
     <!-- CINEMATIC BACKGROUND LAYER -->
     <div id="intro-overlay">
-        <div class="tech-lines"></div>
         <canvas id="fireworks"></canvas>
-        <div class="content-wrap">
+        <div class="content-wrap text-center relative z-10">
             <div class="year-glitch">2026</div>
-            <div class="candle-container">
-                <div class="flame"></div>
-                <div class="flame" style="animation-delay: 0.05s"></div>
-                <div class="flame" style="animation-delay: 0.12s"></div>
-                <div class="flame" style="animation-delay: 0.08s"></div>
-            </div>
-            <h2 class="hero-title">SENTERNET TECHNOLOGIES</h2>
+            <h2 class="text-blue-400 tracking-[0.6em] text-xs uppercase mt-8 opacity-70">SENTERNET TECHNOLOGIES</h2>
         </div>
     </div>
 
     <!-- MAIN APP LOADED IN IFRAME -->
     <div id="app-viewport">
-        <iframe id="target-iframe" src="about:blank" allow="autoplay; camera; microphone; fullscreen"></iframe>
+        <iframe id="target-iframe" src="about:blank"></iframe>
     </div>
 
     <script>
         const appUrl = "https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec";
         let adClosed = false;
+        const video = document.getElementById('intro-video');
+        const unmuteHint = document.getElementById('unmute-hint');
+
+        // Toggle Mute Logic
+        function toggleMute() {
+            if (video) {
+                video.muted = !video.muted;
+                if (!video.muted) {
+                    unmuteHint.classList.add('hidden-element');
+                } else {
+                    unmuteHint.classList.remove('hidden-element');
+                }
+            }
+        }
 
         // Ad Logic
         let timeLeft = 5;
         const timerSpan = document.getElementById('timer-sec');
         const skipBtn = document.getElementById('skip-btn');
         const countdownDiv = document.getElementById('countdown-timer');
-        const video = document.getElementById('intro-video');
 
         const countdownInterval = setInterval(() => {
             timeLeft--;
             if (timeLeft > 0) {
-                timerSpan.textContent = timeLeft;
+                if(timerSpan) timerSpan.textContent = timeLeft;
             } else {
                 clearInterval(countdownInterval);
-                if (countdownDiv) countdownDiv.style.display = 'none';
-                if (skipBtn) skipBtn.style.display = 'block';
+                if(countdownDiv) countdownDiv.style.display = 'none';
+                if(skipBtn) skipBtn.style.display = 'block';
             }
         }, 1000);
 
         video.onended = () => {
-            if(!adClosed) startExperience();
+            startExperience();
         };
 
         function startExperience() {
             if(adClosed) return;
             adClosed = true;
             
-            // 1. Stop the video immediately
+            // KILL VIDEO TOTALLY
             if (video) {
                 video.pause();
-                video.currentTime = 0;
-                video.src = ""; // Clear source to stop buffering
-                video.load();   // Force clear
+                video.removeAttribute('src'); // Stop background loading
+                video.load();
+                video.remove(); // Remove from DOM to be 100% sure
             }
 
-            // 2. Hide the ad container
-            const adContainer = document.getElementById('video-ad-container');
-            adContainer.classList.add('hidden-ad');
+            document.getElementById('video-ad-container').classList.add('hidden-element');
             
-            // 3. Cinematic transition to app
+            // Transition to App
             setTimeout(() => {
                 document.body.classList.add('started');
-                
-                // Final cleanup
                 setTimeout(() => {
-                    const overlay = document.getElementById('intro-overlay');
-                    if (overlay) overlay.style.display = 'none';
-                    if (adContainer) adContainer.remove(); 
+                    document.getElementById('intro-overlay').remove();
                 }, 1500);
-            }, 2500);
+            }, 2000);
         }
 
         // Fireworks Logic
@@ -321,18 +277,18 @@
         }
 
         function createFirework() {
-            if (document.hidden || adClosed) return;
+            if (adClosed) return;
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height * 0.5;
-            const colors = ['#fbbf24', '#60a5fa', '#f472b6', '#ffffff'];
+            const colors = ['#fbbf24', '#60a5fa', '#ffffff'];
             const color = colors[Math.floor(Math.random() * colors.length)];
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 25; i++) {
                 particles.push(new Particle(x, y, color));
             }
         }
 
         function animate() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             particles.forEach((p, i) => {
                 if (p.alpha > 0) {
@@ -346,15 +302,14 @@
         }
 
         window.onload = () => {
-            const iframe = document.getElementById('target-iframe');
-            iframe.src = appUrl;
-            
+            document.getElementById('target-iframe').src = appUrl;
             animate();
-            setInterval(createFirework, 800);
+            setInterval(createFirework, 1000);
             
-            document.addEventListener('click', () => {
-                if(video && video.src !== "") video.muted = false;
-            }, { once: true });
+            // Remove hint after 4 seconds if they haven't touched it
+            setTimeout(() => {
+                if (unmuteHint) unmuteHint.style.opacity = '0';
+            }, 4000);
         };
     </script>
 </body>
