@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- SEO & METADATA -->
     <title>SENTERNET TECHNOLOGIES | 2026 - Web design & digital marketing company in Aranthangi</title>
@@ -31,30 +31,33 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease;
+            transition: opacity 0.8s ease, visibility 0.8s;
         }
 
         #intro-video {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Set to cover if you want it fullscreen */
+            object-fit: contain;
             background: #000;
         }
 
         #skip-btn {
             position: absolute;
-            top: 40px;
-            right: 40px;
-            background: rgba(0, 0, 0, 0.7);
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             color: #fff;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 4px;
+            border-radius: 50px;
             cursor: pointer;
-            font-family: sans-serif;
-            display: none; /* Hidden initially */
+            display: none;
             z-index: 20001;
             transition: all 0.3s;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         #skip-btn:hover {
@@ -64,16 +67,17 @@
 
         #countdown-timer {
             position: absolute;
-            bottom: 40px;
-            right: 40px;
+            bottom: 30px;
+            right: 30px;
             color: #fff;
-            font-size: 14px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px 20px;
-            border-radius: 4px;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* CINEMATIC INTRO OVERLAY (After Ad) */
+        /* CINEMATIC INTRO OVERLAY */
         #intro-overlay {
             position: fixed;
             inset: 0;
@@ -83,7 +87,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1), opacity 1s ease;
+            transition: opacity 1s ease;
         }
 
         .tech-lines {
@@ -96,7 +100,6 @@
             perspective: 1000px;
             transform: rotateX(60deg) translateY(-100px);
             opacity: 0.3;
-            z-index: 1;
         }
 
         canvas#fireworks {
@@ -117,11 +120,10 @@
             font-weight: 700;
             color: #fff;
             letter-spacing: -0.05em;
-            position: relative;
-            animation: float 3s ease-in-out infinite;
             background: linear-gradient(to bottom, #fff 0%, #fbbf24 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: float 3s ease-in-out infinite;
         }
 
         .candle-container {
@@ -131,21 +133,55 @@
             gap: 12px;
         }
         .flame {
-            width: 12px; height: 30px;
+            width: 10px; height: 25px;
             background: #ff6b00;
             border-radius: 50% 50% 20% 20%;
-            filter: blur(2px);
-            box-shadow: 0 0 20px #ff6b00;
+            filter: blur(1px);
+            box-shadow: 0 0 15px #ff6b00;
             animation: flicker 0.1s infinite alternate;
         }
 
         .hero-title {
             color: #60a5fa;
-            font-size: 1rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.8em;
-            margin-top: 1.5rem;
-            font-weight: 300;
+            letter-spacing: 0.6em;
+            margin-top: 2rem;
+            opacity: 0.8;
+        }
+
+        /* MAIN APP VIEWPORT FIXES */
+        #app-viewport {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background: #fff; /* or the background of your google script */
+            transition: opacity 1.2s ease-in-out;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        body.started #app-viewport { 
+            opacity: 1; 
+        }
+
+        #target-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        
+        .hidden-ad { 
+            opacity: 0 !important; 
+            pointer-events: none; 
+            visibility: hidden;
         }
 
         @keyframes flicker {
@@ -157,35 +193,21 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
-
-        /* MAIN APP VIEWPORT */
-        #app-viewport {
-            width: 100%; height: 100vh;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-        
-        .started #app-viewport { opacity: 1; }
-        .hidden-ad { opacity: 0; pointer-events: none; }
-        
-        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body class="bg-black">
 
     <!-- VIDEO AD LAYER -->
     <div id="video-ad-container">
-        <!-- Update with your actual Raw GitHub URL -->
         <video id="intro-video" autoplay muted playsinline>
             <source src="VID_20260102_042647_174_bsl.mp4" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
         
         <div id="countdown-timer">Ad ends in <span id="timer-sec">5</span>s</div>
         <button id="skip-btn" onclick="startExperience()">Skip Ad <i class="fa-solid fa-chevron-right ml-2"></i></button>
     </div>
 
-    <!-- CINEMATIC BACKGROUND LAYER (Plays behind/after ad) -->
+    <!-- CINEMATIC BACKGROUND LAYER -->
     <div id="intro-overlay">
         <div class="tech-lines"></div>
         <canvas id="fireworks"></canvas>
@@ -203,10 +225,11 @@
 
     <!-- MAIN APP LOADED IN IFRAME -->
     <div id="app-viewport">
-        <iframe id="target-iframe" src="about:blank"></iframe>
+        <iframe id="target-iframe" src="about:blank" allow="autoplay; camera; microphone; fullscreen"></iframe>
     </div>
 
     <script>
+        // Use the provided URL
         const appUrl = "https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec";
         let adClosed = false;
 
@@ -228,27 +251,29 @@
             }
         }, 1000);
 
-        // Auto-start experience when video ends
         video.onended = () => {
             if(!adClosed) startExperience();
         };
 
         function startExperience() {
+            if(adClosed) return;
             adClosed = true;
+            
+            // Fade out ad
             document.getElementById('video-ad-container').classList.add('hidden-ad');
             
-            // Wait for the fireworks animation briefly then switch to app
+            // Let the fireworks run for 3 seconds before showing the app
             setTimeout(() => {
                 document.body.classList.add('started');
-                // Optional: Remove overlays to save memory
+                
+                // Cleanup intro layers after transition to save resources
                 setTimeout(() => {
-                    document.getElementById('intro-overlay').remove();
-                    document.getElementById('video-ad-container').remove();
-                }, 1000);
+                    document.getElementById('intro-overlay').style.display = 'none';
+                }, 1500);
             }, 3000);
         }
 
-        // Fireworks Canvas Logic
+        // Fireworks Logic
         const canvas = document.getElementById('fireworks');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -285,6 +310,7 @@
         }
 
         function createFirework() {
+            if (document.hidden) return;
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height * 0.5;
             const colors = ['#fbbf24', '#60a5fa', '#f472b6', '#ffffff'];
@@ -311,14 +337,16 @@
         window.onload = () => {
             const iframe = document.getElementById('target-iframe');
             iframe.src = appUrl;
-            animate();
-            setInterval(createFirework, 800);
             
-            // Try to unmute on user interaction if they tap anywhere
+            animate();
+            const fireworkInterval = setInterval(createFirework, 800);
+            
+            // Interaction to enable sound
             document.addEventListener('click', () => {
-                video.muted = false;
+                if(video) video.muted = false;
             }, { once: true });
         };
     </script>
 </body>
 </html>
+
