@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <title>SENTERNET TECHNOLOGIES | 2026</title>
-    
+    <title>SENTERNET TECHNOLOGIES</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&display=swap');
 
@@ -20,298 +17,204 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* VIDEO AD OVERLAY */
-        #video-ad-container {
-            position: fixed;
-            inset: 0;
-            z-index: 20000;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s ease, visibility 0.8s;
-        }
-
-        #intro-video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #000;
-            cursor: pointer;
-        }
-
-        #unmute-hint {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            background: rgba(0,0,0,0.6);
-            padding: 15px 25px;
-            border-radius: 50px;
-            pointer-events: none;
-            font-size: 14px;
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: pulse 2s infinite;
-            z-index: 20002;
-        }
-
-        #skip-btn {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            color: #fff;
-            padding: 12px 24px;
-            border: 1px solid rgba(255,255,255,0.4);
-            border-radius: 50px;
-            cursor: pointer;
-            display: none;
-            z-index: 20005;
-            transition: all 0.3s;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        #countdown-timer {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            color: #fff;
-            font-size: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 8px 16px;
-            border-radius: 20px;
-            z-index: 20005;
-        }
-
-        /* CINEMATIC INTRO OVERLAY */
+        /* THE OVERLAY CONTAINER */
         #intro-overlay {
             position: fixed;
             inset: 0;
             z-index: 10000;
-            background: radial-gradient(circle at center, #0f172a 0%, #000000 100%);
+            background: #000;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            pointer-events: none;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
         }
 
-        canvas#fireworks {
+        /* TECH SNAKE CANVAS */
+        #snake-canvas {
             position: absolute;
-            inset: 0;
-            z-index: 2;
-        }
-
-        .year-glitch {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(4rem, 15vw, 10rem);
-            font-weight: 700;
-            color: #fff;
-            background: linear-gradient(to bottom, #fff 0%, #fbbf24 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* IFRAME WRAPPER */
-        #app-viewport {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            opacity: 0;
-            background: #fff;
-            transition: opacity 1s ease-in;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
-            overflow: hidden;
         }
-        
-        body.started #app-viewport { opacity: 1; }
+
+        /* MINIMALIST BRANDING */
+        .branding-card {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .branding-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tech-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(1.2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: 0.8rem;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* MAIN APP VIEWPORT */
+        #app-viewport {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+        }
 
         #target-iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             border: none;
         }
-        
-        .hidden-element { opacity: 0 !important; pointer-events: none !important; visibility: hidden !important; }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        .fade-out {
+            opacity: 0 !important;
+            visibility: hidden !important;
         }
     </style>
 </head>
-<body class="bg-black">
+<body>
 
-    <!-- VIDEO AD LAYER -->
-    <div id="video-ad-container" onclick="toggleMute()">
-        <video id="intro-video" autoplay muted playsinline>
-            <source src="VID_20260102_042647_174_bsl.mp4" type="video/mp4">
-        </video>
-        
-        <div id="unmute-hint"><i class="fa-solid fa-volume-high mr-2"></i> TAP TO UNMUTE</div>
-        
-        <div id="countdown-timer">Ad ends in <span id="timer-sec">5</span>s</div>
-        <button id="skip-btn" onclick="event.stopPropagation(); startExperience()">Skip Ad <i class="fa-solid fa-chevron-right ml-2"></i></button>
+    <!-- MAIN APP LOADED IN BACKGROUND -->
+    <div id="app-viewport">
+        <iframe id="target-iframe" src="https://rebrand.ly/senternet"></iframe>
     </div>
 
-    <!-- CINEMATIC BACKGROUND LAYER -->
+    <!-- TECH SNAKE INTRO OVERLAY -->
     <div id="intro-overlay">
-        <canvas id="fireworks"></canvas>
-        <div class="content-wrap text-center relative z-10">
-            <div class="year-glitch">2026</div>
-            <h2 class="text-blue-400 tracking-[0.6em] text-xs uppercase mt-8 opacity-70">SENTERNET TECHNOLOGIES</h2>
+        <canvas id="snake-canvas"></canvas>
+        
+        <div id="branding-card" class="branding-card">
+            <div class="tech-title">SENTERNET</div>
+            <div class="mt-4 flex justify-center gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-bounce [animation-delay:150ms]"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-bounce [animation-delay:300ms]"></div>
+            </div>
         </div>
     </div>
 
-    <!-- MAIN APP LOADED IN IFRAME -->
-    <div id="app-viewport">
-        <iframe id="target-iframe" src="about:blank"></iframe>
-    </div>
-
     <script>
-        const appUrl = "https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec";
-        let adClosed = false;
-        const video = document.getElementById('intro-video');
-        const unmuteHint = document.getElementById('unmute-hint');
-
-        // Toggle Mute Logic
-        function toggleMute() {
-            if (video) {
-                video.muted = !video.muted;
-                if (!video.muted) {
-                    unmuteHint.classList.add('hidden-element');
-                } else {
-                    unmuteHint.classList.remove('hidden-element');
-                }
-            }
-        }
-
-        // Ad Logic
-        let timeLeft = 5;
-        const timerSpan = document.getElementById('timer-sec');
-        const skipBtn = document.getElementById('skip-btn');
-        const countdownDiv = document.getElementById('countdown-timer');
-
-        const countdownInterval = setInterval(() => {
-            timeLeft--;
-            if (timeLeft > 0) {
-                if(timerSpan) timerSpan.textContent = timeLeft;
-            } else {
-                clearInterval(countdownInterval);
-                if(countdownDiv) countdownDiv.style.display = 'none';
-                if(skipBtn) skipBtn.style.display = 'block';
-            }
-        }, 1000);
-
-        video.onended = () => {
-            startExperience();
-        };
-
-        function startExperience() {
-            if(adClosed) return;
-            adClosed = true;
-            
-            // KILL VIDEO TOTALLY
-            if (video) {
-                video.pause();
-                video.removeAttribute('src'); // Stop background loading
-                video.load();
-                video.remove(); // Remove from DOM to be 100% sure
-            }
-
-            document.getElementById('video-ad-container').classList.add('hidden-element');
-            
-            // Transition to App
-            setTimeout(() => {
-                document.body.classList.add('started');
-                setTimeout(() => {
-                    document.getElementById('intro-overlay').remove();
-                }, 1500);
-            }, 2000);
-        }
-
-        // Fireworks Logic
-        const canvas = document.getElementById('fireworks');
+        const canvas = document.getElementById('snake-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        const overlay = document.getElementById('intro-overlay');
+        const card = document.getElementById('branding-card');
+
+        let width, height;
+        let snakes = [];
 
         function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
+
         window.addEventListener('resize', resize);
         resize();
 
-        class Particle {
-            constructor(x, y, color) {
-                this.x = x; this.y = y;
-                this.color = color;
-                this.velocity = { x: (Math.random() - 0.5) * 8, y: (Math.random() - 0.5) * 8 };
-                this.alpha = 1;
-                this.friction = 0.95;
+        class TechSnake {
+            constructor() {
+                this.reset();
             }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.history = [];
+                this.maxHistory = 50 + Math.random() * 70;
+                this.angle = Math.random() * Math.PI * 2;
+                this.speed = 4 + Math.random() * 6;
+                this.hue = Math.random() > 0.5 ? 200 : 260; 
+                this.turnSpeed = (Math.random() - 0.5) * 0.15;
+            }
+
+            update() {
+                this.history.push({x: this.x, y: this.y});
+                if (this.history.length > this.maxHistory) this.history.shift();
+
+                this.angle += this.turnSpeed;
+                if (Math.random() > 0.9) this.turnSpeed = (Math.random() - 0.5) * 0.15;
+
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+            }
+
             draw() {
-                ctx.globalAlpha = this.alpha;
+                if (this.history.length < 2) return;
+
+                ctx.beginPath();
+                ctx.moveTo(this.history[0].x, this.history[0].y);
+                
+                for (let i = 1; i < this.history.length; i++) {
+                    ctx.lineTo(this.history[i].x, this.history[i].y);
+                }
+
+                const grad = ctx.createLinearGradient(
+                    this.history[0].x, this.history[0].y, 
+                    this.x, this.y
+                );
+                grad.addColorStop(0, 'transparent');
+                grad.addColorStop(1, `hsla(${this.hue}, 100%, 60%, 0.6)`);
+
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 1.5;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = `hsla(${this.hue}, 100%, 60%, 1)`;
+                ctx.fillStyle = '#fff';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
                 ctx.fill();
-            }
-            update() {
-                this.velocity.x *= this.friction;
-                this.velocity.y *= this.friction;
-                this.x += this.velocity.x;
-                this.y += this.velocity.y;
-                this.alpha -= 0.01;
+                ctx.shadowBlur = 0;
             }
         }
 
-        function createFirework() {
-            if (adClosed) return;
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height * 0.5;
-            const colors = ['#fbbf24', '#60a5fa', '#ffffff'];
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            for (let i = 0; i < 25; i++) {
-                particles.push(new Particle(x, y, color));
-            }
+        for (let i = 0; i < 15; i++) {
+            snakes.push(new TechSnake());
         }
 
         function animate() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((p, i) => {
-                if (p.alpha > 0) {
-                    p.update();
-                    p.draw();
-                } else {
-                    particles.splice(i, 1);
-                }
+            ctx.fillRect(0, 0, width, height);
+
+            snakes.forEach(snake => {
+                snake.update();
+                snake.draw();
             });
+
             requestAnimationFrame(animate);
         }
 
         window.onload = () => {
-            document.getElementById('target-iframe').src = appUrl;
             animate();
-            setInterval(createFirework, 1000);
             
-            // Remove hint after 4 seconds if they haven't touched it
             setTimeout(() => {
-                if (unmuteHint) unmuteHint.style.opacity = '0';
-            }, 4000);
+                card.classList.add('visible');
+            }, 300);
+
+            // Fast exit: Intro lasts only 3 seconds now
+            setTimeout(() => {
+                overlay.classList.add('fade-out');
+                setTimeout(() => {
+                    overlay.remove();
+                }, 800);
+            }, 3000);
         };
     </script>
 </body>
 </html>
-
