@@ -3,218 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SENTERNET TECHNOLOGIES</title>
+    <title>Senternet Technologies | Premium Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syncopate:wght@700&display=swap');
-
-        body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            background-color: #000;
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
-            font-family: 'Space Grotesk', sans-serif;
+            background-color: #ffffff;
         }
 
-        /* THE OVERLAY CONTAINER */
-        #intro-overlay {
+        /* Branding Intro Styles */
+        #branding-intro {
             position: fixed;
-            inset: 0;
-            z-index: 10000;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
-        }
-
-        /* TECH SNAKE CANVAS */
-        #snake-canvas {
-            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
         }
 
-        /* MINIMALIST BRANDING */
-        .branding-card {
-            position: relative;
-            z-index: 10;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
+            transform: scale(0.9);
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        .branding-card.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes popIn {
+            to { transform: scale(1); opacity: 1; }
         }
 
-        .tech-title {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.2rem, 4vw, 2.5rem);
-            font-weight: 700;
-            letter-spacing: 0.8rem;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* MAIN APP VIEWPORT */
-        #app-viewport {
-            position: fixed;
-            inset: 0;
-            z-index: 1;
+        .loader-progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #8B5CF6, #EC4899);
+            border-radius: 10px;
+            animation: loadProgress 2.5s ease-in-out forwards;
         }
 
-        #target-iframe {
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* Iframe Container */
+        #app-container {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: none;
+        }
+
+        iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
 
-        .fade-out {
-            opacity: 0 !important;
-            visibility: hidden !important;
+        .gradient-text {
+            background: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ceo-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #8B5CF6;
+            margin: 0 auto 1.5rem;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <!-- MAIN APP LOADED IN BACKGROUND -->
-    <div id="app-viewport">
-        <iframe id="target-iframe" src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec"></iframe>
-    </div>
-
-    <!-- TECH SNAKE INTRO OVERLAY -->
-    <div id="intro-overlay">
-        <canvas id="snake-canvas"></canvas>
-        
-        <div id="branding-card" class="branding-card">
-            <div class="tech-title">SENTERNET</div>
-            <div class="mt-4 flex justify-center gap-3">
-                <div class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce"></div>
-                <div class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-bounce [animation-delay:150ms]"></div>
-                <div class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-bounce [animation-delay:300ms]"></div>
+    <!-- Intro Branding Screen -->
+    <div id="branding-intro">
+        <div class="glass-card">
+            <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senthilkumar CEO" class="ceo-avatar">
+            <h1 class="text-3xl font-extrabold mb-2 tracking-tight text-gray-900">
+                SENTERNET <span class="gradient-text">TECHNOLOGIES</span>
+            </h1>
+            <p class="text-gray-500 font-medium text-sm tracking-widest uppercase mb-4">Innovation by Senthilkumar</p>
+            
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
             </div>
+            <p id="status-text" class="text-xs text-gray-400 mt-3 font-semibold italic">Architecting your experience...</p>
         </div>
     </div>
 
+    <!-- Main App Content -->
+    <div id="app-container">
+        <iframe 
+            src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
+            allow="geolocation; microphone; camera; clipboard-write;"
+            id="main-iframe">
+        </iframe>
+    </div>
+
     <script>
-        const canvas = document.getElementById('snake-canvas');
-        const ctx = canvas.getContext('2d');
-        const overlay = document.getElementById('intro-overlay');
-        const card = document.getElementById('branding-card');
+        window.addEventListener('load', () => {
+            const intro = document.getElementById('branding-intro');
+            const container = document.getElementById('app-container');
+            const statusText = document.getElementById('status-text');
 
-        let width, height;
-        let snakes = [];
+            // Sequential status updates for "Pro" feel
+            setTimeout(() => { statusText.innerText = "Syncing with Senternet Cloud..."; }, 800);
+            setTimeout(() => { statusText.innerText = "Finalizing Secure Tunnel..."; }, 1800);
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-
-        class TechSnake {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.history = [];
-                this.maxHistory = 50 + Math.random() * 70;
-                this.angle = Math.random() * Math.PI * 2;
-                this.speed = 4 + Math.random() * 6;
-                this.hue = Math.random() > 0.5 ? 200 : 260; 
-                this.turnSpeed = (Math.random() - 0.5) * 0.15;
-            }
-
-            update() {
-                this.history.push({x: this.x, y: this.y});
-                if (this.history.length > this.maxHistory) this.history.shift();
-
-                this.angle += this.turnSpeed;
-                if (Math.random() > 0.9) this.turnSpeed = (Math.random() - 0.5) * 0.15;
-
-                this.x += Math.cos(this.angle) * this.speed;
-                this.y += Math.sin(this.angle) * this.speed;
-
-                if (this.x < 0) this.x = width;
-                if (this.x > width) this.x = 0;
-                if (this.y < 0) this.y = height;
-                if (this.y > height) this.y = 0;
-            }
-
-            draw() {
-                if (this.history.length < 2) return;
-
-                ctx.beginPath();
-                ctx.moveTo(this.history[0].x, this.history[0].y);
-                
-                for (let i = 1; i < this.history.length; i++) {
-                    ctx.lineTo(this.history[i].x, this.history[i].y);
-                }
-
-                const grad = ctx.createLinearGradient(
-                    this.history[0].x, this.history[0].y, 
-                    this.x, this.y
-                );
-                grad.addColorStop(0, 'transparent');
-                grad.addColorStop(1, `hsla(${this.hue}, 100%, 60%, 0.6)`);
-
-                ctx.strokeStyle = grad;
-                ctx.lineWidth = 1.5;
-                ctx.lineCap = 'round';
-                ctx.stroke();
-
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = `hsla(${this.hue}, 100%, 60%, 1)`;
-                ctx.fillStyle = '#fff';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.shadowBlur = 0;
-            }
-        }
-
-        for (let i = 0; i < 15; i++) {
-            snakes.push(new TechSnake());
-        }
-
-        function animate() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
-            ctx.fillRect(0, 0, width, height);
-
-            snakes.forEach(snake => {
-                snake.update();
-                snake.draw();
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        window.onload = () => {
-            animate();
-            
+            // Hide intro and show app after branding sequence
             setTimeout(() => {
-                card.classList.add('visible');
-            }, 300);
-
-            // Fast exit: Intro lasts only 3 seconds now
-            setTimeout(() => {
-                overlay.classList.add('fade-out');
+                intro.style.opacity = '0';
                 setTimeout(() => {
-                    overlay.remove();
-                }, 500);
-            }, 1000);
+                    intro.style.display = 'none';
+                    container.style.display = 'block';
+                }, 800);
+            }, 3000);
+        });
+
+        // Prevention of accidental back swipes/navigation
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
         };
     </script>
 </body>
 </html>
+
