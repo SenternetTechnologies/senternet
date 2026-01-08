@@ -3,81 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Senternet Technologies | Aranthangi webdesign & digital marketing agency</title>
+    <title>Senternet Technologies | Aranthangi Webdesign & Digital Marketing</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-green: #00ff9d;
+            --neon-purple: #bd00ff;
+            --dark-bg: #050510;
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Outfit', sans-serif;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #ffffff;
+            background-color: var(--dark-bg);
+            color: white;
         }
 
-        /* Branding Intro Styles */
+        /* --- INTRO SECTION --- */
         #branding-intro {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #ffffff;
+            background: var(--dark-bg);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.8s ease-in-out, visibility 0.8s;
+            transition: opacity 1s cubic-bezier(0.7, 0, 0.3, 1), transform 1s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 24px;
-            padding: 3rem;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            text-align: center;
-            transform: scale(0.9);
-            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        @keyframes popIn {
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .loader-bar {
-            width: 200px;
-            height: 4px;
-            background: #f0f0f0;
-            border-radius: 10px;
-            margin-top: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .loader-progress {
-            width: 0%;
+        /* Background Image with Overlay */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, #8B5CF6, #EC4899);
-            border-radius: 10px;
-            animation: loadProgress 2.5s ease-in-out forwards;
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'); /* Tech Network Image */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 1;
+            filter: hue-rotate(45deg); /* Shift towards purple/blue */
         }
 
-        @keyframes loadProgress {
+        /* Canvas for Particle Network */
+        #canvas-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        /* Content Container */
+        .intro-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(10, 10, 20, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            max-width: 90%;
+            width: 400px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: floatUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.3s;
+        }
+
+        @keyframes floatUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Logo Avatar */
+        .ceo-avatar-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .ceo-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude; 
+            z-index: 2;
+            position: relative;
+            /* Using the image inside */
+        }
+
+        .avatar-img {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: calc(100% - 6px);
+            height: calc(100% - 6px);
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .avatar-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            filter: blur(20px);
+            opacity: 0.6;
+            animation: pulseGlow 2s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.4; filter: blur(15px); }
+            100% { opacity: 0.8; filter: blur(25px); }
+        }
+
+        /* Typography */
+        .brand-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff 0%, var(--neon-blue) 40%, var(--neon-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+
+        .brand-subtitle {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .brand-subtitle::before, .brand-subtitle::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-purple));
+        }
+        .brand-subtitle::after {
+            background: linear-gradient(90deg, var(--neon-purple), transparent);
+        }
+
+        /* Tech Loader */
+        .tech-loader {
+            position: relative;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .tech-loader-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-green));
+            background-size: 200% 100%;
+            animation: load 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards, gradientMove 2s linear infinite;
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        @keyframes load {
             0% { width: 0%; }
-            50% { width: 70%; }
+            40% { width: 40%; }
+            70% { width: 60%; }
             100% { width: 100%; }
         }
 
-        /* Iframe Container */
+        @keyframes gradientMove {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        .status-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+            min-height: 1.2em;
+        }
+
+        /* --- IFRAME SECTION --- */
         #app-container {
             width: 100vw;
             height: 100vh;
             border: none;
             display: none;
+            background: white; /* Ensure flash doesn't show dark bg */
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         iframe {
@@ -86,42 +243,53 @@
             border: none;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Utility */
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        .ceo-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid #8B5CF6;
-            margin: 0 auto 1.5rem;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .brand-title { font-size: 2rem; }
+            .glass-card { width: 85%; padding: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Intro Branding Screen -->
+    <!-- Ultra Animatic Branding Intro -->
     <div id="branding-intro">
-        <div class="glass-card">
-            <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senthilkumar CEO" class="ceo-avatar">
-            <h1 class="text-3xl font-extrabold mb-2 tracking-tight text-gray-900">
-                SENTERNET <span class="gradient-text">TECHNOLOGIES</span>
-            </h1>
-            <p class="text-gray-500 font-medium text-sm tracking-widest uppercase mb-4">Innovation by Senthilkumar</p>
-            
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
+        <!-- Background Elements -->
+        <div class="bg-image"></div>
+        <canvas id="canvas-bg"></canvas>
+        
+        <!-- Main Card -->
+        <div class="intro-content">
+            <div class="ceo-avatar-container">
+                <div class="avatar-glow"></div>
+                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="CEO" class="avatar-img">
             </div>
-            <p id="status-text" class="text-xs text-gray-400 mt-3 font-semibold italic">Architecting your experience...</p>
+
+            <h1 class="brand-title">
+                Senternet
+            </h1>
+            <h2 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-green-400 mb-4" style="filter: drop-shadow(0 0 10px rgba(192,38,211,0.5));">
+                TECHNOLOGIES
+            </h2>
+
+            <div class="brand-subtitle">
+                DIGITAL EXCELLENCE
+            </div>
+            
+            <div class="tech-loader">
+                <div class="tech-loader-bar"></div>
+            </div>
+            <p id="status-text" class="status-text">INITIALIZING CORE SYSTEMS...</p>
         </div>
     </div>
 
-    <!-- Main App Content -->
+    <!-- Main App -->
     <div id="app-container">
         <iframe 
             src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
@@ -131,26 +299,133 @@
     </div>
 
     <script>
+        // --- 1. PARTICLE NETWORK ANIMATION (The "Senternet" Effect) ---
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        // Colors based on theme
+        const colors = ['#00f3ff', '#00ff9d', '#bd00ff'];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+                this.size = Math.random() * 2 + 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce off edges
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = window.innerWidth < 600 ? 50 : 100; // Fewer on mobile for performance
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Update and draw particles
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                // Draw connections (The "Net" in Senternet)
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${1 - distance / 150})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            initParticles();
+        });
+
+        // Start Animation
+        resize();
+        initParticles();
+        animate();
+
+
+        // --- 2. LOADING SEQUENCE ---
         window.addEventListener('load', () => {
             const intro = document.getElementById('branding-intro');
             const container = document.getElementById('app-container');
             const statusText = document.getElementById('status-text');
+            
+            const messages = [
+                "ESTABLISHING SECURE CONNECTION...",
+                "OPTIMIZING ASSETS...",
+                "SYNCING CLOUD DATA...",
+                "WELCOME TO SENTERNET"
+            ];
 
-            // Sequential status updates for "Pro" feel
-            setTimeout(() => { statusText.innerText = "Syncing with Senternet Cloud..."; }, 800);
-            setTimeout(() => { statusText.innerText = "Finalizing Secure Tunnel..."; }, 1800);
+            let step = 0;
+            const interval = setInterval(() => {
+                if (step < messages.length) {
+                    statusText.innerText = messages[step];
+                    // Glitch effect on text change
+                    statusText.style.opacity = 0.5;
+                    setTimeout(() => statusText.style.opacity = 1, 100);
+                    step++;
+                }
+            }, 800);
 
-            // Hide intro and show app after branding sequence
+            // Finish Loading
             setTimeout(() => {
+                clearInterval(interval);
                 intro.style.opacity = '0';
+                intro.style.transform = 'scale(1.1)'; // Slight zoom out for cinematic feel
+                
                 setTimeout(() => {
                     intro.style.display = 'none';
                     container.style.display = 'block';
-                }, 800);
-            }, 3000);
+                }, 1000); // Wait for transition to finish
+            }, 3500); // Total load time
         });
 
-        // Prevention of accidental back swipes/navigation
+        // Prevent accidental back swipes
         history.pushState(null, null, location.href);
         window.onpopstate = function () {
             history.go(1);
