@@ -3,238 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Senternet Technologies | Aranthangi Webdesign & Digital Marketing</title>
+    <title>Senternet Technologies | Aranthangi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-blue: #00f3ff;
-            --neon-green: #00ff9d;
-            --neon-purple: #bd00ff;
-            --dark-bg: #050510;
+            --senternet-blue: #2563eb;
+            --senternet-purple: #8b5cf6;
+            --senternet-green: #10b981;
+            --senternet-red: #ef4444;
+            --senternet-pink: #ec4899;
+            --glass-bg: rgba(255, 255, 255, 0.7);
         }
 
-        body {
-            font-family: 'Outfit', sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            background-color: var(--dark-bg);
-            color: white;
-        }
-
-        /* --- INTRO SECTION --- */
-        #branding-intro {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: var(--dark-bg);
+            overflow: hidden;
+            background-color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* --- BRIGHT CINEMATIC INTRO --- */
+        #intro-screen {
+            position: fixed;
+            inset: 0;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 1s cubic-bezier(0.7, 0, 0.3, 1), transform 1s cubic-bezier(0.7, 0, 0.3, 1);
+            background: radial-gradient(circle at center, #ffffff 0%, #f0f4ff 100%);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Background Image with Overlay */
-        .bg-image {
+        /* Dynamic Floating Elements Background */
+        #bg-canvas {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'); /* Tech Network Image */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2;
+            inset: 0;
             z-index: 1;
-            filter: hue-rotate(45deg); /* Shift towards purple/blue */
         }
 
-        /* Canvas for Particle Network */
-        #canvas-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-
-        /* Content Container */
-        .intro-content {
+        /* Central Glass-morphism Logo Area */
+        .logo-card {
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(10, 10, 20, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 30px;
-            box-shadow: 0 0 50px rgba(0, 243, 255, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
-            max-width: 90%;
-            width: 400px;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: floatUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.3s;
+            padding: 3rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), 
+                        inset 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: cardFloat 3s ease-in-out infinite;
         }
 
-        @keyframes floatUp {
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        /* Logo Avatar */
-        .ceo-avatar-container {
+        .admin-logo-wrapper {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 140px;
+            height: 140px;
             margin: 0 auto 1.5rem;
         }
 
-        .ceo-avatar {
+        .admin-logo {
             width: 100%;
             height: 100%;
             border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
             object-fit: cover;
-            border: 3px solid transparent;
-            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple)) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude; 
-            z-index: 2;
             position: relative;
-            /* Using the image inside */
+            z-index: 2;
         }
 
-        .avatar-img {
+        .logo-glow {
             position: absolute;
-            top: 3px;
-            left: 3px;
-            width: calc(100% - 6px);
-            height: calc(100% - 6px);
+            inset: -10px;
+            background: linear-gradient(45deg, var(--senternet-blue), var(--senternet-purple), var(--senternet-green));
             border-radius: 50%;
-            object-fit: cover;
-            z-index: 1;
-        }
-
-        .avatar-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             filter: blur(20px);
-            opacity: 0.6;
-            animation: pulseGlow 2s infinite alternate;
-            z-index: 0;
+            opacity: 0.3;
+            animation: rotateGlow 4s linear infinite;
         }
 
-        @keyframes pulseGlow {
-            0% { opacity: 0.4; filter: blur(15px); }
-            100% { opacity: 0.8; filter: blur(25px); }
+        @keyframes rotateGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        /* Typography */
-        .brand-title {
-            font-size: 2.5rem;
+        .brand-name {
+            font-size: 3rem;
             font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff 0%, var(--neon-blue) 40%, var(--neon-green) 100%);
+            background: linear-gradient(to right, var(--senternet-blue), var(--senternet-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
-        }
-
-        .brand-subtitle {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 2px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            letter-spacing: 2px;
+            margin: 0;
         }
 
-        .brand-subtitle::before, .brand-subtitle::after {
-            content: '';
-            width: 30px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-purple));
-        }
-        .brand-subtitle::after {
-            background: linear-gradient(90deg, var(--neon-purple), transparent);
-        }
-
-        /* Tech Loader */
-        .tech-loader {
-            position: relative;
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 10px;
+        .brand-tagline {
+            font-size: 0.8rem;
+            letter-spacing: 6px;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-top: 8px;
+            font-weight: 700;
         }
 
-        .tech-loader-bar {
+        /* --- MAIN APP --- */
+        #main-app {
             position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-green));
-            background-size: 200% 100%;
-            animation: load 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards, gradientMove 2s linear infinite;
-            box-shadow: 0 0 20px var(--neon-blue);
-        }
-
-        @keyframes load {
-            0% { width: 0%; }
-            40% { width: 40%; }
-            70% { width: 60%; }
-            100% { width: 100%; }
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 100% 0; }
-            100% { background-position: -100% 0; }
-        }
-
-        .status-text {
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-            color: var(--neon-blue);
-            text-shadow: 0 0 5px var(--neon-blue);
-            min-height: 1.2em;
-        }
-
-        /* --- IFRAME SECTION --- */
-        #app-container {
-            width: 100vw;
-            height: 100vh;
-            border: none;
+            inset: 0;
             display: none;
-            background: white; /* Ensure flash doesn't show dark bg */
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
+            opacity: 0;
+            transition: opacity 1s ease-in;
         }
 
         iframe {
@@ -243,194 +134,119 @@
             border: none;
         }
 
-        /* Utility */
-        .hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
         /* Mobile Adjustments */
         @media (max-width: 600px) {
-            .brand-title { font-size: 2rem; }
-            .glass-card { width: 85%; padding: 2rem; }
+            .logo-card { width: 85%; padding: 2rem; }
+            .brand-name { font-size: 2.2rem; }
+            .admin-logo-wrapper { width: 110px; height: 110px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Ultra Animatic Branding Intro -->
-    <div id="branding-intro">
-        <!-- Background Elements -->
-        <div class="bg-image"></div>
-        <canvas id="canvas-bg"></canvas>
-        
-        <!-- Main Card -->
-        <div class="intro-content">
-            <div class="ceo-avatar-container">
-                <div class="avatar-glow"></div>
-                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="CEO" class="avatar-img">
-            </div>
+    <!-- Bright Intro Animation -->
+    <div id="intro-screen">
+        <canvas id="bg-canvas"></canvas>
 
-            <h1 class="brand-title">
-                Senternet
-            </h1>
-            <h2 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-green-400 mb-4" style="filter: drop-shadow(0 0 10px rgba(192,38,211,0.5));">
-                TECHNOLOGIES
-            </h2>
-
-            <div class="brand-subtitle">
-                DIGITAL EXCELLENCE
+        <div class="logo-card">
+            <div class="admin-logo-wrapper">
+                <div class="logo-glow"></div>
+                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senternet CEO" class="admin-logo">
             </div>
-            
-            <div class="tech-loader">
-                <div class="tech-loader-bar"></div>
-            </div>
-            <p id="status-text" class="status-text">INITIALIZING CORE SYSTEMS...</p>
+            <h1 class="brand-name">Senternet</h1>
+            <div class="brand-tagline">Technologies</div>
         </div>
     </div>
 
-    <!-- Main App -->
-    <div id="app-container">
+    <!-- Main App Container -->
+    <div id="main-app">
         <iframe 
             src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
-            allow="geolocation; microphone; camera; clipboard-write;"
-            id="main-iframe">
+            allow="geolocation; microphone; camera; clipboard-write; self"
+            id="app-iframe">
         </iframe>
     </div>
 
     <script>
-        // --- 1. PARTICLE NETWORK ANIMATION (The "Senternet" Effect) ---
-        const canvas = document.getElementById('canvas-bg');
+        // --- DYNAMIC BACKGROUND PARTICLES ---
+        const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
+        let width, height, particles = [];
 
-        // Colors based on theme
-        const colors = ['#00f3ff', '#00ff9d', '#bd00ff'];
+        const teamMembers = ["Senthil", "Kumar", "Sathish", "Anitha", "Arun", "Haritha", "Muralidharan", "Sevu", "Sen-Ai"];
+        const projects = ["Muvi Foods", "Abulu Juice", "Senternet Web", "Sana Foods", "Story AI", "Insta AI", "Cansing Groups", "Monster Game", "Cover Event", "User Track"];
+        const colors = ["#2563eb", "#8b5cf6", "#10b981", "#ef4444", "#ec4899"];
+        const combinedData = [...teamMembers, ...projects];
 
-        function resize() {
+        function init() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-        }
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 1.5;
-                this.vy = (Math.random() - 0.5) * 1.5;
-                this.size = Math.random() * 2 + 1;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Bounce off edges
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = this.color;
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
             particles = [];
-            const count = window.innerWidth < 600 ? 50 : 100; // Fewer on mobile for performance
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
+            
+            for (let i = 0; i < 25; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    text: combinedData[Math.floor(Math.random() * combinedData.length)],
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    size: Math.random() * 14 + 10,
+                    vx: (Math.random() - 0.5) * 1,
+                    vy: (Math.random() - 0.5) * 1,
+                    opacity: Math.random() * 0.4 + 0.1
+                });
             }
         }
 
-        function animate() {
+        function draw() {
             ctx.clearRect(0, 0, width, height);
             
-            // Update and draw particles
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
 
-                // Draw connections (The "Net" in Senternet)
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
 
-                    if (distance < 150) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 243, 255, ${1 - distance / 150})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
+                ctx.font = `bold ${p.size}px Outfit`;
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.opacity;
+                ctx.fillText(p.text, p.x, p.y);
+                
+                // Mouse interaction (gentle attraction to center)
+                const dx = width/2 - p.x;
+                const dy = height/2 - p.y;
+                p.vx += dx * 0.00001;
+                p.vy += dy * 0.00001;
+            });
+            
+            requestAnimationFrame(draw);
         }
 
-        window.addEventListener('resize', () => {
-            resize();
-            initParticles();
-        });
+        window.addEventListener('resize', init);
+        init();
+        draw();
 
-        // Start Animation
-        resize();
-        initParticles();
-        animate();
-
-
-        // --- 2. LOADING SEQUENCE ---
-        window.addEventListener('load', () => {
-            const intro = document.getElementById('branding-intro');
-            const container = document.getElementById('app-container');
-            const statusText = document.getElementById('status-text');
+        // --- TRANSITION LOGIC ---
+        window.onload = () => {
+            const intro = document.getElementById('intro-screen');
+            const app = document.getElementById('main-app');
             
-            const messages = [
-                "ESTABLISHING SECURE CONNECTION...",
-                "OPTIMIZING ASSETS...",
-                "SYNCING CLOUD DATA...",
-                "WELCOME TO SENTERNET"
-            ];
-
-            let step = 0;
-            const interval = setInterval(() => {
-                if (step < messages.length) {
-                    statusText.innerText = messages[step];
-                    // Glitch effect on text change
-                    statusText.style.opacity = 0.5;
-                    setTimeout(() => statusText.style.opacity = 1, 100);
-                    step++;
-                }
-            }, 800);
-
-            // Finish Loading
+            // Wait 4 seconds then transition
             setTimeout(() => {
-                clearInterval(interval);
                 intro.style.opacity = '0';
-                intro.style.transform = 'scale(1.1)'; // Slight zoom out for cinematic feel
+                intro.style.transform = 'scale(1.1)';
                 
                 setTimeout(() => {
                     intro.style.display = 'none';
-                    container.style.display = 'block';
-                }, 1000); // Wait for transition to finish
-            }, 3500); // Total load time
-        });
-
-        // Prevent accidental back swipes
-        history.pushState(null, null, location.href);
-        window.onpopstate = function () {
-            history.go(1);
+                    app.style.display = 'block';
+                    setTimeout(() => app.style.opacity = '1', 50);
+                }, 800);
+            }, 4000);
         };
+
+        // Prevent accidental exits
+        history.pushState(null, null, location.href);
+        window.onpopstate = () => history.go(1);
     </script>
 </body>
 </html>
-
