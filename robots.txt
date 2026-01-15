@@ -1,0 +1,16 @@
+Robots.txt for Senternet Technologies GitHub Pages
+​Official Website: https://rebrand.ly/senternet
+​User-agent: *
+Allow: /
+​Direct Google to our sitemap
+​Sitemap: https://www.google.com/search?q=https://senternettechnologies.github.io/sitemap.xml
+​Disallow sensitive folders if any (optional)
+​Disallow: /private/
+Disallow: /admin/
+Disallow: /config/
+​Crafting instructions for AI crawlers
+​User-agent: GPTBot
+Allow: /
+​Company: SENTERNET TECHNOLOGIES
+​Location: Aranthangi
+​Contact: +91 81900 38085
