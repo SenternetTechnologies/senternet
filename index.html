@@ -5,30 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Senternet Technologies | Aranthangi</title>
+    
+    <!-- Speed Optimizations: Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://www.jotform.com">
+    <link rel="preconnect" href="https://script.google.com">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+
 <!-- Primary Meta Tags -->
 <title>Senternet Technologies | Best Web Design & Digital Marketing in Aranthangi</title>
 <meta name="title" content="Senternet Technologies | Best Web Design & Digital Marketing in Aranthangi">
-<meta name="description" content="Senternet Technologies is a premier digital agency in Aranthangi, Pudukkottai. Specializing in Web Design, Graphic Design, and Digital Marketing. Led by CEO Senthilkumar. Expert solutions for Muvi Foods, Abulu Juice, and AI integrations.">
+<meta name="description" content="Senternet Technologies is a premier digital agency in Aranthangi, Pudukkottai. Specializing in Web Design, Graphic Design, and Digital Marketing. Led by CEO Senthilkumar.">
 <meta name="keywords" content="Senternet Technologies, Senthilkumar CEO, Web Design Aranthangi, Digital Marketing Pudukkottai, Graphic Design Aranthangi, AppScript Integration, Senternet Story AI, Muvi Foods, Abulu Juice, Website Design Tamil Nadu, SEO Services Pudukkottai, Social Media Marketing Aranthangi, E-commerce Website Development, Google Sheets Automation, Custom Web Apps India, Logo Design Aranthangi, Business Automation Pudukkottai, Senternet Insta AI, Sana Foods, User Tracking Systems, Best Digital Agency Aranthangi, Affordable Web Design Tamil Nadu, Creative Agency Pudukkottai, Senthil MCA Digital Marketing">
 <meta name="author" content="Senthilkumar - Senternet Technologies">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 
 <!-- Open Graph / Facebook / LinkedIn -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="[https://rebrand.ly/senternet](https://rebrand.ly/senternet)">
+<meta property="og:url" content="https://rebrand.ly/senternet">
 <meta property="og:title" content="Senternet Technologies | Innovation at Your Fingertips">
 <meta property="og:description" content="Expert Web Design and Creative Marketing solutions from the heart of Aranthangi. Build your digital future with Senternet Technologies.">
-<meta property="og:image" content="[https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp](https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp)">
+<meta property="og:image" content="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
 
 <!-- Twitter / X -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="[https://rebrand.ly/senternet](https://rebrand.ly/senternet)">
+<meta property="twitter:url" content="https://rebrand.ly/senternet">
 <meta property="twitter:title" content="Senternet Technologies - Digital Marketing & Web Design">
 <meta property="twitter:description" content="Transforming businesses through digital excellence. Contact us at +91 81900 38085.">
-<meta property="twitter:image" content="[https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp](https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp)">
+<meta property="twitter:image" content="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
 <meta name="twitter:site" content="@senternet-pdkt">
 
 <!-- Contact & Local SEO -->
@@ -37,9 +44,9 @@
 <meta name="geo.position" content="10.1633;78.9953">
 <meta name="ICBM" content="10.1633, 78.9953">
 
-<!-- Favicon and Icons -->
-<link rel="icon" type="image/webp" href="[https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp](https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp)">
-<link rel="canonical" href="[https://rebrand.ly/senternet](https://rebrand.ly/senternet)">
+<!-- Favicon -->
+<link rel="icon" type="image/webp" href="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
+<link rel="canonical" href="https://rebrand.ly/senternet">
 
     <style>
         :root {
@@ -73,14 +80,12 @@
             transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Dynamic Floating Elements Background */
         #bg-canvas {
             position: absolute;
             inset: 0;
             z-index: 1;
         }
 
-        /* Central Glass-morphism Logo Area */
         .logo-card {
             position: relative;
             z-index: 10;
@@ -161,6 +166,7 @@
             display: none;
             opacity: 0;
             transition: opacity 1s ease-in;
+            z-index: 5;
         }
 
         iframe {
@@ -169,11 +175,94 @@
             border: none;
         }
 
+        /* --- AD POPUP STYLES --- */
+        #ad-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 5px solid var(--senternet-blue);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 10000;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(150%);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+        }
+
+        #ad-container.show {
+            transform: translateX(0);
+        }
+
+        #ad-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            background-color: #f1f5f9;
+        }
+
+        .ad-content {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        #ad-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 4px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #ad-desc {
+            font-size: 11px;
+            color: #64748b;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        #close-ad {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        #close-ad:hover {
+            color: var(--senternet-red);
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 600px) {
             .logo-card { width: 85%; padding: 2rem; }
             .brand-name { font-size: 2.2rem; }
             .admin-logo-wrapper { width: 110px; height: 110px; }
+            #ad-container {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                width: auto;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -186,7 +275,7 @@
         <div class="logo-card">
             <div class="admin-logo-wrapper">
                 <div class="logo-glow"></div>
-                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senternet CEO" class="admin-logo">
+                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senternet CEO" class="admin-logo" loading="eager">
             </div>
             <h1 class="brand-name">Senternet</h1>
             <div class="brand-tagline">Technologies</div>
@@ -195,11 +284,23 @@
 
     <!-- Main App Container -->
     <div id="main-app">
+        <!-- Optimization: Added loading="lazy" for performance -->
         <iframe 
             src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
             allow="geolocation; microphone; camera; clipboard-write; self"
-            id="app-iframe">
+            id="app-iframe"
+            loading="lazy">
         </iframe>
+    </div>
+
+    <!-- POPUP AD CONTAINER -->
+    <div id="ad-container" onclick="handleAdClick()">
+        <button id="close-ad" onclick="event.stopPropagation(); hideAd();">✕</button>
+        <img id="ad-image" src="" alt="Ad">
+        <div class="ad-content">
+            <h4 id="ad-title">Loading...</h4>
+            <p id="ad-desc">Senternet Updates...</p>
+        </div>
     </div>
 
     <script>
@@ -218,7 +319,10 @@
             height = canvas.height = window.innerHeight;
             particles = [];
             
-            for (let i = 0; i < 25; i++) {
+            // Optimization: Reduced particle count slightly for mobile performance
+            const particleCount = window.innerWidth < 600 ? 15 : 25;
+
+            for (let i = 0; i < particleCount; i++) {
                 particles.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
@@ -247,7 +351,7 @@
                 ctx.globalAlpha = p.opacity;
                 ctx.fillText(p.text, p.x, p.y);
                 
-                // Mouse interaction (gentle attraction to center)
+                // Mouse interaction
                 const dx = width/2 - p.x;
                 const dy = height/2 - p.y;
                 p.vx += dx * 0.00001;
@@ -266,7 +370,6 @@
             const intro = document.getElementById('intro-screen');
             const app = document.getElementById('main-app');
             
-            // Wait 4 seconds then transition
             setTimeout(() => {
                 intro.style.opacity = '0';
                 intro.style.transform = 'scale(1.1)';
@@ -275,9 +378,90 @@
                     intro.style.display = 'none';
                     app.style.display = 'block';
                     setTimeout(() => app.style.opacity = '1', 50);
+                    
+                    // Start Ads ONLY after intro finishes
+                    startAdCycle();
                 }, 800);
             }, 4000);
         };
+
+        // --- REALTIME ADS LOGIC ---
+        
+        // IMPORTANT: Replace this URL with your published Apps Script Web App URL
+        // Example format: https://script.google.com/macros/s/XXXXX/exec
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec"; 
+
+        let adList = [];
+        let currentAdIndex = 0;
+        let adContainer = document.getElementById('ad-container');
+        let currentAdLink = "";
+
+        // Fetch ads from Google Sheet
+        async function fetchAds() {
+            try {
+                if(SCRIPT_URL === "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE") {
+                    console.log("Please setup Apps Script URL");
+                    return;
+                }
+                const response = await fetch(SCRIPT_URL);
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    adList = data;
+                }
+            } catch (error) {
+                console.error("Error fetching ads:", error);
+            }
+        }
+
+        function showAd() {
+            if (adList.length === 0) return;
+
+            const ad = adList[currentAdIndex];
+            
+            // Update UI
+            document.getElementById('ad-title').innerText = ad.title || "Senternet Offer";
+            document.getElementById('ad-desc').innerText = ad.description || "Check this out!";
+            document.getElementById('ad-image').src = ad.image || "https://picsum.photos/60";
+            currentAdLink = ad.link;
+
+            // Slide In
+            adContainer.classList.add('show');
+
+            // Set next index
+            currentAdIndex = (currentAdIndex + 1) % adList.length;
+
+            // Auto Hide after 6 seconds (so user has time to read)
+            setTimeout(() => {
+                hideAd();
+            }, 6000); 
+        }
+
+        function hideAd() {
+            adContainer.classList.remove('show');
+        }
+
+        function handleAdClick() {
+            if (currentAdLink) {
+                window.open(currentAdLink, '_blank');
+            }
+        }
+
+        function startAdCycle() {
+            // First fetch
+            fetchAds();
+            
+            // Refresh data every 30 seconds to keep it "Realtime" without spamming
+            setInterval(fetchAds, 30000);
+
+            // Ad Display Loop: Show one every 9 seconds (Gap time)
+            // Note: Total cycle = Display Time (6s) + Gap Time (9s) = 15s approx loop
+            setInterval(() => {
+                // Only show if currently hidden to avoid glitching
+                if (!adContainer.classList.contains('show')) {
+                    showAd();
+                }
+            }, 9000); 
+        }
 
         // Prevent accidental exits
         history.pushState(null, null, location.href);
@@ -285,12 +469,12 @@
     </script>
 <script type="application/ld+json">
 {
-  "@context": "[https://schema.org](https://schema.org)",
+  "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "SENTERNET TECHNOLOGIES",
-  "image": "[https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp](https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp)",
-  "@id": "[https://rebrand.ly/senternet](https://rebrand.ly/senternet)",
-  "url": "[https://rebrand.ly/senternet](https://rebrand.ly/senternet)",
+  "image": "https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp",
+  "@id": "https://rebrand.ly/senternet",
+  "url": "https://rebrand.ly/senternet",
   "telephone": "+918190038085",
   "email": "senternettechnologies@gmail.com",
   "address": {
@@ -307,12 +491,11 @@
     "jobTitle": "Owner and CEO"
   },
   "sameAs": [
-    "[https://www.youtube.com/@senternet-technologies](https://www.youtube.com/@senternet-technologies)",
-    "[https://senternet.blogspot.com](https://senternet.blogspot.com)",
-    "[https://t.me/senternet_technology](https://t.me/senternet_technology)",
-    "[https://www.instagram.com/senternet](https://www.instagram.com/senternet)"
-  ],
-  "keywords": "Web Design, Digital Marketing, Graphic Design, AppScript, Aranthangi, Pudukkottai"
+    "https://www.youtube.com/@senternet-technologies",
+    "https://senternet.blogspot.com",
+    "https://t.me/senternet_technology",
+    "https://www.instagram.com/senternet"
+  ]
 }
 </script>
 
