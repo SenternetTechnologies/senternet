@@ -1,172 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="google-site-verification" content="Cqe6jI829Vu4dqUiDdm9mADWm6eY4JqgCVSSj-o0RlI" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Senternet Technologies | Aranthangi</title>
     
-    <!-- Speed Optimizations: Preconnect to external domains -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://www.jotform.com">
-    <link rel="preconnect" href="https://script.google.com">
-
+    <!-- SEO & Meta Tags -->
+    <meta name="title" content="Senternet Technologies | Best Web Design & Digital Marketing in Aranthangi">
+    <meta name="description" content="Senternet Technologies is a premier digital agency in Aranthangi. Specializing in Web Design, Graphic Design, and Digital Marketing led by CEO Senthilkumar.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
-
-<!-- Primary Meta Tags -->
-<title>Senternet Technologies | Best Web Design & Digital Marketing in Aranthangi</title>
-<meta name="title" content="Senternet Technologies | Best Web Design & Digital Marketing in Aranthangi">
-<meta name="description" content="Senternet Technologies is a premier digital agency in Aranthangi, Pudukkottai. Specializing in Web Design, Graphic Design, and Digital Marketing. Led by CEO Senthilkumar.">
-<meta name="keywords" content="Senternet Technologies, Senthilkumar CEO, Web Design Aranthangi, Digital Marketing Pudukkottai, Graphic Design Aranthangi, AppScript Integration, Senternet Story AI, Muvi Foods, Abulu Juice, Website Design Tamil Nadu, SEO Services Pudukkottai, Social Media Marketing Aranthangi, E-commerce Website Development, Google Sheets Automation, Custom Web Apps India, Logo Design Aranthangi, Business Automation Pudukkottai, Senternet Insta AI, Sana Foods, User Tracking Systems, Best Digital Agency Aranthangi, Affordable Web Design Tamil Nadu, Creative Agency Pudukkottai, Senthil MCA Digital Marketing">
-<meta name="author" content="Senthilkumar - Senternet Technologies">
-<meta name="robots" content="index, follow">
-
-<!-- Open Graph / Facebook / LinkedIn -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://rebrand.ly/senternet">
-<meta property="og:title" content="Senternet Technologies | Innovation at Your Fingertips">
-<meta property="og:description" content="Expert Web Design and Creative Marketing solutions from the heart of Aranthangi. Build your digital future with Senternet Technologies.">
-<meta property="og:image" content="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
-
-<!-- Twitter / X -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://rebrand.ly/senternet">
-<meta property="twitter:title" content="Senternet Technologies - Digital Marketing & Web Design">
-<meta property="twitter:description" content="Transforming businesses through digital excellence. Contact us at +91 81900 38085.">
-<meta property="twitter:image" content="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
-<meta name="twitter:site" content="@senternet-pdkt">
-
-<!-- Contact & Local SEO -->
-<meta name="geo.region" content="IN-TN">
-<meta name="geo.placename" content="Aranthangi, Pudukkottai">
-<meta name="geo.position" content="10.1633;78.9953">
-<meta name="ICBM" content="10.1633, 78.9953">
-
-<!-- Favicon -->
-<link rel="icon" type="image/webp" href="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
-<link rel="canonical" href="https://rebrand.ly/senternet">
+    <link rel="icon" type="image/webp" href="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
 
     <style>
         :root {
-            --senternet-blue: #2563eb;
-            --senternet-purple: #8b5cf6;
-            --senternet-green: #10b981;
-            --senternet-red: #ef4444;
-            --senternet-pink: #ec4899;
-            --glass-bg: rgba(255, 255, 255, 0.7);
+            --accent: #2563eb;
+            --secondary: #8b5cf6;
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
             overflow: hidden;
-            background-color: #ffffff;
+            background: #ffffff;
             font-family: 'Outfit', sans-serif;
         }
 
-        /* --- BRIGHT CINEMATIC INTRO --- */
+        /* --- STUNNING INTRO SCREEN --- */
         #intro-screen {
             position: fixed;
             inset: 0;
+            z-index: 9999;
+            background: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
-            background: radial-gradient(circle at center, #ffffff 0%, #f0f4ff 100%);
-            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
         }
 
-        #bg-canvas {
+        /* Animated Background Particles */
+        #intro-canvas {
             position: absolute;
             inset: 0;
             z-index: 1;
         }
 
-        .logo-card {
+        /* Central Logo Animation */
+        .intro-container {
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 3rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), 
-                        inset 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: cardFloat 3s ease-in-out infinite;
         }
 
-        @keyframes cardFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .admin-logo-wrapper {
+        .logo-box {
             position: relative;
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 1.5rem;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            padding: 10px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            animation: breathe 3s ease-in-out infinite;
         }
 
-        .admin-logo {
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+            50% { transform: scale(1.05); box-shadow: 0 30px 80px rgba(37, 99, 235, 0.2); }
+        }
+
+        .ceo-img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
             object-fit: cover;
-            position: relative;
-            z-index: 2;
+            border: 4px solid #f8fafc;
         }
 
-        .logo-glow {
+        /* Scanning Light Effect */
+        .logo-box::after {
+            content: '';
             position: absolute;
-            inset: -10px;
-            background: linear-gradient(45deg, var(--senternet-blue), var(--senternet-purple), var(--senternet-green));
+            inset: -5px;
             border-radius: 50%;
-            filter: blur(20px);
-            opacity: 0.3;
-            animation: rotateGlow 4s linear infinite;
+            border: 2px solid var(--accent);
+            animation: orbit 4s linear infinite;
         }
 
-        @keyframes rotateGlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes orbit {
+            0% { transform: rotate(0deg); border-color: var(--accent); }
+            50% { border-color: var(--secondary); }
+            100% { transform: rotate(360deg); border-color: var(--accent); }
         }
 
-        .brand-name {
-            font-size: 3rem;
+        .brand-title {
+            font-size: 3.5rem;
             font-weight: 900;
-            background: linear-gradient(to right, var(--senternet-blue), var(--senternet-purple));
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
             margin: 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
         }
 
-        .brand-tagline {
-            font-size: 0.8rem;
-            letter-spacing: 6px;
-            color: #64748b;
-            text-transform: uppercase;
-            margin-top: 8px;
-            font-weight: 700;
+        .loading-bar-container {
+            width: 240px;
+            height: 4px;
+            background: #f1f5f9;
+            margin: 1.5rem auto;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* --- MAIN APP --- */
+        .loading-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- WATER RIPPLE TRANSITION --- */
+        .ripple-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            background: rgba(255,255,255,0);
+            backdrop-filter: blur(0px);
+            transition: backdrop-filter 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rippling {
+            backdrop-filter: blur(20px);
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* --- MAIN CONTENT --- */
         #main-app {
-            position: absolute;
+            position: fixed;
             inset: 0;
             display: none;
             opacity: 0;
-            transition: opacity 1s ease-in;
-            z-index: 5;
+            transform: scale(1.1);
+            transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         iframe {
@@ -175,329 +161,147 @@
             border: none;
         }
 
-        /* --- AD POPUP STYLES --- */
-        #ad-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 320px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-left: 5px solid var(--senternet-blue);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            z-index: 10000;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transform: translateX(150%);
-            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-family: 'Outfit', sans-serif;
-            cursor: pointer;
-        }
-
-        #ad-container.show {
-            transform: translateX(0);
-        }
-
-        #ad-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            background-color: #f1f5f9;
-        }
-
-        .ad-content {
-            flex: 1;
-            overflow: hidden;
-        }
-
-        #ad-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #1e293b;
-            margin: 0 0 4px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        #ad-desc {
-            font-size: 11px;
-            color: #64748b;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        #close-ad {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: transparent;
-            border: none;
-            color: #94a3b8;
-            font-size: 14px;
-            cursor: pointer;
-            padding: 2px;
-        }
-
-        #close-ad:hover {
-            color: var(--senternet-red);
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            .logo-card { width: 85%; padding: 2rem; }
-            .brand-name { font-size: 2.2rem; }
-            .admin-logo-wrapper { width: 110px; height: 110px; }
-            #ad-container {
-                left: 10px;
-                right: 10px;
-                bottom: 10px;
-                width: auto;
-                max-width: 100%;
-            }
+        /* Mobile Scale */
+        @media (max-width: 640px) {
+            .brand-title { font-size: 2.2rem; }
+            .logo-box { width: 140px; height: 140px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Bright Intro Animation -->
+    <!-- Intro Scene -->
     <div id="intro-screen">
-        <canvas id="bg-canvas"></canvas>
-
-        <div class="logo-card">
-            <div class="admin-logo-wrapper">
-                <div class="logo-glow"></div>
-                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senternet CEO" class="admin-logo" loading="eager">
+        <canvas id="intro-canvas"></canvas>
+        <div class="intro-container">
+            <div class="logo-box">
+                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senternet CEO" class="ceo-img">
             </div>
-            <h1 class="brand-name">Senternet</h1>
-            <div class="brand-tagline">Technologies</div>
+            <h1 class="brand-title">SENTERNET</h1>
+            <p class="text-slate-400 font-bold tracking-[0.5em] uppercase text-[10px] mt-2">Technologies</p>
+            
+            <div class="loading-bar-container">
+                <div id="loader" class="loading-bar-fill"></div>
+            </div>
+            <p id="status-text" class="text-slate-400 text-xs font-medium">Initializing Digital Excellence...</p>
         </div>
     </div>
 
-    <!-- Main App Container -->
+    <!-- Ripple Transition Effect -->
+    <div id="ripple-layer" class="ripple-overlay"></div>
+
+    <!-- Main Website Container -->
     <div id="main-app">
-        <!-- Optimization: Added loading="lazy" for performance -->
         <iframe 
             src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
             allow="geolocation; microphone; camera; clipboard-write; self"
-            id="app-iframe"
-            loading="lazy">
+            id="app-iframe">
         </iframe>
     </div>
 
-    <!-- POPUP AD CONTAINER -->
-    <div id="ad-container" onclick="handleAdClick()">
-        <button id="close-ad" onclick="event.stopPropagation(); hideAd();">✕</button>
-        <img id="ad-image" src="" alt="Ad">
-        <div class="ad-content">
-            <h4 id="ad-title">Loading...</h4>
-            <p id="ad-desc">Senternet Updates...</p>
-        </div>
-    </div>
-
     <script>
-        // --- DYNAMIC BACKGROUND PARTICLES ---
-        const canvas = document.getElementById('bg-canvas');
+        // 1. Particle Background Logic
+        const canvas = document.getElementById('intro-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
 
-        const teamMembers = ["Senthil", "Kumar", "Sathish", "Arun", "Haritha", "Muralidharan", "Sevu", "Sen-Ai"];
-        const projects = ["Muvi Foods", "Abulu Juice", "Senternet Web", "Sana Foods", "Story AI", "Insta AI", "Cansing Groups", "Monster Game", "Cover Event", "User Track"];
-        const colors = ["#2563eb", "#8b5cf6", "#10b981", "#ef4444", "#ec4899"];
-        const combinedData = [...teamMembers, ...projects];
+        const tags = ["Web Design", "Digital Marketing", "AppScript", "SEO", "Graphic Design", "Senthilkumar", "Aranthangi"];
 
-        function init() {
+        function initCanvas() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             particles = [];
-            
-            // Optimization: Reduced particle count slightly for mobile performance
-            const particleCount = window.innerWidth < 600 ? 15 : 25;
-
-            for (let i = 0; i < particleCount; i++) {
+            for (let i = 0; i < 20; i++) {
                 particles.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    text: combinedData[Math.floor(Math.random() * combinedData.length)],
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    size: Math.random() * 14 + 10,
-                    vx: (Math.random() - 0.5) * 1,
-                    vy: (Math.random() - 0.5) * 1,
-                    opacity: Math.random() * 0.4 + 0.1
+                    text: tags[Math.floor(Math.random() * tags.length)],
+                    size: Math.random() * 12 + 10,
+                    speed: Math.random() * 0.5 + 0.2,
+                    opacity: Math.random() * 0.2
                 });
             }
         }
 
-        function draw() {
+        function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
-            
+            ctx.font = `600 ${particles[0].size}px Outfit`;
             particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
-
-                ctx.font = `bold ${p.size}px Outfit`;
-                ctx.fillStyle = p.color;
+                p.y -= p.speed;
+                if (p.y < -20) p.y = height + 20;
                 ctx.globalAlpha = p.opacity;
+                ctx.fillStyle = '#2563eb';
                 ctx.fillText(p.text, p.x, p.y);
-                
-                // Mouse interaction
-                const dx = width/2 - p.x;
-                const dy = height/2 - p.y;
-                p.vx += dx * 0.00001;
-                p.vy += dy * 0.00001;
             });
-            
-            requestAnimationFrame(draw);
+            requestAnimationFrame(animateCanvas);
         }
 
-        window.addEventListener('resize', init);
-        init();
-        draw();
-
-        // --- TRANSITION LOGIC ---
-        window.onload = () => {
+        // 2. Transition & Loading Logic
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            const statusText = document.getElementById('status-text');
             const intro = document.getElementById('intro-screen');
+            const ripple = document.getElementById('ripple-layer');
             const app = document.getElementById('main-app');
-            
-            setTimeout(() => {
-                intro.style.opacity = '0';
-                intro.style.transform = 'scale(1.1)';
+
+            let progress = 0;
+            const messages = [
+                "Syncing Systems...",
+                "Loading Creative Assets...",
+                "Optimizing Experience...",
+                "Ready to Launch!"
+            ];
+
+            // Simulated progress connected to the 4-second delay
+            const interval = setInterval(() => {
+                progress += 1;
+                loader.style.width = progress + '%';
+                
+                if(progress === 25) statusText.innerText = messages[0];
+                if(progress === 50) statusText.innerText = messages[1];
+                if(progress === 75) statusText.innerText = messages[2];
+                if(progress === 95) statusText.innerText = messages[3];
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    startTransition();
+                }
+            }, 35); // Approx 3.5 to 4 seconds total
+
+            function startTransition() {
+                // Step 1: Trigger Water Ripple / Blur
+                ripple.classList.add('rippling');
                 
                 setTimeout(() => {
-                    intro.style.display = 'none';
-                    app.style.display = 'block';
-                    setTimeout(() => app.style.opacity = '1', 50);
+                    // Step 2: Fade out Intro
+                    intro.style.opacity = '0';
+                    intro.style.transition = 'opacity 0.8s ease';
                     
-                    // Start Ads ONLY after intro finishes
-                    startAdCycle();
-                }, 800);
-            }, 4000);
-        };
+                    // Step 3: Show Main App with Scale & Blur clearing
+                    app.style.display = 'block';
+                    setTimeout(() => {
+                        app.style.opacity = '1';
+                        app.style.transform = 'scale(1)';
+                        ripple.style.backdropFilter = 'blur(0px)';
+                        ripple.style.background = 'transparent';
+                    }, 100);
 
-        // --- REALTIME ADS LOGIC ---
-        
-        // IMPORTANT: Replace this URL with your published Apps Script Web App URL
-        // Example format: https://script.google.com/macros/s/XXXXX/exec
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec"; 
-
-        let adList = [];
-        let currentAdIndex = 0;
-        let adContainer = document.getElementById('ad-container');
-        let currentAdLink = "";
-
-        // Fetch ads from Google Sheet
-        async function fetchAds() {
-            try {
-                if(SCRIPT_URL === "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE") {
-                    console.log("Please setup Apps Script URL");
-                    return;
-                }
-                const response = await fetch(SCRIPT_URL);
-                const data = await response.json();
-                if (data && data.length > 0) {
-                    adList = data;
-                }
-            } catch (error) {
-                console.error("Error fetching ads:", error);
+                    // Final Cleanup
+                    setTimeout(() => {
+                        intro.style.display = 'none';
+                        ripple.style.display = 'none';
+                    }, 1200);
+                }, 500);
             }
-        }
+        });
 
-        function showAd() {
-            if (adList.length === 0) return;
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        animateCanvas();
 
-            const ad = adList[currentAdIndex];
-            
-            // Update UI
-            document.getElementById('ad-title').innerText = ad.title || "Senternet Offer";
-            document.getElementById('ad-desc').innerText = ad.description || "Check this out!";
-            document.getElementById('ad-image').src = ad.image || "https://picsum.photos/60";
-            currentAdLink = ad.link;
-
-            // Slide In
-            adContainer.classList.add('show');
-
-            // Set next index
-            currentAdIndex = (currentAdIndex + 1) % adList.length;
-
-            // Auto Hide after 6 seconds (so user has time to read)
-            setTimeout(() => {
-                hideAd();
-            }, 6000); 
-        }
-
-        function hideAd() {
-            adContainer.classList.remove('show');
-        }
-
-        function handleAdClick() {
-            if (currentAdLink) {
-                window.open(currentAdLink, '_blank');
-            }
-        }
-
-        function startAdCycle() {
-            // First fetch
-            fetchAds();
-            
-            // Refresh data every 30 seconds to keep it "Realtime" without spamming
-            setInterval(fetchAds, 3000);
-
-            // Ad Display Loop: Show one every 9 seconds (Gap time)
-            // Note: Total cycle = Display Time (6s) + Gap Time (9s) = 15s approx loop
-            setInterval(() => {
-                // Only show if currently hidden to avoid glitching
-                if (!adContainer.classList.contains('show')) {
-                    showAd();
-                }
-            }, 9000); 
-        }
-
-        // Prevent accidental exits
+        // Prevent Back Button Exit
         history.pushState(null, null, location.href);
         window.onpopstate = () => history.go(1);
     </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "SENTERNET TECHNOLOGIES",
-  "image": "https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp",
-  "@id": "https://rebrand.ly/senternet",
-  "url": "https://rebrand.ly/senternet",
-  "telephone": "+918190038085",
-  "email": "senternettechnologies@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Aranthangi",
-    "addressLocality": "Pudukkottai",
-    "addressRegion": "TN",
-    "postalCode": "614616",
-    "addressCountry": "IN"
-  },
-  "founder": {
-    "@type": "Person",
-    "name": "Senthilkumar",
-    "jobTitle": "Owner and CEO"
-  },
-  "sameAs": [
-    "https://www.youtube.com/@senternet-technologies",
-    "https://senternet.blogspot.com",
-    "https://t.me/senternet_technology",
-    "https://www.instagram.com/senternet"
-  ]
-}
-</script>
-
 </body>
 </html>
