@@ -309,7 +309,7 @@
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
 
-        const teamMembers = ["Senthil", "Kumar", "Sathish", "Anitha", "Arun", "Haritha", "Muralidharan", "Sevu", "Sen-Ai"];
+        const teamMembers = ["Senthil", "Kumar", "Sathish", "Arun", "Haritha", "Muralidharan", "Sevu", "Sen-Ai"];
         const projects = ["Muvi Foods", "Abulu Juice", "Senternet Web", "Sana Foods", "Story AI", "Insta AI", "Cansing Groups", "Monster Game", "Cover Event", "User Track"];
         const colors = ["#2563eb", "#8b5cf6", "#10b981", "#ef4444", "#ec4899"];
         const combinedData = [...teamMembers, ...projects];
@@ -451,7 +451,7 @@
             fetchAds();
             
             // Refresh data every 30 seconds to keep it "Realtime" without spamming
-            setInterval(fetchAds, 30000);
+            setInterval(fetchAds, 3000);
 
             // Ad Display Loop: Show one every 9 seconds (Gap time)
             // Note: Total cycle = Display Time (6s) + Gap Time (9s) = 15s approx loop
