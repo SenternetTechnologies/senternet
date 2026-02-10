@@ -5,154 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Senternet Technologies | Aranthangi</title>
     
-    <!-- SEO & Meta Tags -->
-    <meta name="title" content="Senternet Technologies | Best Web Design & Digital Marketing in Aranthangi">
-    <meta name="description" content="Senternet Technologies is a premier digital agency in Aranthangi. Specializing in Web Design, Graphic Design, and Digital Marketing led by CEO Senthilkumar.">
+    <meta name="title" content="Senternet Technologies | Cinematic Digital Hub">
+    <meta name="description" content="Leading the digital revolution in Aranthangi. Web Design, Apps, and Marketing.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/webp" href="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
 
     <style>
         :root {
-            --accent: #2563eb;
-            --secondary: #8b5cf6;
-            --glass: rgba(255, 255, 255, 0.8);
+            --accent: #3b82f6;
+            --deep-indigo: #0f172a;
+            --slate: #1e293b;
         }
 
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
             overflow: hidden;
-            background: #ffffff;
-            font-family: 'Outfit', sans-serif;
+            background: #000;
+            font-family: 'Inter', sans-serif;
+            color: white;
         }
 
-        /* --- STUNNING INTRO SCREEN --- */
-        #intro-screen {
+        /* --- CINEMATIC INTRO STYLES --- */
+        #intro-container {
             position: fixed;
             inset: 0;
-            z-index: 9999;
-            background: #ffffff;
+            z-index: 10000;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            background: #000;
+            perspective: 1000px;
         }
 
-        /* Animated Background Particles */
-        #intro-canvas {
+        /* Map Background Simulation */
+        #map-overlay {
             position: absolute;
-            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1) 0%, #000 70%);
             z-index: 1;
         }
 
-        /* Central Logo Animation */
-        .intro-container {
-            position: relative;
+        #satellite-map {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000') center center / cover;
+            filter: brightness(0.4) saturate(1.2);
+            transform: scale(1);
+            transition: transform 5s cubic-bezier(0.85, 0, 0.15, 1);
+            z-index: 0;
+        }
+
+        .map-zoomed {
+            transform: scale(15) !important;
+            filter: brightness(1) blur(10px) !important;
+        }
+
+        /* Tech Connection Overlay */
+        #tech-nodes {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .node-label {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            transform: scale(0);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .node-active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Center Piece */
+        #center-brand {
             z-index: 10;
             text-align: center;
-        }
-
-        .logo-box {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 2rem;
-            padding: 10px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            animation: breathe 3s ease-in-out infinite;
-        }
-
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
-            50% { transform: scale(1.05); box-shadow: 0 30px 80px rgba(37, 99, 235, 0.2); }
-        }
-
-        .ceo-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #f8fafc;
-        }
-
-        /* Scanning Light Effect */
-        .logo-box::after {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            border-radius: 50%;
-            border: 2px solid var(--accent);
-            animation: orbit 4s linear infinite;
-        }
-
-        @keyframes orbit {
-            0% { transform: rotate(0deg); border-color: var(--accent); }
-            50% { border-color: var(--secondary); }
-            100% { transform: rotate(360deg); border-color: var(--accent); }
-        }
-
-        .brand-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.5s;
+            transition: all 1s ease;
         }
 
-        .loading-bar-container {
-            width: 240px;
-            height: 4px;
-            background: #f1f5f9;
-            margin: 1.5rem auto;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
+        .ceo-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            padding: 5px;
+            background: #fff;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 50px rgba(37, 99, 235, 0.6);
+            animation: pulse-glow 2s infinite alternate;
         }
 
-        .loading-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
-            border-radius: 10px;
-            transition: width 0.3s ease;
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
+            to { box-shadow: 0 0 60px rgba(37, 99, 235, 0.8); }
         }
 
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- WATER RIPPLE TRANSITION --- */
-        .ripple-overlay {
-            position: fixed;
+        /* --- MAIN APP CONTAINER --- */
+        #app-wrapper {
+            position: absolute;
             inset: 0;
-            pointer-events: none;
-            z-index: 9998;
-            background: rgba(255,255,255,0);
-            backdrop-filter: blur(0px);
-            transition: backdrop-filter 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .rippling {
-            backdrop-filter: blur(20px);
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* --- MAIN CONTENT --- */
-        #main-app {
-            position: fixed;
-            inset: 0;
-            display: none;
+            z-index: 1;
             opacity: 0;
-            transform: scale(1.1);
-            transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.9);
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            display: none;
         }
 
         iframe {
@@ -161,145 +138,177 @@
             border: none;
         }
 
-        /* Mobile Scale */
-        @media (max-width: 640px) {
-            .brand-title { font-size: 2.2rem; }
-            .logo-box { width: 140px; height: 140px; }
+        .transition-flash {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 20000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        #status-bar {
+            position: absolute;
+            bottom: 40px;
+            width: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            z-index: 11;
+        }
+
+        #progress {
+            width: 0%;
+            height: 100%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            transition: width 0.3s ease;
         }
     </style>
 </head>
 <body>
 
-    <!-- Intro Scene -->
-    <div id="intro-screen">
-        <canvas id="intro-canvas"></canvas>
-        <div class="intro-container">
-            <div class="logo-box">
-                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senternet CEO" class="ceo-img">
-            </div>
-            <h1 class="brand-title">SENTERNET</h1>
-            <p class="text-slate-400 font-bold tracking-[0.5em] uppercase text-[10px] mt-2">Technologies</p>
-            
-            <div class="loading-bar-container">
-                <div id="loader" class="loading-bar-fill"></div>
-            </div>
-            <p id="status-text" class="text-slate-400 text-xs font-medium">Initializing Digital Excellence...</p>
+    <div id="intro-container">
+        <div id="satellite-map"></div>
+        <div id="map-overlay"></div>
+        
+        <canvas id="connections-canvas" style="position: absolute; inset:0; z-index: 5;"></canvas>
+
+        <div id="tech-nodes">
+            <!-- Team & Project Nodes (Generated by JS) -->
+        </div>
+
+        <div id="center-brand">
+            <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senthilkumar CEO" class="ceo-avatar">
+            <h1 class="text-4xl font-black tracking-tighter mb-1">SENTERNET</h1>
+            <p class="text-xs tracking-[0.6em] text-blue-400 font-bold">TECHNOLOGIES</p>
+            <p id="location-tag" class="text-[10px] text-slate-400 mt-4 font-medium italic">Aranthangi, Pudukkottai</p>
+        </div>
+
+        <div id="status-bar">
+            <div id="progress"></div>
         </div>
     </div>
 
-    <!-- Ripple Transition Effect -->
-    <div id="ripple-layer" class="ripple-overlay"></div>
+    <div class="transition-flash" id="flash"></div>
 
-    <!-- Main Website Container -->
-    <div id="main-app">
+    <div id="app-wrapper">
         <iframe 
             src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
-            allow="geolocation; microphone; camera; clipboard-write; self"
-            id="app-iframe">
+            allow="geolocation; microphone; camera; clipboard-write; self">
         </iframe>
     </div>
 
     <script>
-        // 1. Particle Background Logic
-        const canvas = document.getElementById('intro-canvas');
+        const nodesData = [
+            { label: "Senthilkumar (CEO)", x: 20, y: 30 },
+            { label: "Web Design (Kumar)", x: 80, y: 25 },
+            { label: "Backend (Sathish)", x: 15, y: 70 },
+            { label: "Marketing (Haritha)", x: 85, y: 75 },
+            { label: "Engineering (Arun)", x: 50, y: 15 },
+            { label: "Graphics (Sevu)", x: 45, y: 85 }
+        ];
+
+        const canvas = document.getElementById('connections-canvas');
         const ctx = canvas.getContext('2d');
-        let width, height, particles = [];
+        let width, height;
 
-        const tags = ["Web Design", "Digital Marketing", "AppScript", "SEO", "Graphic Design", "Senthilkumar", "Aranthangi"];
-
-        function initCanvas() {
+        function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-            particles = [];
-            for (let i = 0; i < 20; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    text: tags[Math.floor(Math.random() * tags.length)],
-                    size: Math.random() * 12 + 10,
-                    speed: Math.random() * 0.5 + 0.2,
-                    opacity: Math.random() * 0.2
-                });
-            }
         }
 
-        function animateCanvas() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.font = `600 ${particles[0].size}px Outfit`;
-            particles.forEach(p => {
-                p.y -= p.speed;
-                if (p.y < -20) p.y = height + 20;
-                ctx.globalAlpha = p.opacity;
-                ctx.fillStyle = '#2563eb';
-                ctx.fillText(p.text, p.x, p.y);
+        window.addEventListener('resize', resize);
+        resize();
+
+        function createNodes() {
+            const container = document.getElementById('tech-nodes');
+            nodesData.forEach((node, i) => {
+                const div = document.createElement('div');
+                div.className = 'node-label';
+                div.innerText = node.label;
+                div.style.left = node.x + '%';
+                div.style.top = node.y + '%';
+                div.id = `node-${i}`;
+                container.appendChild(div);
             });
-            requestAnimationFrame(animateCanvas);
         }
 
-        // 2. Transition & Loading Logic
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            const statusText = document.getElementById('status-text');
-            const intro = document.getElementById('intro-screen');
-            const ripple = document.getElementById('ripple-layer');
-            const app = document.getElementById('main-app');
+        function drawLines(activeIndices) {
+            ctx.clearRect(0, 0, width, height);
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(59, 130, 246, 0.5)';
+            ctx.lineWidth = 1;
+            
+            const centerX = width / 2;
+            const centerY = height / 2;
 
-            let progress = 0;
-            const messages = [
-                "Syncing Systems...",
-                "Loading Creative Assets...",
-                "Optimizing Experience...",
-                "Ready to Launch!"
-            ];
+            activeIndices.forEach(idx => {
+                const node = nodesData[idx];
+                const targetX = (node.x / 100) * width;
+                const targetY = (node.y / 100) * height;
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(targetX, targetY);
+            });
+            ctx.stroke();
+        }
 
-            // Simulated progress connected to the 4-second delay
-            const interval = setInterval(() => {
-                progress += 1;
-                loader.style.width = progress + '%';
-                
-                if(progress === 25) statusText.innerText = messages[0];
-                if(progress === 50) statusText.innerText = messages[1];
-                if(progress === 75) statusText.innerText = messages[2];
-                if(progress === 95) statusText.innerText = messages[3];
+        async function startSequence() {
+            createNodes();
+            
+            const progressBar = document.getElementById('progress');
+            const map = document.getElementById('satellite-map');
+            const centerBrand = document.getElementById('center-brand');
+            const flash = document.getElementById('flash');
+            const app = document.getElementById('app-wrapper');
+            const intro = document.getElementById('intro-container');
 
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    startTransition();
-                }
-            }, 35); // Approx 3.5 to 4 seconds total
+            // 1. Initial Fade In
+            setTimeout(() => {
+                centerBrand.style.opacity = '1';
+                centerBrand.style.transform = 'translateY(0)';
+            }, 500);
 
-            function startTransition() {
-                // Step 1: Trigger Water Ripple / Blur
-                ripple.classList.add('rippling');
+            // 2. Connect Nodes One by One
+            for (let i = 0; i < nodesData.length; i++) {
+                await new Promise(r => setTimeout(r, 400));
+                document.getElementById(`node-${i}`).classList.add('node-active');
+                drawLines([...Array(i + 1).keys()]);
+                progressBar.style.width = ((i + 1) / nodesData.length * 60) + '%';
+            }
+
+            // 3. Zoom into Aranthangi
+            setTimeout(() => {
+                map.classList.add('map-zoomed');
+                progressBar.style.width = '90%';
+                document.getElementById('location-tag').classList.add('scale-150', 'text-white', 'not-italic');
+                document.getElementById('location-tag').innerText = "TARGET: ARANTHANGI HUB";
+            }, 1000);
+
+            // 4. Final Blast Through
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+                flash.style.opacity = '1';
                 
                 setTimeout(() => {
-                    // Step 2: Fade out Intro
-                    intro.style.opacity = '0';
-                    intro.style.transition = 'opacity 0.8s ease';
-                    
-                    // Step 3: Show Main App with Scale & Blur clearing
+                    intro.style.display = 'none';
                     app.style.display = 'block';
                     setTimeout(() => {
                         app.style.opacity = '1';
                         app.style.transform = 'scale(1)';
-                        ripple.style.backdropFilter = 'blur(0px)';
-                        ripple.style.background = 'transparent';
-                    }, 100);
+                        flash.style.opacity = '0';
+                    }, 50);
+                }, 400);
+            }, 3500);
+        }
 
-                    // Final Cleanup
-                    setTimeout(() => {
-                        intro.style.display = 'none';
-                        ripple.style.display = 'none';
-                    }, 1200);
-                }, 500);
-            }
-        });
+        window.onload = startSequence;
 
-        window.addEventListener('resize', initCanvas);
-        initCanvas();
-        animateCanvas();
-
-        // Prevent Back Button Exit
+        // Prevent navigation away
         history.pushState(null, null, location.href);
         window.onpopstate = () => history.go(1);
     </script>
