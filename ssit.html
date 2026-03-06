@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SSIT | Senternet School of Information Technology</title>
+    
+    <meta name="title" content="SSIT | Digital Education Hub">
+    <meta name="description" content="Senternet School of Information Technology">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #3b82f6;   /* Blue */
+            --secondary: #8b5cf6; /* Purple */
+            --accent1: #f97316;   /* Orange */
+            --accent2: #06b6d4;   /* Cyan */
+            --dark: #0f172a;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- INTRO CONTAINER --- */
+        #intro-container {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Canvas for Particles & Shockwaves */
+        #fx-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Phase Containers */
+        .phase {
+            position: absolute;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.9);
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .phase.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* --- PHASE 1: Spark --- */
+        .spark {
+            width: 20px; height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--primary), 0 0 60px var(--secondary);
+            transform: translateY(-200px);
+            opacity: 0;
+        }
+
+        .spark-drop {
+            animation: dropIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes dropIn {
+            0% { transform: translateY(-200px) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            80% { transform: translateY(0) scale(1.5); }
+            100% { transform: translateY(0) scale(0); opacity: 0; } /* Explodes and disappears */
+        }
+
+        /* --- PHASE 2: Main Branding --- */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent2));
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px) rotate(10deg);
+        }
+
+        .letter.pop {
+            animation: letterPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes letterPop {
+            to { opacity: 1; transform: translateY(0) rotate(0deg); }
+        }
+
+        /* --- PHASE 3: Tagline & Icon --- */
+        .edu-icon {
+            width: 100px; height: 100px;
+            margin-bottom: 30px;
+            fill: url(#icon-grad);
+            transform: scale(0);
+        }
+
+        .edu-icon.animate {
+            animation: popIcon 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes popIcon {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        /* Progress Bar for Intro */
+        #progress-container {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 3px;
+            overflow: hidden;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent2));
+            transition: width 0.3s linear;
+        }
+
+        /* --- APP WRAPPER --- */
+        #app-wrapper {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            display: none;
+            background: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .white-flash {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 20000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SVG Definitions -->
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true">
+      <linearGradient id="icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#3b82f6" />
+        <stop offset="100%" stop-color="#06b6d4" />
+      </linearGradient>
+    </svg>
+
+    <!-- INTRO SEQUENCE -->
+    <div id="intro-container">
+        <canvas id="fx-canvas"></canvas>
+
+        <!-- Phase 1: Spark of Knowledge -->
+        <div id="phase-1" class="phase">
+            <div class="spark" id="spark"></div>
+        </div>
+
+        <!-- Phase 2: SSIT Text Reveal -->
+        <div id="phase-2" class="phase">
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 mb-2 flex justify-center gap-2">
+                <span class="letter" style="animation-delay: 0.1s">S</span>
+                <span class="letter" style="animation-delay: 0.2s">S</span>
+                <span class="letter" style="animation-delay: 0.3s">I</span>
+                <span class="letter" style="animation-delay: 0.4s">T</span>
+            </h1>
+            <p id="subtext" class="text-xs md:text-base tracking-[0.3em] font-bold text-slate-500 opacity-0 transition-opacity duration-1000 mt-2 uppercase">
+                Senternet School of Information Technology
+            </p>
+        </div>
+
+        <!-- Phase 3: The Educational Tech Icon -->
+        <div id="phase-3" class="phase">
+            <!-- Graduation Cap / Book Hybrid SVG -->
+            <svg class="edu-icon" id="edu-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L1 9L5 11.18V17.18L12 21L19 17.18V11.18L21 10.09V17H23V9L12 3ZM18.82 9L12 12.72L5.18 9L12 5.28L18.82 9ZM17 15.99L12 18.72L7 15.99V12.27L12 15L17 12.27V15.99Z"/>
+                <circle cx="12" cy="12" r="1.5" fill="#f97316"/>
+                <circle cx="7" cy="9.5" r="1" fill="#f97316"/>
+                <circle cx="17" cy="9.5" r="1" fill="#f97316"/>
+            </svg>
+            <h2 class="text-2xl md:text-4xl font-black gradient-text tracking-tight opacity-0 transition-opacity duration-1000" id="tagline">
+                Shaping the Digital Future
+            </h2>
+            <div class="mt-8 text-[10px] md:text-xs font-semibold text-slate-400 tracking-widest uppercase opacity-0 transition-opacity duration-1000 delay-500" id="loading-text">
+                Initializing Portal...
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- Transition Flash -->
+    <div class="white-flash" id="flash"></div>
+
+    <!-- MAIN WEB APP (IFRAME) -->
+    <div id="app-wrapper">
+        <iframe 
+            src="https://script.google.com/macros/s/AKfycbwyJlpP_3g4ixCiL0fZaxBplbyFUGm5wiuDL1RA5htJGdFaflDmMnwwj9Lz-CDj5wOjhg/exec" 
+            allow="geolocation; microphone; camera; clipboard-write; self">
+        </iframe>
+    </div>
+
+    <script>
+        // --- CANVAS EFFECTS (Particles & Shockwaves) ---
+        const canvas = document.getElementById('fx-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles =[];
+        let shockwaves =[];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x; this.y = y;
+                this.color = color;
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 10 + 2;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                this.life = 1.0;
+                this.decay = Math.random() * 0.02 + 0.015;
+                this.size = Math.random() * 8 + 2;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                this.life -= this.decay;
+                this.size *= 0.96; // shrink over time
+            }
+            draw() {
+                ctx.globalAlpha = Math.max(0, this.life);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        class Shockwave {
+            constructor(x, y, color) {
+                this.x = x; this.y = y; this.color = color;
+                this.radius = 10;
+                this.life = 1.0;
+                this.thickness = 10;
+            }
+            update() {
+                this.radius += 15;
+                this.life -= 0.04;
+                this.thickness *= 0.9;
+            }
+            draw() {
+                ctx.globalAlpha = Math.max(0, this.life);
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = this.thickness;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+        }
+
+        function createExplosion(x, y, colors, count = 50) {
+            for(let i = 0; i < count; i++) {
+                particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach((p, index) => {
+                p.update(); p.draw();
+                if(p.life <= 0) particles.splice(index, 1);
+            });
+
+            shockwaves.forEach((s, index) => {
+                s.update(); s.draw();
+                if(s.life <= 0) shockwaves.splice(index, 1);
+            });
+
+            ctx.globalAlpha = 1.0;
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        // --- TIMELINE SEQUENCER ---
+        const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+        const centerX = () => width / 2;
+        const centerY = () => height / 2;
+
+        async function startCinematicIntro() {
+            const p1 = document.getElementById('phase-1');
+            const p2 = document.getElementById('phase-2');
+            const p3 = document.getElementById('phase-3');
+            const flash = document.getElementById('flash');
+            const app = document.getElementById('app-wrapper');
+            const intro = document.getElementById('intro-container');
+            const progressBar = document.getElementById('progress-bar');
+            
+            // Show progress container
+            setTimeout(() => { document.getElementById('progress-container').style.opacity = '1'; }, 500);
+
+            // Update progress randomly to simulate loading
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                if(progress < 90) {
+                    progress += Math.random() * 10;
+                    progressBar.style.width = `${progress}%`;
+                }
+            }, 500);
+
+            const brandColors =['#3b82f6', '#8b5cf6', '#06b6d4', '#f97316'];
+
+            // --- PHASE 1: Spark drops in (0 - 2s) ---
+            p1.classList.add('active');
+            document.getElementById('spark').classList.add('spark-drop');
+            
+            await sleep(1400); // Exact moment spark "hits" and shrinks to 0
+            shockwaves.push(new Shockwave(centerX(), centerY(), '#3b82f6'));
+            shockwaves.push(new Shockwave(centerX(), centerY(), '#06b6d4'));
+            createExplosion(centerX(), centerY(), brandColors, 60);
+            p1.classList.remove('active');
+
+            // --- PHASE 2: SSIT Text Reveal (2s - 5.5s) ---
+            p2.classList.add('active');
+            const letters = document.querySelectorAll('.letter');
+            letters.forEach(l => l.classList.add('pop'));
+            
+            await sleep(800);
+            document.getElementById('subtext').style.opacity = '1';
+
+            await sleep(2500);
+            p2.classList.remove('active');
+            createExplosion(centerX(), centerY(), brandColors, 30); // small transition burst
+
+            // --- PHASE 3: Icon & Tagline (5.5s - 9s) ---
+            await sleep(300);
+            p3.classList.add('active');
+            document.getElementById('edu-icon').classList.add('animate');
+            
+            await sleep(800);
+            document.getElementById('tagline').style.opacity = '1';
+            document.getElementById('loading-text').style.opacity = '1';
+
+            await sleep(3000);
+
+            // Finish Progress Bar
+            clearInterval(progressInterval);
+            progressBar.style.width = '100%';
+            
+            await sleep(400);
+
+            // --- TRANSITION TO APP (9s - 10s) ---
+            flash.style.opacity = '1'; // White flashbang
+            
+            await sleep(400);
+            
+            intro.style.display = 'none'; // Completely remove intro from flow
+            app.style.display = 'block';
+            
+            // Allow iframe to render, then smoothly slide up and fade in
+            setTimeout(() => {
+                app.style.opacity = '1';
+                app.style.transform = 'translateY(0)';
+                flash.style.opacity = '0'; // Reveal the WebApp
+            }, 100);
+        }
+
+        // Start animation immediately when window loads
+        window.onload = startCinematicIntro;
+
+        // Prevent back-button anomalies
+        history.pushState(null, null, location.href);
+        window.onpopstate = () => history.go(1);
+    </script>
+</body>
+</html>
