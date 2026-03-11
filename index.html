@@ -3,429 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Senternet Technologies & SSIT | Digital Hub</title>
-    
-    <meta name="title" content="Senternet Technologies & SSIT">
-    <meta name="description" content="Where Industry Meets Education. Leading the digital revolution in Aranthangi.">
+  <title>SENTERNET TECHNOLOGIES | Expert Web Design & Digital Marketing in Aranthangi</title>
+<meta name="title" content="SENTERNET TECHNOLOGIES | Expert Web Design & Digital Marketing in Aranthangi">
+<meta name="description" content="SENTERNET TECHNOLOGIES offers professional web design, UI/UX development, and digital marketing services in Aranthangi, Pudukkottai. Transform your business with Senthilkumar (CEO).">
+
+<meta name="keywords" content="Senternet Technologies, Web Design Aranthangi, Digital Marketing Pudukkottai, UI/UX Design Tamil Nadu, Senthilkumar Senternet, SEO Services Aranthangi, Graphic Design Pudukkottai, Full Stack Development, Online Business Digital Marketing, Senternet Aranthangi">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rebrand.ly/senternet">
+<meta property="og:title" content="SENTERNET TECHNOLOGIES - Leading Tech Solutions">
+<meta property="og:description" content="Elevate your brand with premium web design and digital strategies. Based in Aranthangi, serving globally.">
+<meta property="og:image" content="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rebrand.ly/senternet">
+<meta property="twitter:title" content="SENTERNET TECHNOLOGIES - Web Design & UI/UX">
+<meta property="twitter:description" content="Professional web and graphic design services by Senthilkumar at Senternet Technologies.">
+<meta property="twitter:image" content="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
+
+<meta name="author" content="Senthilkumar, Senternet Technologies">
+<meta name="geo.region" content="IN-TN">
+<meta name="geo.placename" content="Aranthangi, Pudukkottai">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+
+<link rel="canonical" href="https://rebrand.ly/senternet" />
+
+<meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
+
+<meta name="theme-color" content="#7F00FF"> <meta name="pinterest" content="nopin" description="Senternet Technologies Official Web Design Portfolio" />
+
+<meta name="HandheldFriendly" content="True">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "SENTERNET TECHNOLOGIES",
+  "alternateName": "Senternet Technologies",
+  "image": "https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp",
+  "url": "https://rebrand.ly/senternet",
+  "telephone": "+91 8190038085",
+  "email": "senternettechnologies@gmail.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Aranthangi",
+    "addressLocality": "Pudukkottai",
+    "addressRegion": "TN",
+    "postalCode": "614616",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 10.1627,
+    "longitude": 78.9954
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Senthilkumar",
+    "jobTitle": "CEO",
+    "image": "https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp"
+  },
+  "sameAs": [
+    "https://www.youtube.com/@senternet-technologies",
+    "https://twitter.com/senternet-pdkt",
+    "https://senternet.blogspot.com",
+    "https://t.me/senternet_technology"
+  ],
+  "description": "Senternet Technologies specializes in Web Design, UI/UX, and Digital Marketing services in Aranthangi, Pudukkottai."
+}
+</script>
+
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/webp" href="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --blue: #3b82f6;
-            --purple: #8b5cf6;
-            --orange: #f97316;
-            --green: #84cc16;
-            --dark: #0f172a;
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --vibrant-green: #00f2fe;
+            --azure: #4facfe;
+            --bg-bright: #f8fafc;
         }
 
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
             overflow: hidden;
-            background: #ffffff;
-            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-bright);
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* --- INTRO CONTAINER --- */
-        #intro-container {
+        /* --- STAGE LAYOUT --- */
+        #intro-stage {
             position: fixed;
             inset: 0;
             z-index: 10000;
-            background: #ffffff;
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
         }
 
-        /* Canvas for Particles & Shockwaves */
+        /* Animated Mesh Background */
+        .mesh-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(197, 100%, 82%, 0.3) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(160, 100%, 84%, 0.3) 0, transparent 50%), 
+                radial-gradient(at 100% 100%, hsla(201, 100%, 85%, 0.3) 0, transparent 50%), 
+                radial-gradient(at 0% 100%, hsla(180, 100%, 80%, 0.3) 0, transparent 50%);
+            z-index: 1;
+        }
+
         #fx-canvas {
             position: absolute;
             inset: 0;
-            z-index: 1;
-            pointer-events: none;
+            z-index: 2;
         }
 
-        /* Phase Containers */
-        .phase {
-            position: absolute;
+        .content-container {
+            position: relative;
             z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform: scale(0.9);
+            text-align: center;
         }
 
-        .phase.active {
+        /* --- LOGO GLASS EFFECT --- */
+        .logo-sphere {
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 2rem;
+            box-shadow: 0 25px 50px -12px rgba(79, 172, 254, 0.3);
+            animation: morph 8s ease-in-out infinite;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes morph {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; }
+            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        }
+
+        .logo-sphere.active {
             opacity: 1;
             transform: scale(1);
         }
 
-        /* --- PHASE 1: Droplet & Senternet --- */
-        .droplet {
-            width: 40px; height: 40px;
-            background: linear-gradient(135deg, var(--blue), var(--purple));
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg) translateY(-100px);
-            opacity: 0;
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.5);
-        }
-        
-        .droplet-animate {
-            animation: dropBounce 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        @keyframes dropBounce {
-            0% { transform: rotate(-45deg) translate(-100px, -100px); opacity: 0; }
-            50% { transform: rotate(-45deg) translate(0, 0); opacity: 1; border-radius: 50% 50% 50% 0;}
-            70% { transform: rotate(-45deg) scale(1.2, 0.8); border-radius: 50%; }
-            100% { transform: rotate(-45deg) scale(1); border-radius: 10px; }
-        }
-
-        .gradient-text {
-            background-clip: text;
+        /* --- TYPOGRAPHY --- */
+        .brand-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #2563eb, #0ea5e9, #10b981);
             -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        /* --- PHASE 2: SSIT --- */
-        .edu-icon {
-            width: 80px; height: 80px;
-            margin-bottom: 20px;
-            fill: url(#orange-green-grad);
-            transform: scale(0);
-        }
-        
-        .edu-icon-animate {
-            animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        .typing-text {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid var(--dark);
-            width: 0;
-        }
-        
-        .typing-animate {
-            animation: typing 1s steps(4) forwards, blink 0.5s step-end infinite;
-        }
-
-        @keyframes typing { to { width: 100%; } }
-        @keyframes blink { 50% { border-color: transparent; } }
-
-        /* --- PHASE 3: Synergy Swirl --- */
-        .orbit-container {
-            position: relative;
-            width: 200px; height: 200px;
-            animation: spin 3s cubic-bezier(0.5, 0, 0.5, 1) forwards;
-        }
-
-        .node {
-            position: absolute;
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            box-shadow: 0 0 40px currentColor;
-        }
-        .node.tech { background: var(--orange); color: var(--orange); top: 0; left: 80px; }
-        .node.edu { background: var(--blue); color: var(--blue); bottom: 0; left: 80px; }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg) scale(1); gap: 100px;}
-            80% { transform: rotate(1080deg) scale(0.5); }
-            100% { transform: rotate(1440deg) scale(0); }
-        }
-
-        /* --- PHASE 4: Finale --- */
-        .finale-layout {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .ceo-avatar {
-            width: 100px; height: 100px;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background: linear-gradient(135deg, var(--blue), var(--orange));
-            padding: 3px;
-        }
-
-        /* --- APP WRAPPER --- */
-        #app-wrapper {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
             opacity: 0;
-            transform: scale(1.05);
-            transition: opacity 1s ease, transform 1s ease;
-            display: none;
+            transform: translateY(30px);
+            transition: all 1s ease 0.5s;
         }
 
-        iframe { width: 100%; height: 100%; border: none; }
+        .brand-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        .white-flash {
+        .tagline {
+            font-size: 0.9rem;
+            color: #64748b;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: all 1.2s ease 1s;
+        }
+
+        .tagline.active {
+            opacity: 1;
+            letter-spacing: 0.8em;
+        }
+
+        /* --- PROGRESS UI --- */
+        .status-box {
+            margin-top: 4rem;
+            width: 250px;
+            opacity: 0;
+            transition: opacity 1s ease 1.5s;
+        }
+
+        .status-box.active { opacity: 1; }
+
+        .progress-bar {
+            height: 4px;
+            width: 100%;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--azure), var(--vibrant-green));
+            box-shadow: 0 0 10px var(--azure);
+            transition: width 10s linear; /* Forced 10s duration */
+        }
+
+        /* --- APP WRAPPER (Iframe hidden behind) --- */
+        #main-app {
             position: fixed;
             inset: 0;
-            background: white;
-            z-index: 20000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
+            z-index: 1;
+            /* No display:none, just keep it behind the intro */
         }
 
-        @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            80% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); opacity: 1; }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .loading-text {
+            font-size: 10px;
+            color: #94a3b8;
+            margin-top: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <!-- SVG Definitions for Gradients -->
-    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
-      <linearGradient id="orange-green-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#f97316" />
-        <stop offset="100%" stop-color="#84cc16" />
-      </linearGradient>
-    </svg>
-
-    <div id="intro-container">
+    <div id="intro-stage">
+        <div class="mesh-bg"></div>
         <canvas id="fx-canvas"></canvas>
 
-        <!-- Phase 1: Senternet -->
-        <div id="phase-1" class="phase">
-            <div class="droplet" id="droplet"></div>
-            <div class="mt-6 text-center opacity-0 transition-opacity duration-1000 delay-500" id="phase-1-text">
-                <h1 class="text-4xl md:text-6xl font-black tracking-tighter text-slate-900">SENTERNET</h1>
-                <p class="text-sm md:text-lg tracking-[0.4em] font-bold bg-gradient-to-r from-blue-500 to-purple-500 gradient-text">TECHNOLOGIES</p>
+        <div class="content-container">
+            <!-- Glass Logo Node -->
+            <div class="logo-sphere" id="sphere">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="#0ea5e9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
-        </div>
 
-        <!-- Phase 2: SSIT -->
-        <div id="phase-2" class="phase">
-            <!-- SVG Graduation Cap -->
-            <svg class="edu-icon" id="edu-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3L1 9L5 11.18V17.18L12 21L19 17.18V11.18L21 10.09V17H23V9L12 3ZM18.82 9L12 12.72L5.18 9L12 5.28L18.82 9ZM17 15.99L12 18.72L7 15.99V12.27L12 15L17 12.27V15.99Z"/>
-            </svg>
-            <div class="text-center">
-                <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 typing-text inline-block" id="ssit-text">SSIT</h1>
-                <p class="text-xs md:text-sm tracking-[0.2em] font-bold bg-gradient-to-r from-orange-500 to-green-500 gradient-text mt-2 opacity-0 transition-opacity duration-500 delay-1000" id="ssit-subtext">SCHOOL OF INFORMATION TECHNOLOGIES</p>
-            </div>
-        </div>
+            <!-- Brand Identity -->
+            <h1 class="brand-text" id="title">SENTERNET</h1>
+            <p class="tagline" id="tagline">Technologies</p>
 
-        <!-- Phase 3: Synergy -->
-        <div id="phase-3" class="phase">
-            <div class="orbit-container" id="orbit">
-                <div class="node tech"></div>
-                <div class="node edu"></div>
-            </div>
-            <h2 class="absolute mt-48 text-2xl font-bold text-slate-800 tracking-wide opacity-0 transition-opacity duration-1000" id="synergy-text">Where Industry Meets Education</h2>
-        </div>
-
-        <!-- Phase 4: Finale -->
-        <div id="phase-4" class="phase">
-            <div class="finale-layout flex-col md:flex-row">
-                <!-- Senternet -->
-                <div class="text-center md:text-right">
-                    <h1 class="text-3xl font-black text-slate-900">SENTERNET</h1>
-                    <p class="text-xs tracking-widest text-blue-500 font-bold">TECHNOLOGIES</p>
+            <!-- Preloader Status -->
+            <div class="status-box mx-auto" id="status-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="fill"></div>
                 </div>
-                
-                <!-- Center Connector -->
-                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Avatar" class="ceo-avatar z-10">
-
-                <!-- SSIT -->
-                <div class="text-center md:text-left">
-                    <h1 class="text-3xl font-black text-slate-900">SSIT</h1>
-                    <p class="text-xs tracking-widest text-orange-500 font-bold">EDUCATION</p>
-                </div>
+                <p class="loading-text" id="status-msg">Initializing App Core...</p>
             </div>
-            <p class="mt-8 text-sm text-slate-400 font-medium tracking-widest">ARANTHANGI HUB INITIALIZING...</p>
         </div>
     </div>
 
-    <div class="white-flash" id="flash"></div>
-
-    <!-- MAIN WEB APP -->
-    <div id="app-wrapper">
-        <iframe 
-            src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
-            allow="geolocation; microphone; camera; clipboard-write; self">
-        </iframe>
+    <!-- MAIN APP WRAPPER (Always active in background) -->
+    <div id="main-app">
+        <iframe src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec"></iframe>
     </div>
 
     <script>
-        // --- CANVAS EFFECTS (Particles & Shockwaves) ---
         const canvas = document.getElementById('fx-canvas');
         const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles =[];
-        let shockwaves =[];
+        let width, height, particles = [];
 
-        function resize() {
+        function initCanvas() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resize);
-        resize();
 
-        class Particle {
-            constructor(x, y, color) {
-                this.x = x; this.y = y;
-                this.color = color;
-                const angle = Math.random() * Math.PI * 2;
-                const speed = Math.random() * 8 + 2;
-                this.vx = Math.cos(angle) * speed;
-                this.vy = Math.sin(angle) * speed;
-                this.life = 1.0;
-                this.decay = Math.random() * 0.02 + 0.02;
-                this.size = Math.random() * 6 + 2;
+        class Spark {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 3 + 1;
+                this.vx = (Math.random() - 0.5) * 1;
+                this.vy = (Math.random() - 0.5) * 1;
+                this.alpha = Math.random();
             }
             update() {
                 this.x += this.vx; this.y += this.vy;
-                this.life -= this.decay;
+                if(this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
             }
             draw() {
-                ctx.globalAlpha = Math.max(0, this.life);
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.fillStyle = `rgba(79, 172, 254, ${this.alpha})`;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill();
             }
         }
 
-        class Shockwave {
-            constructor(x, y, color) {
-                this.x = x; this.y = y; this.color = color;
-                this.radius = 10;
-                this.life = 1.0;
-            }
-            update() {
-                this.radius += 20;
-                this.life -= 0.03;
-            }
-            draw() {
-                ctx.globalAlpha = Math.max(0, this.life);
-                ctx.strokeStyle = this.color;
-                ctx.lineWidth = 4;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.stroke();
-            }
+        function animate() {
+            ctx.clearRect(0,0,width,height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
         }
 
-        function createExplosion(x, y, colors) {
-            for(let i = 0; i < 40; i++) {
-                particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
-            }
-        }
+        async function runIntroSequence() {
+            const sphere = document.getElementById('sphere');
+            const title = document.getElementById('title');
+            const tagline = document.getElementById('tagline');
+            const status = document.getElementById('status-container');
+            const fill = document.getElementById('fill');
+            const msg = document.getElementById('status-msg');
+            const stage = document.getElementById('intro-stage');
 
-        function animateCanvas() {
-            ctx.clearRect(0, 0, width, height);
-            
-            particles.forEach((p, index) => {
-                p.update(); p.draw();
-                if(p.life <= 0) particles.splice(index, 1);
-            });
+            // 1. Reveal Elements
+            setTimeout(() => sphere.classList.add('active'), 300);
+            setTimeout(() => title.classList.add('active'), 800);
+            setTimeout(() => tagline.classList.add('active'), 1300);
+            setTimeout(() => status.classList.add('active'), 1800);
 
-            shockwaves.forEach((s, index) => {
-                s.update(); s.draw();
-                if(s.life <= 0) shockwaves.splice(index, 1);
-            });
+            // 2. Controlled 10-Second Progress
+            fill.style.width = '100%';
 
-            ctx.globalAlpha = 1.0;
-            requestAnimationFrame(animateCanvas);
-        }
-        animateCanvas();
+            const msgs = [
+                "Establishing secure connection...",
+                "Waking up the digital engine...",
+                "Optimizing assets for you...",
+                "Almost there, stay creative...",
+                "Senternet Hub Ready."
+            ];
 
-        // --- TIMELINE SEQUENCER (20 Seconds Total) ---
-        const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-        const centerX = () => width / 2;
-        const centerY = () => height / 2;
+            let count = 0;
+            const msgInterval = setInterval(() => {
+                if(count < msgs.length) {
+                    msg.innerText = msgs[count++];
+                }
+            }, 2000); // 2s * 5 msgs = 10s
 
-        async function startCinematicIntro() {
-            const p1 = document.getElementById('phase-1');
-            const p2 = document.getElementById('phase-2');
-            const p3 = document.getElementById('phase-3');
-            const p4 = document.getElementById('phase-4');
-            const flash = document.getElementById('flash');
-            const app = document.getElementById('app-wrapper');
-            const intro = document.getElementById('intro-container');
-
-            // --- PHASE 1: Senternet Foundation (0 - 5s) ---
-            p1.classList.add('active');
-            document.getElementById('droplet').classList.add('droplet-animate');
-            
-            await sleep(1000); // Droplet hits center
-            shockwaves.push(new Shockwave(centerX(), centerY(), '#3b82f6'));
-            document.getElementById('phase-1-text').style.opacity = '1';
-            
-            await sleep(3500);
-            p1.classList.remove('active');
-            createExplosion(centerX(), centerY(),['#3b82f6', '#8b5cf6', '#e2e8f0']);
-
-            // --- PHASE 2: SSIT Evolution (4.5s - 9.5s) ---
-            await sleep(500);
-            p2.classList.add('active');
-            document.getElementById('edu-icon').classList.add('edu-icon-animate');
-            
-            await sleep(500);
-            document.getElementById('ssit-text').classList.add('typing-animate');
-            document.getElementById('ssit-subtext').style.opacity = '1';
-
-            await sleep(3500);
-            p2.classList.remove('active');
-            createExplosion(centerX(), centerY(),['#f97316', '#84cc16', '#e2e8f0']);
-
-            // --- PHASE 3: Synergy (9.5s - 14.5s) ---
-            await sleep(500);
-            p3.classList.add('active');
-            document.getElementById('synergy-text').style.opacity = '1';
-            
-            await sleep(2800); // Wait for orbit to spin rapidly
-            
-            // The Collision!
-            shockwaves.push(new Shockwave(centerX(), centerY(), '#f97316'));
-            shockwaves.push(new Shockwave(centerX(), centerY(), '#3b82f6'));
-            createExplosion(centerX(), centerY(),['#f97316', '#3b82f6', '#8b5cf6', '#84cc16']);
-            p3.classList.remove('active');
-
-            // --- PHASE 4: Finale (14.5s - 19.5s) ---
-            await sleep(200);
-            p4.classList.add('active');
-            
-            await sleep(4000);
-
-            // --- TRANSITION TO APP (19.5s - 20s) ---
-            flash.style.opacity = '1'; // White flashbang
-            
-            await sleep(500);
-            intro.style.display = 'none'; // Hide intro DOM
-            app.style.display = 'block';
-            
-            // Allow iframe to render, then fade in
+            // 3. Final Transition
             setTimeout(() => {
-                app.style.opacity = '1';
-                app.style.transform = 'scale(1)';
-                flash.style.opacity = '0'; // Reveal App
-            }, 100);
+                clearInterval(msgInterval);
+                stage.style.transform = 'translateY(-100%)';
+                stage.style.opacity = '0';
+                
+                setTimeout(() => stage.remove(), 1200);
+            }, 10500); // Wait slightly over 10s
         }
 
-        window.onload = startCinematicIntro;
-
-        // Prevent back-button anomalies during intro
-        history.pushState(null, null, location.href);
-        window.onpopstate = () => history.go(1);
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        for(let i=0; i<50; i++) particles.push(new Spark());
+        animate();
+        runIntroSequence();
     </script>
 </body>
 </html>
+
