@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senternet Web Pages Manager | Senthilkumar</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus+Jakarta+Sans', sans-serif;
+            background: #0f172a;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Intro Overlay Styles */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-frame {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #38bdf8;
+            padding: 4px;
+            background: rgba(56, 189, 248, 0.1);
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .brand-text {
+            font-weight: 800;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 1.5rem;
+            letter-spacing: -1px;
+            opacity: 0;
+        }
+
+        .loading-bar-container {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .loading-bar {
+            width: 0%;
+            height: 100%;
+            background: #38bdf8;
+        }
+
+        /* Iframe Styles */
+        .app-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #main-iframe {
+            border: none;
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .status-bar {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Intro Animation Screen -->
+    <div id="intro-overlay">
+        <div class="logo-container">
+            <div class="avatar-frame" id="avatar">
+                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senthilkumar CEO" class="avatar-img">
+            </div>
+        </div>
+        <h1 class="brand-text" id="brandTitle">SENTERNET</h1>
+        <p class="text-blue-400 font-medium tracking-widest mt-2 uppercase text-xs opacity-0" id="subTitle">Web Pages Manager</p>
+        
+        <div class="loading-bar-container" id="loaderBox">
+            <div class="loading-bar" id="loaderFill"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="app-container">
+        <!-- Optional Top Bar for Branding -->
+        <div class="status-bar">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span>Senternet Live Workspace</span>
+            </div>
+            <div class="font-bold text-white uppercase tracking-tighter">Senthilkumar CEO</div>
+        </div>
+        
+        <iframe 
+            id="main-iframe"
+            src="https://script.google.com/macros/s/AKfycbxVmmrM6F_LQr9lZ01k7UzZ7dgo6KFlC2H5Wh06WX_cybLvgpeAHbP5u2AkJHw0S92fFA/exec"
+            title="Senternet Manager"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const tl = gsap.timeline();
+
+            // 1. Initial Avatar Pop
+            tl.from("#avatar", {
+                scale: 0,
+                duration: 1.2,
+                ease: "elastic.out(1, 0.5)",
+            });
+
+            // 2. Title & Subtitle Fade In
+            tl.to("#brandTitle", {
+                opacity: 1,
+                y: -10,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.5");
+
+            tl.to("#subTitle", {
+                opacity: 1,
+                duration: 0.6
+            }, "-=0.3");
+
+            // 3. Loading Bar Animation
+            tl.to("#loaderBox", {
+                opacity: 1,
+                duration: 0.4
+            });
+
+            tl.to("#loaderFill", {
+                width: "100%",
+                duration: 2.5,
+                ease: "power1.inOut"
+            });
+
+            // 4. Zoom out and reveal App
+            tl.to("#intro-overlay", {
+                opacity: 0,
+                scale: 1.2,
+                duration: 0.8,
+                display: "none",
+                ease: "power4.in"
+            });
+
+            tl.from(".app-container", {
+                opacity: 0,
+                scale: 0.95,
+                duration: 1,
+                ease: "power2.out"
+            }, "-=0.3");
+        };
+
+        // Handle errors and logging
+        const iframe = document.getElementById('main-iframe');
+        iframe.onerror = function() {
+            console.error("Failed to load the script URL. Check if permissions are public.");
+        };
+    </script>
+</body>
+</html>
+
