@@ -3,250 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senternet Code Space | Powered by Senternet Technologies</title>
+    <title>Senternet Code Space | Official</title>
+    
     <!-- Favicon -->
     <link rel="icon" href="https://rebrand.ly/senternet" type="image/x-icon">
-    <!-- Tailwind & Fonts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- GSAP Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-        :root {
-            --primary-cyan: #00f2ff;
-            --primary-blue: #38bdf8;
-            --bg-dark: #020617;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
+        body, html {
             margin: 0;
-            overflow: hidden;
-            color: white;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Prevent body scroll */
+            background-color: #0f172a; /* Slate-900 */
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Loading Overlay Styling */
-        #loader-wrapper {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: var(--bg-dark);
+        /* Container to hold the iframe and footer */
+        .app-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
             flex-direction: column;
-        }
-
-        /* Cyber Grid Background */
-        #cyber-grid {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-        }
-
-        .logo-box {
-            position: relative;
-            width: 140px;
-            height: 140px;
-        }
-
-        .scan-line {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: var(--primary-cyan);
-            box-shadow: 0 0 15px var(--primary-cyan);
-            top: 0;
-            z-index: 10;
-        }
-
-        .brand-logo {
-            width: 100%;
-            height: 100%;
-            border: 2px solid #1e293b;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #0f172a;
-            position: relative;
-        }
-
-        .brand-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(0.5) contrast(1.1);
-        }
-
-        .glitch-text {
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            width: 250px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            margin-top: 2rem;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-bar {
-            position: absolute;
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--primary-blue), var(--primary-cyan));
-            box-shadow: 0 0 10px var(--primary-cyan);
-        }
-
-        /* Content Container */
-        #main-app {
-            width: 100vw;
             height: 100vh;
-            opacity: 0;
-            visibility: hidden;
+            width: 100vw;
+        }
+
+        /* Iframe takes up all available space */
+        .iframe-wrapper {
+            flex-grow: 1;
+            position: relative;
+            width: 100%;
         }
 
         iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
+            background: #ffffff;
         }
 
-        .floating-contact {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 12px 20px;
-            border-radius: 50px;
+        /* Minimal Header/Footer for Brand Identity */
+        .brand-bar {
+            background: #1e293b; /* Slate-800 */
+            color: #f8fafc;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            z-index: 50;
+        }
+
+        .logo-section {
             display: flex;
             align-items: center;
-            gap: 12px;
-            color: white;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 10px;
         }
 
-        .floating-contact:hover {
-            border-color: var(--primary-cyan);
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
-            transform: translateY(-5px);
+        .logo-img {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .visit-btn {
+            background: #0ea5e9;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .visit-btn:hover {
+            background: #0284c7;
+        }
+
+        /* Error state fallback */
+        #error-msg {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #0f172a;
+            color: white;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            z-index: 100;
         }
     </style>
 </head>
 <body>
 
-    <!-- Intro Loader -->
-    <div id="loader-wrapper">
-        <div id="cyber-grid"></div>
-        
-        <div class="logo-box">
-            <div class="scan-line"></div>
-            <div class="brand-logo">
-                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senthilkumar CEO">
+    <div class="app-container">
+        <!-- Top Branding Bar -->
+        <header class="brand-bar">
+            <div class="logo-section">
+                <img src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="Senthilkumar CEO" class="logo-img">
+                <span class="text-sm font-bold tracking-tight">SENTERNET CODE SPACE</span>
             </div>
-        </div>
+            <a href="https://rebrand.ly/senternet" target="_blank" class="visit-btn">Visit Website</a>
+        </header>
 
-        <div class="mt-8 text-center">
-            <h1 class="glitch-text text-2xl md:text-4xl font-extrabold text-white" id="main-title">
-                SENTERNET
-            </h1>
-            <p class="text-slate-500 font-mono text-xs mt-2 uppercase tracking-[0.3em]" id="sub-title">
-                Initializing Code Engine...
-            </p>
-        </div>
-
-        <div class="progress-container">
-            <div class="progress-bar"></div>
-        </div>
-
-        <div class="absolute bottom-10 text-[10px] text-slate-600 uppercase tracking-widest font-mono">
-            Secure Access • Aranthangi • Pudukkottai
+        <!-- Main Workspace -->
+        <div class="iframe-wrapper">
+            <iframe 
+                id="content-frame"
+                src="https://script.google.com/macros/s/AKfycbwWY8OBebK6UZumTP98aO9sc6f934kCuSS4vNCg7DD6D4SKGpOW0Kcx4-3lHESHLauzaw/exec" 
+                title="Senternet Workspace"
+                allow="clipboard-write; encrypted-media; web-share"
+                loading="eager">
+            </iframe>
         </div>
     </div>
 
-    <!-- Main Workspace -->
-    <main id="main-app">
-        <iframe 
-            src="https://script.google.com/macros/s/AKfycbwWY8OBebK6UZumTP98aO9sc6f934kCuSS4vNCg7DD6D4SKGpOW0Kcx4-3lHESHLauzaw/exec" 
-            title="Senternet Code Space"
-            allow="clipboard-write; encrypted-media; web-share"
-            allowfullscreen>
-        </iframe>
-
-        <!-- Quick Access Link -->
-        <a href="https://rebrand.ly/senternet" target="_blank" class="floating-contact">
-            <img src="https://rebrand.ly/senternet" class="w-6 h-6 rounded-full" onerror="this.src='https://img.icons8.com/color/48/domain.png'">
-            <span class="text-sm">Visit Senternet Technologies</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
-    </main>
+    <!-- Error Message (Hidden by default) -->
+    <div id="error-msg">
+        <h2 class="text-xl font-bold mb-2">Connection Issue</h2>
+        <p class="text-slate-400 mb-4">Unable to load the code space. Please check your internet or try refreshing.</p>
+        <button onclick="location.reload()" class="bg-slate-700 px-6 py-2 rounded-lg">Refresh Now</button>
+    </div>
 
     <script>
-        gsap.registerPlugin(TextPlugin);
-
-        window.addEventListener('load', () => {
-            const tl = gsap.timeline({
-                onComplete: () => {
-                    // Start content fade in
-                    gsap.to("#main-app", { duration: 1, opacity: 1, visibility: 'visible', ease: "power2.out" });
+        // Simple script to handle iframe heartbeats or load issues if necessary
+        const iframe = document.getElementById('content-frame');
+        
+        // Timeout check: If iframe doesn't load in 15 seconds, show friendly message
+        const loadTimeout = setTimeout(() => {
+            try {
+                if (!iframe.contentWindow || iframe.contentWindow.length === 0) {
+                    // This is a rough check, as cross-origin might block some detection
+                    // but it gives a hint if things are totally broken
                 }
-            });
+            } catch (e) {
+                // If we hit CORS error, the iframe likely loaded something, so we're good
+            }
+        }, 15000);
 
-            // 1. Initial State
-            gsap.set(".logo-box", { scale: 0.8, opacity: 0 });
-            gsap.set("#main-title", { opacity: 0, y: 20 });
-
-            // 2. Logo Reveal & Scan Animation
-            tl.to(".logo-box", { duration: 1, opacity: 1, scale: 1, ease: "back.out(1.7)" })
-              .to(".scan-line", { duration: 1.5, top: "100%", repeat: 1, yoyo: true, ease: "sine.inOut" }, "-=0.5")
-              
-            // 3. Text & Subtext Reveal
-            tl.to("#main-title", { duration: 0.8, opacity: 1, y: 0, text: "SENTERNET CODE SPACE", ease: "power3.out" }, "-=1")
-              .to("#sub-title", { duration: 2, text: "System Online. Establishing VPN... Encrypting Shell...", ease: "none" })
-
-            // 4. Progress Bar Sync
-            tl.to(".progress-bar", { duration: 3, width: "100%", ease: "power1.inOut" }, "-=2.5")
-
-            // 5. Final Outro Animation
-            tl.to("#loader-wrapper", { 
-                duration: 1.2, 
-                y: "-100%", 
-                ease: "expo.inOut", 
-                delay: 0.2,
-                onStart: () => {
-                    // Subtle background push for main app
-                    gsap.from("#main-app", { duration: 1.5, scale: 1.1, ease: "power4.out" });
-                }
-            });
-            
-            // Grid Animation (Continuous)
-            gsap.to("#cyber-grid", {
-                backgroundPosition: "50px 50px",
-                duration: 2,
-                repeat: -1,
-                ease: "linear"
-            });
-        });
-
-        // Error handling for environment
-        window.onerror = function() {
-            console.log("Workspace initialization bypassed errors.");
+        iframe.onload = () => {
+            clearTimeout(loadTimeout);
+            console.log("Senternet Code Space Loaded Successfully.");
         };
+
+        // Standard error safety
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IFRAME') {
+                document.getElementById('error-msg').style.display = 'flex';
+            }
+        }, true);
     </script>
 </body>
 </html>
