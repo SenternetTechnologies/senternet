@@ -2,39 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENTERNET | Premium AI Intro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SENTERNET TECHNOLOGIES | Modern Web Design & Digital Marketing in Aranthangi -Pudukkottai </title>
     
-    <!-- GSAP & Plugins -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+    <!-- PWA Setup for Mobile App Download -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#10b981">
+    <link rel="apple-touch-icon" href="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><linearGradient id=%22g%22 x1=%220%%22 y1=%220%%22 x2=%22100%%22 y2=%22100%%22><stop offset=%220%%22 style=%22stop-color:%2310b981;stop-opacity:1%22 /><stop offset=%22100%%22 style=%22stop-color:%230ea5e9;stop-opacity:1%22 /></linearGradient></defs><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22url(%23g)%22/><text y=%22.9em%22 x=%2250%%22 font-size=%2270%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22>S</text></svg>">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>⚡</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&family=Montserrat:wght@900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --brand-blue: #2563eb;
-            --brand-green: #10b981;
-            --brand-violet: #8b5cf6;
-            --bg-white: #ffffff;
+            --neon-green: #10b981;
+            --tech-blue: #0ea5e9;
+            --dark-surface: #0f172a;
         }
 
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
-            background: var(--bg-white);
             overflow: hidden;
+            background: #ffffff;
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
+        /* --- 10-SECOND ULTRA INTRO --- */
         #intro-stage {
             position: fixed;
             inset: 0;
             z-index: 10000;
-            background: radial-gradient(circle at center, #f8fafc 0%, #ffffff 100%);
+            background: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -42,221 +45,281 @@
             transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
         }
 
-        .canvas-area {
+        /* Animated Background Particles */
+        .bg-elements {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: moveOrb 20s infinite alternate;
+        }
+
+        @keyframes moveOrb {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        /* Logo Animation */
+        .logo-container {
             position: relative;
-            width: 90%;
-            max-width: 1000px;
-            height: 450px;
+            z-index: 10;
+            width: 160px;
+            height: 160px;
+            margin-bottom: 2rem;
+        }
+
+        .logo-ring {
+            position: absolute;
+            inset: 0;
+            border: 2px dashed var(--neon-green);
+            border-radius: 50%;
+            animation: spin 10s linear infinite;
+        }
+
+        .logo-core {
+            position: absolute;
+            inset: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 25% 75% 30% 70% / 60% 30% 70% 40%;
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
+            animation: morph 8s ease-in-out infinite alternate;
         }
 
-        /* --- THE WRITING SVG --- */
-        #writing-svg {
-            width: 100%;
-            height: auto;
-            overflow: visible;
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes morph {
+            0% { border-radius: 25% 75% 30% 70% / 60% 30% 70% 40%; }
+            100% { border-radius: 70% 30% 75% 25% / 40% 70% 30% 60%; }
         }
 
-        .text-path {
-            fill: none;
-            stroke-width: 4;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            visibility: hidden;
-            /* Gradient applied via JS/Defs */
+        /* Brand Typography */
+        .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #059669 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: reveal 0.8s forwards 0.3s;
         }
 
-        /* --- STYLISH ROBOT HAND --- */
-        #robot-hand-container {
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            pointer-events: none;
-            z-index: 100;
-            transform: translate(-50%, -50%);
-            display: none;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-        }
-
-        /* HUD STYLES - BRIGHT THEME */
-        .tech-hud {
-            position: absolute;
-            bottom: 60px;
-            text-align: center;
-            color: #64748b;
-            font-size: 11px;
-            letter-spacing: 5px;
+        .service-pulse {
+            height: 24px;
+            font-size: 0.8rem;
+            font-weight: 800;
             text-transform: uppercase;
-            font-weight: 600;
+            letter-spacing: 0.5em;
+            color: #64748b;
+            margin-top: 10px;
+            overflow: hidden;
         }
 
-        .progress-bar-wrap {
-            width: 240px;
-            height: 4px;
+        /* Loading UI */
+        .loader-box {
+            margin-top: 3.5rem;
+            width: 280px;
+            z-index: 10;
+        }
+
+        .track {
+            height: 6px;
             background: #f1f5f9;
             border-radius: 10px;
-            margin: 15px auto;
             overflow: hidden;
+            position: relative;
+        }
+
+        .bar {
+            position: absolute;
+            left: 0; top: 0; height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--neon-green), var(--tech-blue));
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+            transition: width 10s linear; /* Sync with 10s load */
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+
+        /* --- INSTALL APP CALLOUT --- */
+        #pwa-install {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
             border: 1px solid #e2e8f0;
         }
 
-        #hud-progress {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--brand-blue), var(--brand-violet));
-            transition: width 0.1s linear;
-        }
+        #pwa-install.visible { transform: translateX(-50%) translateY(0); }
 
-        .grid-bg {
-            position: absolute;
+        /* --- APP WRAPPER --- */
+        #app-viewport {
+            position: fixed;
             inset: 0;
-            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-            background-size: 40px 40px;
             z-index: 1;
-            opacity: 0.5;
+            opacity: 0;
+            transition: opacity 1.5s ease;
         }
 
-        #main-content { position: fixed; inset: 0; z-index: 1; opacity: 0; }
-        iframe { width: 100%; height: 100%; border: none; }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
+    <!-- Intro Stage -->
     <div id="intro-stage">
-        <div class="grid-bg"></div>
-        
-        <div class="canvas-area">
-            <div id="robot-hand-container">
-                <svg width="140" height="140" viewBox="0 0 100 100">
-                    <defs>
-                        <linearGradient id="handGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#f1f5f9;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#cbd5e1;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <!-- Metallic Arm -->
-                    <rect x="35" y="75" width="30" height="35" rx="4" fill="url(#handGrad)" stroke="#94a3b8" stroke-width="1.5" />
-                    <!-- Hand Body -->
-                    <path d="M30 45 Q30 35 50 35 Q70 35 70 45 L75 75 Q75 80 70 80 L30 80 Q25 80 25 75 Z" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
-                    <!-- Joint Details -->
-                    <circle cx="50" cy="55" r="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1" />
-                    <!-- Pen / Stylus -->
-                    <rect x="42" y="5" width="5" height="55" rx="2" fill="#1e293b" transform="rotate(-10, 45, 30)" />
-                    <!-- Pen Tip Glow -->
-                    <circle cx="38" cy="8" r="3" fill="#8b5cf6">
-                        <animate attributeName="fill" values="#8b5cf6;#10b981;#2563eb;#8b5cf6" dur="3s" repeatCount="indefinite" />
-                    </circle>
-                </svg>
-            </div>
-
-            <svg id="writing-svg" viewBox="0 0 1000 250">
-                <defs>
-                    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#2563eb" />
-                        <stop offset="33%" style="stop-color:#10b981" />
-                        <stop offset="66%" style="stop-color:#8b5cf6" />
-                        <stop offset="100%" style="stop-color:#2563eb" />
-                    </linearGradient>
-                </defs>
-                <!-- FIXED SPELLING: S-E-N-T-E-R-N-E-T -->
-                <path id="senternet-path" class="text-path" stroke="url(#textGrad)" 
-                d="M50,150 C50,90 110,90 110,120 C110,150 50,150 50,180 C50,210 110,210 110,210 
-                   M140,210 V110 H190 M140,160 H180 M140,210 H190 
-                   M220,210 V110 L280,210 V110 
-                   M310,110 H390 M350,110 V210 
-                   M420,210 V110 H470 M420,160 H460 M420,210 H470 
-                   M500,210 V110 L560,160 C570,170 570,200 560,210 
-                   M500,160 H540 
-                   M600,210 V110 L660,210 V110 
-                   M690,210 V110 H740 M690,160 H730 M690,210 H740 
-                   M770,110 H850 M810,110 V210" />
-            </svg>
+        <div class="bg-elements">
+            <div class="orb w-96 h-96 bg-emerald-200 top-0 left-0"></div>
+            <div class="orb w-80 h-80 bg-sky-200 bottom-0 right-0"></div>
         </div>
 
-        <div class="tech-hud">
-            <span id="status-label">CRAFTING YOUR EXPERIENCE</span>
-            <div class="progress-bar-wrap">
-                <div id="hud-progress"></div>
+        <div class="logo-container">
+            <div class="logo-ring"></div>
+            <div class="logo-core">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
-            <span id="progress-percent">0%</span>
+        </div>
+
+        <h1 class="brand-name">SENTERNET</h1>
+        
+        <div class="service-pulse" id="pulse-text">Creative Solutions</div>
+
+        <div class="loader-box">
+            <div class="track">
+                <div class="bar" id="load-bar"></div>
+            </div>
+            <div class="details">
+                <span id="status-label">Initializing Core</span>
+                <span id="percent-label">0%</span>
+            </div>
         </div>
     </div>
 
-    <div id="main-content">
-        <iframe 
-            id="appIframe"
-            src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
-            loading="eager">
-        </iframe>
+    <!-- PWA Install Popup -->
+    <div id="pwa-install">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-white font-bold">S</div>
+        <div class="text-sm font-bold text-slate-700">Install Senternet App</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-500"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </div>
+
+    <!-- Background Iframe -->
+    <div id="app-viewport">
+        <iframe src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec"></iframe>
     </div>
 
     <script>
-        gsap.registerPlugin(MotionPathPlugin);
+        // PWA Installation
+        let deferredPrompt;
+        const installPopup = document.getElementById('pwa-install');
 
-        function startBrightIntro() {
-            const path = document.querySelector('#senternet-path');
-            const hand = document.querySelector('#robot-hand-container');
-            const stage = document.querySelector('#intro-stage');
-            const mainContent = document.querySelector('#main-content');
-            const progressTxt = document.querySelector('#progress-percent');
-            const hudProgress = document.querySelector('#hud-progress');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            setTimeout(() => installPopup.classList.add('visible'), 3000);
+        });
 
-            const pathLength = path.getTotalLength();
-            gsap.set(path, { 
-                strokeDasharray: pathLength, 
-                strokeDashoffset: pathLength,
-                visibility: 'visible' 
-            });
+        installPopup.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') installPopup.classList.remove('visible');
+                deferredPrompt = null;
+            }
+        });
+
+        // 10-Second Intro Controller
+        function runIntro() {
+            const bar = document.getElementById('load-bar');
+            const percent = document.getElementById('percent-label');
+            const status = document.getElementById('status-label');
+            const pulse = document.getElementById('pulse-text');
+            const intro = document.getElementById('intro-stage');
+            const viewport = document.getElementById('app-viewport');
+
+            const services = ["Web Design", "UI/UX Development", "SEO Optimization", "Digital Marketing", "Ready to Launch"];
+            const steps = ["Securing Connection", "Loading Assets", "Fetching Database", "Finalizing UI", "Welcome Senthil"];
+
+            // Start 10s animation
+            bar.style.width = '100%';
             
-            gsap.set(hand, { display: 'block', opacity: 0 });
-
-            const tl = gsap.timeline();
-
-            // 1. Hand Fade In
-            tl.to(hand, { duration: 0.8, opacity: 1, ease: "power2.out" });
-
-            // 2. Writing (8 seconds for elegance)
-            tl.to(path, {
-                strokeDashoffset: 0,
-                duration: 8,
-                ease: "none",
-                onUpdate: function() {
-                    const p = Math.round(this.progress() * 100);
-                    progressTxt.innerText = p + "%";
-                    hudProgress.style.width = p + "%";
+            let count = 0;
+            const sequence = setInterval(() => {
+                count++;
+                
+                // Update percentage
+                percent.innerText = (count * 10) + '%';
+                
+                // Update Pulse & Status
+                if(count < 5) {
+                    pulse.innerText = services[count];
+                    status.innerText = steps[count];
+                    pulse.style.animation = 'none';
+                    void pulse.offsetWidth; // trigger reflow
+                    pulse.style.animation = 'fadeUp 0.5s forwards';
                 }
-            });
 
-            // 3. Hand Path Follow
-            tl.to(hand, {
-                duration: 8,
-                ease: "none",
-                motionPath: {
-                    path: "#senternet-path",
-                    align: "#senternet-path",
-                    autoRotate: false,
-                    alignOrigin: [0.38, 0.08] // Precision tip alignment
+                if(count === 10) {
+                    clearInterval(sequence);
+                    finish();
                 }
-            }, "<");
+            }, 1000); // Update every 1s for 10s total
 
-            // 4. Elegant Clean Exit
-            tl.to(hand, { duration: 0.6, opacity: 0, y: -20, ease: "power2.in" });
-            tl.to(path, { duration: 1, strokeWidth: 12, opacity: 0, filter: "blur(10px)", ease: "power2.out" });
-            
-            tl.add(() => {
-                gsap.to(mainContent, { duration: 1, opacity: 1 });
-                gsap.to(stage, {
-                    duration: 1.2,
-                    y: "-100%",
-                    ease: "expo.inOut",
-                    onComplete: () => stage.remove()
-                });
-            });
+            function finish() {
+                setTimeout(() => {
+                    intro.style.transform = 'translateY(-100%)';
+                    viewport.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        intro.remove();
+                        // Show install prompt again if they missed it
+                        if(deferredPrompt) installPopup.classList.add('visible');
+                    }, 1200);
+                }, 500);
+            }
         }
 
-        window.onload = startBrightIntro;
+        window.onload = runIntro;
     </script>
 </body>
 </html>
