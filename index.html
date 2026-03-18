@@ -1,262 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Resource Hints for Faster Connection -->
-    <link rel="preconnect" href="https://script.google.com">
-    <link rel="preconnect" href="https://script.googleusercontent.com">
-    <link rel="dns-prefetch" href="https://script.google.com">
-    
-    <!-- Senternet Official Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><linearGradient id=%22g%22 x1=%220%%22 y1=%220%%22 x2=%22100%%22 y2=%22100%%22><stop offset=%220%%22 style=%22stop-color:%2300f2fe;stop-opacity:1%22 /><stop offset=%22100%%22 style=%22stop-color:%234facfe;stop-opacity:1%22 /></linearGradient></defs><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22url(%23g)%22/><text y=%22.9em%22 x=%2250%%22 font-size=%2270%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22>S</text></svg>">
-    <link rel="alternate icon" type="image/png" href="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SENTERNET TECHNOLOGIES | Expert Web Design & Digital Marketing in Aranthangi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTERNET | Premium AI Intro</title>
     
-    <!-- SEO & Meta Tags -->
-    <meta name="description" content="SENTERNET TECHNOLOGIES offers professional web design, UI/UX development, and digital marketing services in Aranthangi. Transform your business with Senthilkumar (CEO).">
-    <meta property="og:image" content="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp">
-    <meta name="theme-color" content="#7F00FF">
-
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&family=Montserrat:wght@900&display=swap" rel="stylesheet">
     
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>⚡</text></svg>">
+
     <style>
         :root {
-            --primary: #00d2ff;
-            --secondary: #3a7bd5;
-            --vibrant-green: #00f2fe;
-            --azure: #4facfe;
-            --bg-bright: #f8fafc;
+            --brand-blue: #2563eb;
+            --brand-green: #10b981;
+            --brand-violet: #8b5cf6;
+            --bg-white: #ffffff;
         }
 
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
+            background: var(--bg-white);
             overflow: hidden;
-            background: var(--bg-bright);
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* --- STAGE LAYOUT --- */
         #intro-stage {
             position: fixed;
             inset: 0;
             z-index: 10000;
-            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+            background: radial-gradient(circle at center, #f8fafc 0%, #ffffff 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .canvas-area {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            height: 450px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
         }
 
-        .mesh-bg {
+        /* --- THE WRITING SVG --- */
+        #writing-svg {
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .text-path {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            visibility: hidden;
+            /* Gradient applied via JS/Defs */
+        }
+
+        /* --- STYLISH ROBOT HAND --- */
+        #robot-hand-container {
             position: absolute;
-            width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(197, 100%, 82%, 0.3) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(160, 100%, 84%, 0.3) 0, transparent 50%);
+            width: 140px;
+            height: 140px;
+            pointer-events: none;
+            z-index: 100;
+            transform: translate(-50%, -50%);
+            display: none;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+
+        /* HUD STYLES - BRIGHT THEME */
+        .tech-hud {
+            position: absolute;
+            bottom: 60px;
+            text-align: center;
+            color: #64748b;
+            font-size: 11px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .progress-bar-wrap {
+            width: 240px;
+            height: 4px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            margin: 15px auto;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        #hud-progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--brand-blue), var(--brand-violet));
+            transition: width 0.1s linear;
+        }
+
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 40px 40px;
             z-index: 1;
+            opacity: 0.5;
         }
 
-        #fx-canvas { position: absolute; inset: 0; z-index: 2; }
-        .content-container { position: relative; z-index: 10; text-align: center; }
-
-        .logo-sphere {
-            width: 140px; height: 140px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            display: flex; justify-content: center; align-items: center;
-            margin: 0 auto 2rem;
-            box-shadow: 0 25px 50px -12px rgba(79, 172, 254, 0.3);
-            animation: morph 8s ease-in-out infinite;
-            opacity: 0; transform: scale(0.5);
-            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes morph {
-            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; }
-        }
-
-        .logo-sphere.active { opacity: 1; transform: scale(1); }
-
-        .brand-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem; font-weight: 900;
-            background: linear-gradient(to right, #2563eb, #0ea5e9, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0; transform: translateY(30px);
-            transition: all 1s ease 0.5s;
-        }
-
-        .brand-text.active { opacity: 1; transform: translateY(0); }
-
-        .tagline {
-            font-size: 0.9rem; color: #64748b;
-            letter-spacing: 0.5em; text-transform: uppercase;
-            font-weight: 600; margin-top: 1rem;
-            opacity: 0; transition: all 1.2s ease 1s;
-        }
-
-        .tagline.active { opacity: 1; letter-spacing: 0.8em; }
-
-        .status-box { margin-top: 4rem; width: 250px; opacity: 0; transition: opacity 1s ease 1.5s; }
-        .status-box.active { opacity: 1; }
-
-        .progress-bar { height: 4px; width: 100%; background: #e2e8f0; border-radius: 10px; overflow: hidden; }
-        .progress-fill {
-            height: 100%; width: 0%;
-            background: linear-gradient(to right, var(--azure), var(--vibrant-green));
-            box-shadow: 0 0 10px var(--azure);
-            transition: width 0.4s ease; /* Fast transition for smooth updates */
-        }
-
-        #main-app { position: fixed; inset: 0; z-index: 1; }
+        #main-content { position: fixed; inset: 0; z-index: 1; opacity: 0; }
         iframe { width: 100%; height: 100%; border: none; }
-        .loading-text { font-size: 10px; color: #94a3b8; margin-top: 10px; text-transform: uppercase; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div id="intro-stage">
-        <div class="mesh-bg"></div>
-        <canvas id="fx-canvas"></canvas>
-
-        <div class="content-container">
-            <div class="logo-sphere" id="sphere">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 17L12 22L22 17" stroke="#0ea5e9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 12L12 17L22 12" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <div class="grid-bg"></div>
+        
+        <div class="canvas-area">
+            <div id="robot-hand-container">
+                <svg width="140" height="140" viewBox="0 0 100 100">
+                    <defs>
+                        <linearGradient id="handGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f1f5f9;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#cbd5e1;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Metallic Arm -->
+                    <rect x="35" y="75" width="30" height="35" rx="4" fill="url(#handGrad)" stroke="#94a3b8" stroke-width="1.5" />
+                    <!-- Hand Body -->
+                    <path d="M30 45 Q30 35 50 35 Q70 35 70 45 L75 75 Q75 80 70 80 L30 80 Q25 80 25 75 Z" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+                    <!-- Joint Details -->
+                    <circle cx="50" cy="55" r="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1" />
+                    <!-- Pen / Stylus -->
+                    <rect x="42" y="5" width="5" height="55" rx="2" fill="#1e293b" transform="rotate(-10, 45, 30)" />
+                    <!-- Pen Tip Glow -->
+                    <circle cx="38" cy="8" r="3" fill="#8b5cf6">
+                        <animate attributeName="fill" values="#8b5cf6;#10b981;#2563eb;#8b5cf6" dur="3s" repeatCount="indefinite" />
+                    </circle>
                 </svg>
             </div>
 
-            <h1 class="brand-text" id="title">SENTERNET</h1>
-            <p class="tagline" id="tagline">Technologies</p>
+            <svg id="writing-svg" viewBox="0 0 1000 250">
+                <defs>
+                    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#2563eb" />
+                        <stop offset="33%" style="stop-color:#10b981" />
+                        <stop offset="66%" style="stop-color:#8b5cf6" />
+                        <stop offset="100%" style="stop-color:#2563eb" />
+                    </linearGradient>
+                </defs>
+                <!-- FIXED SPELLING: S-E-N-T-E-R-N-E-T -->
+                <path id="senternet-path" class="text-path" stroke="url(#textGrad)" 
+                d="M50,150 C50,90 110,90 110,120 C110,150 50,150 50,180 C50,210 110,210 110,210 
+                   M140,210 V110 H190 M140,160 H180 M140,210 H190 
+                   M220,210 V110 L280,210 V110 
+                   M310,110 H390 M350,110 V210 
+                   M420,210 V110 H470 M420,160 H460 M420,210 H470 
+                   M500,210 V110 L560,160 C570,170 570,200 560,210 
+                   M500,160 H540 
+                   M600,210 V110 L660,210 V110 
+                   M690,210 V110 H740 M690,160 H730 M690,210 H740 
+                   M770,110 H850 M810,110 V210" />
+            </svg>
+        </div>
 
-            <div class="status-box mx-auto" id="status-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="fill"></div>
-                </div>
-                <p class="loading-text" id="status-msg">Initializing App Core...</p>
+        <div class="tech-hud">
+            <span id="status-label">CRAFTING YOUR EXPERIENCE</span>
+            <div class="progress-bar-wrap">
+                <div id="hud-progress"></div>
             </div>
+            <span id="progress-percent">0%</span>
         </div>
     </div>
 
-    <div id="main-app">
-        <!-- Added loading="eager" for priority rendering -->
+    <div id="main-content">
         <iframe 
-            id="appFrame"
+            id="appIframe"
             src="https://script.google.com/macros/s/AKfycbwB9aFIBRR1Hdr1YwPfQspjNPd32zSDra80EXg70X2zfX1aNZN3vsFwIIB4RV3_gpWaAw/exec" 
-            loading="eager"
-            allow="geolocation; microphone; camera; clipboard-write">
+            loading="eager">
         </iframe>
     </div>
 
     <script>
-        const canvas = document.getElementById('fx-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, particles = [];
+        gsap.registerPlugin(MotionPathPlugin);
 
-        function initCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
+        function startBrightIntro() {
+            const path = document.querySelector('#senternet-path');
+            const hand = document.querySelector('#robot-hand-container');
+            const stage = document.querySelector('#intro-stage');
+            const mainContent = document.querySelector('#main-content');
+            const progressTxt = document.querySelector('#progress-percent');
+            const hudProgress = document.querySelector('#hud-progress');
 
-        class Spark {
-            constructor() { this.reset(); }
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 2 + 1;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
-                this.alpha = Math.random() * 0.5;
-            }
-            update() {
-                this.x += this.vx; this.y += this.vy;
-                if(this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
-            }
-            draw() {
-                ctx.fillStyle = `rgba(79, 172, 254, ${this.alpha})`;
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill();
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0,0,width,height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animate);
-        }
-
-        async function runIntroSequence() {
-            const sphere = document.getElementById('sphere');
-            const title = document.getElementById('title');
-            const tagline = document.getElementById('tagline');
-            const status = document.getElementById('status-container');
-            const fill = document.getElementById('fill');
-            const msg = document.getElementById('status-msg');
-            const stage = document.getElementById('intro-stage');
-            const frame = document.getElementById('appFrame');
-
-            // Start UI Reveal
-            setTimeout(() => sphere.classList.add('active'), 200);
-            setTimeout(() => title.classList.add('active'), 600);
-            setTimeout(() => tagline.classList.add('active'), 1000);
-            setTimeout(() => status.classList.add('active'), 1400);
-
-            let progress = 0;
-            const msgs = [
-                "Establishing secure connection...",
-                "Waking up the digital engine...",
-                "Optimizing assets for you...",
-                "Senternet Hub Ready."
-            ];
-
-            // Smart Progress Logic
-            const progressInterval = setInterval(() => {
-                if (progress < 90) { // Stay at 90% until iframe actually loads
-                    progress += (90 - progress) * 0.05; 
-                    fill.style.width = progress + '%';
-                    
-                    if (progress > 20) msg.innerText = msgs[0];
-                    if (progress > 50) msg.innerText = msgs[1];
-                    if (progress > 75) msg.innerText = msgs[2];
-                }
-            }, 200);
-
-            // The Secret Sauce: Detect when iframe is actually interactive
-            frame.onload = () => {
-                clearInterval(progressInterval);
-                fill.style.width = '100%';
-                msg.innerText = msgs[3];
-
-                setTimeout(() => {
-                    stage.style.transform = 'translateY(-100%)';
-                    stage.style.opacity = '0';
-                    setTimeout(() => stage.remove(), 1200);
-                }, 800); // Exit immediately after load
-            };
+            const pathLength = path.getTotalLength();
+            gsap.set(path, { 
+                strokeDasharray: pathLength, 
+                strokeDashoffset: pathLength,
+                visibility: 'visible' 
+            });
             
-            // Safety timeout: If iframe takes too long (> 15s), exit anyway
-            setTimeout(() => {
-                if(document.getElementById('intro-stage')) {
-                     stage.style.transform = 'translateY(-100%)';
-                     setTimeout(() => stage.remove(), 1200);
+            gsap.set(hand, { display: 'block', opacity: 0 });
+
+            const tl = gsap.timeline();
+
+            // 1. Hand Fade In
+            tl.to(hand, { duration: 0.8, opacity: 1, ease: "power2.out" });
+
+            // 2. Writing (8 seconds for elegance)
+            tl.to(path, {
+                strokeDashoffset: 0,
+                duration: 8,
+                ease: "none",
+                onUpdate: function() {
+                    const p = Math.round(this.progress() * 100);
+                    progressTxt.innerText = p + "%";
+                    hudProgress.style.width = p + "%";
                 }
-            }, 15000);
+            });
+
+            // 3. Hand Path Follow
+            tl.to(hand, {
+                duration: 8,
+                ease: "none",
+                motionPath: {
+                    path: "#senternet-path",
+                    align: "#senternet-path",
+                    autoRotate: false,
+                    alignOrigin: [0.38, 0.08] // Precision tip alignment
+                }
+            }, "<");
+
+            // 4. Elegant Clean Exit
+            tl.to(hand, { duration: 0.6, opacity: 0, y: -20, ease: "power2.in" });
+            tl.to(path, { duration: 1, strokeWidth: 12, opacity: 0, filter: "blur(10px)", ease: "power2.out" });
+            
+            tl.add(() => {
+                gsap.to(mainContent, { duration: 1, opacity: 1 });
+                gsap.to(stage, {
+                    duration: 1.2,
+                    y: "-100%",
+                    ease: "expo.inOut",
+                    onComplete: () => stage.remove()
+                });
+            });
         }
 
-        window.addEventListener('resize', initCanvas);
-        initCanvas();
-        for(let i=0; i<40; i++) particles.push(new Spark());
-        animate();
-        runIntroSequence();
+        window.onload = startBrightIntro;
     </script>
 </body>
 </html>
