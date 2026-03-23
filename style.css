@@ -1,0 +1,194 @@
+/* --- GLOBAL & UTILITIES --- */
+body {
+    background-color: #f8fafc;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+/* Glassmorphism */
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Text Gradients */
+.text-gradient {
+    background: linear-gradient(135deg, #0d9488 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+/* Carousel Fades */
+.carousel-item { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+.carousel-item.active { display: flex; opacity: 1; }
+
+/* --- MODAL & IFRAME --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: 95%;
+    height: 90%;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0d9488;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* --- MARQUEE --- */
+.support-marquee-bar,
+.tech-marquee-bar {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.support-marquee-bar {
+    background: #0f172a;
+    color: white;
+    height: 50px;
+    border-bottom: 2px solid #f59e0b;
+}
+
+.tech-marquee-bar {
+    background: #ffffff;
+    height: 80px;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.marquee-inner {
+    display: flex;
+    white-space: nowrap;
+    animation: smoothScroll 30s linear infinite;
+}
+
+@keyframes smoothScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* --- CUSTOM CURSOR --- */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(13, 148, 136, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+}
+
+.custom-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(13, 148, 136, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: 0.1s ease-out;
+}
+
+a:hover~.custom-cursor,
+button:hover~.custom-cursor {
+    width: 40px;
+    height: 40px;
+    background: rgba(13, 148, 136, 0.8);
+}
+
+/* FAQ Accordion */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+/* Notification Ping Styles */
+.notification-ping {
+    position: absolute; 
+    top: -4px; 
+    right: -4px; 
+    display: flex; 
+    height: 12px; 
+    width: 12px;
+}
+.ping-circle {
+    position: absolute; 
+    display: inline-flex; 
+    height: 100%; 
+    width: 100%; 
+    border-radius: 9999px; 
+    background-color: #ef4444; 
+    opacity: 0.75; 
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.ping-inner {
+    position: relative; 
+    display: inline-flex; 
+    border-radius: 9999px; 
+    height: 12px; 
+    width: 12px; 
+    background-color: #ef4444; 
+    border: 2px solid white;
+}
+
+@keyframes ping {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
