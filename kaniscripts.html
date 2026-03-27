@@ -3,16 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kaniscripts | Powered by Senternet</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Kaniscripts | Professional Google Apps Script & Sheet Automation</title>
+    <meta name="title" content="Kaniscripts | Powered by Senternet Technologies">
+    <meta name="description" content="Advanced Google Sheets automation, custom Web Apps, and Apps Script solutions by Kaniscripts. Scaling businesses with cloud-based data handling and professional UI.">
+    <meta name="keywords" content="Kaniscripts, Senternet Technologies, Google Apps Script, Google Sheets Automation, Web App Development, Aranthangi Web Design, Senthilkumar Senternet, Business Automation, Apps Script Dashboard, Cloud Solutions India">
+    <meta name="author" content="Senthilkumar, Senternet Technologies">
+
+    <!-- Open Graph / Facebook / WhatsApp Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rebrand.ly/senternet">
+    <meta property="og:title" content="Kaniscripts - Automation Excellence">
+    <meta property="og:description" content="Custom Google Workspace solutions and high-end web automation for modern businesses.">
+    <meta property="og:image" content="https://i.ibb.co/0pXPgLZL/Picsart-26-03-27-15-25-07-863.png">
+
+    <!-- Twitter Preview -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://rebrand.ly/senternet">
+    <meta property="twitter:title" content="Kaniscripts - Powered by Senternet">
+    <meta property="twitter:description" content="Transforming Google Sheets into powerful business applications.">
+    <meta property="twitter:image" content="https://i.ibb.co/0pXPgLZL/Picsart-26-03-27-15-25-07-863.png">
+
+    <link rel="shortcut icon" href="https://i.ibb.co/0pXPgLZL/Picsart-26-03-27-15-25-07-863.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
             overflow: hidden;
-            background-color: #ffffff;
+            background-color: #f0fff4; /* Light Green Base */
             font-family: 'Inter', sans-serif;
         }
 
@@ -27,72 +52,111 @@
             z-index: 1;
         }
 
-        /* Splash Screen Overlay */
+        /* Waterfall Splash Screen Overlay */
         #splash-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #ffffff;
+            background: linear-gradient(180deg, #ffffff 0%, #dcfce7 50%, #22c55e 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.8s ease-out, visibility 0.8s;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease-out;
         }
 
-        .logo-animation {
-            width: 200px;
-            max-width: 60%;
-            height: auto;
-            animation: pulse 2s infinite ease-in-out;
+        /* Waterfall Slide Down Effect */
+        .waterfall-exit {
+            transform: translateY(100%);
+            opacity: 0;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
+        /* New Logo Styling */
+        .logo-container {
+            position: relative;
+            z-index: 10;
         }
 
-        /* Loader Bar */
-        .loader-container {
-            width: 200px;
-            height: 4px;
-            background-color: #f3f3f3;
-            border-radius: 10px;
-            margin-top: 20px;
+        .logo-main {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Advanced Loader */
+        .loader-wrapper {
+            width: 240px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
             overflow: hidden;
+            position: relative;
         }
 
-        .loader-fill {
+        .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #3b82f6, #2563eb);
-            transition: width 5s linear;
+            background: #15803d; /* Dark Green */
+            box-shadow: 0 0 10px #4ade80;
+            transition: width 5s cubic-bezier(0.1, 0, 0.3, 1);
         }
 
-        /* Hidden Class */
-        .fade-out {
-            opacity: 0;
-            visibility: hidden;
+        /* Wave Decoration */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2316a34a" fill-opacity="0.4" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,144C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            animation: waveFlow 5s linear infinite;
+        }
+
+        @keyframes waveFlow {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1440px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Splash Screen (Intro) -->
+    <!-- Splash Screen (Waterfall Intro) -->
     <div id="splash-screen">
-        <img src="https://i.ibb.co/Y7gnNM31/Screenshot-20260327-152119.jpg" 
-             alt="Kaniscripts Logo" 
-             class="logo-animation"
-             onerror="this.src='https://via.placeholder.com/200?text=Kaniscripts'">
-        
-        <div class="loader-container">
-            <div id="loader-fill" class="loader-fill"></div>
+        <div class="logo-container">
+            <!-- Using your NEW provided logo image -->
+            <img src="https://i.ibb.co/0pXPgLZL/Picsart-26-03-27-15-25-07-863.png" 
+                 alt="Kaniscripts New Logo" 
+                 class="logo-main">
         </div>
-        <p class="mt-4 text-gray-400 text-sm font-medium tracking-widest uppercase">Initializing...</p>
+        
+        <div class="loader-wrapper">
+            <div class="progress-bar">
+                <div id="loader-fill" class="progress-fill"></div>
+            </div>
+            <p class="mt-4 text-green-900 text-xs font-bold tracking-[0.2em] uppercase">Powered by Senternet Technologies</p>
+        </div>
+
+        <!-- Decorative Wave for Waterfall feel -->
+        <div class="wave"></div>
     </div>
 
     <!-- Main Web App iFrame -->
@@ -101,7 +165,7 @@
         src="https://script.google.com/macros/s/AKfycbwseP_kvxWHGcMnkxs2StK4iYv0kFtmk20SH2vlkzDRBlXLgH3Jb8niCXJjqWBRjhHjUw/exec" 
         class="app-container"
         allow="geolocation; microphone; camera; midi; encrypted-media;"
-        title="Kaniscripts Application">
+        title="Kaniscripts Automation Engine">
     </iframe>
 
     <script>
@@ -109,19 +173,19 @@
             const splash = document.getElementById('splash-screen');
             const loader = document.getElementById('loader-fill');
 
-            // Start the loader animation immediately
+            // Start the loader animation (5 seconds)
             setTimeout(() => {
                 loader.style.width = '100%';
             }, 100);
 
-            // Hide the splash screen after 5 seconds
+            // Hide the splash screen with a waterfall slide-down effect after 5 seconds
             setTimeout(() => {
-                splash.classList.add('fade-out');
+                splash.classList.add('waterfall-exit');
                 
-                // Remove from DOM after transition to prevent interaction issues
+                // Complete removal after animation
                 setTimeout(() => {
                     splash.style.display = 'none';
-                }, 800);
+                }, 1000);
             }, 5000);
         };
     </script>
