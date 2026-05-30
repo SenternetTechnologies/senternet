@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTERNET Carousel Builder</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- jsPDF and html2canvas Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        code: ['"Fira Code"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hidden printable container styling */
+        .pdf-page-container {
+            width: 1080px;
+            height: 1350px;
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            overflow: hidden;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-xs">
+        <div class="flex items-center gap-3">
+            <div class="bg-brand-600 text-white p-2.5 rounded-xl flex items-center justify-center shadow-lg shadow-brand-200">
+                <i class="fa-solid fa-layer-group text-xl"></i>
+            </div>
+            <div>
+                <h1 class="font-extrabold text-xl tracking-tight text-slate-900">SENTERNET Carousel Builder</h1>
+                <p class="text-xs text-slate-500 font-medium">Design professional 4:5 Instagram Posts instantly</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="generatePDF()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl transition duration-200 flex items-center gap-2 shadow-lg shadow-brand-100 hover:shadow-xl hover:shadow-brand-200 active:scale-95">
+                <i class="fa-solid fa-file-pdf"></i>
+                <span>Download Carousel PDF</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="flex-1 grid grid-cols-1 xl:grid-cols-12 gap-0 overflow-hidden">
+
+        <!-- Left Side: Controls & Input Panel -->
+        <aside class="xl:col-span-5 bg-white border-r border-slate-200 overflow-y-auto p-6 space-y-8 max-h-[calc(100vh-80px)]">
+
+            <!-- Global Branding Configurations -->
+            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 space-y-4">
+                <div class="flex items-center gap-2 pb-2 border-b border-slate-200">
+                    <i class="fa-solid fa-sliders text-brand-600"></i>
+                    <h3 class="font-bold text-slate-900 text-base">Global Brand Settings</h3>
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Logo Image Upload</label>
+                    <div class="flex items-center gap-3">
+                        <div class="relative group">
+                            <div class="w-16 h-16 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center bg-white overflow-hidden relative cursor-pointer">
+                                <img id="logo-preview" class="w-full h-full object-contain p-1" src="https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp" alt="SENTERNET Logo">
+                                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs">
+                                    <i class="fa-solid fa-camera"></i>
+                                </div>
+                                <input type="file" id="logo-uploader" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+                            </div>
+                        </div>
+                        <div class="text-xs text-slate-500">
+                            <span class="font-semibold text-slate-700 block">Brand Logo File</span>
+                            Upload custom transparent PNG logo to update in all slides instantly.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Series Tag</label>
+                        <input type="text" id="input-series" value="DAY #1" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-sm transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Instagram Handle</label>
+                        <input type="text" id="input-instagram" value="@senternet" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-sm transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Support Email</label>
+                    <input type="email" id="input-email" value="senternettechnologies@gmail.com" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-sm transition">
+                </div>
+            </div>
+
+            <!-- Slide 1 Inputs (Hook Page) -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 pb-2 border-b border-slate-200">
+                    <span class="bg-brand-100 text-brand-800 text-xs font-bold px-2 py-0.5 rounded-full">1</span>
+                    <h3 class="font-bold text-slate-900 text-base">Slide 1: Intro Hook Topic</h3>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Pre-Title / Category Label</label>
+                        <input type="text" id="input-s1-pre" value="WEB DEVELOPMENT" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Main Big Title</label>
+                        <textarea id="input-s1-title" rows="2" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none">Build Custom Real-time Apps</textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Slide Highlight Subtitle</label>
+                        <input type="text" id="input-s1-highlight" value="With Google Sheets Backend" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 Inputs (Mockup & Description) -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 pb-2 border-b border-slate-200">
+                    <span class="bg-brand-100 text-brand-800 text-xs font-bold px-2 py-0.5 rounded-full">2</span>
+                    <h3 class="font-bold text-slate-900 text-base">Slide 2: Design Showcase</h3>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Website Design Image</label>
+                        <div class="flex gap-3 items-center">
+                            <div class="w-20 h-12 bg-slate-100 rounded-lg border border-slate-200 overflow-hidden relative flex items-center justify-center">
+                                <img id="s2-design-preview" src="https://picsum.photos/id/0/800/600" class="w-full h-full object-cover" alt="Website Showcase">
+                                <input type="file" id="s2-image-uploader" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+                            </div>
+                            <div class="text-xs text-slate-500">
+                                <span class="font-semibold block text-slate-700">Upload Project Mockup</span>
+                                Highly recommended to use clear screenshot.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Showcase Headline</label>
+                        <input type="text" id="input-s2-title" value="Modern Creative Web App UI" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Showcase Paragraph Description</label>
+                        <textarea id="input-s2-desc" rows="3" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none">High performance application built using Tailwind CSS & lightweight Vanilla JS with robust responsive visual sections tailored for businesses.</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 Inputs (Code Editor) -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 pb-2 border-b border-slate-200">
+                    <span class="bg-brand-100 text-brand-800 text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+                    <h3 class="font-bold text-slate-900 text-base">Slide 3: Implementation Code</h3>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Code Header Filename</label>
+                        <input type="text" id="input-s3-file" value="app-config.js" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Code Snippet (JS / CSS / HTML)</label>
+                        <textarea id="input-s3-code" rows="6" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl font-code text-xs bg-slate-900 text-slate-200 focus:ring-2 focus:ring-brand-500 outline-none">// Senternet Technologies Setup
+const senternetApp = {
+  appId: "senternet-portal",
+  features: ["Dynamic Dashboard", "Sheets Sync"],
+  status: "Ready for Launch",
+  init() {
+    console.log("Ready to build scalable business websites!");
+  }
+};</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 Inputs (Thank you / Outro) -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 pb-2 border-b border-slate-200">
+                    <span class="bg-brand-100 text-brand-800 text-xs font-bold px-2 py-0.5 rounded-full">4</span>
+                    <h3 class="font-bold text-slate-900 text-base">Slide 4: Thank You & CTA</h3>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Call To Action Tagline</label>
+                        <input type="text" id="input-s4-cta" value="Interested to scale your business online?" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">WhatsApp CTA Text</label>
+                        <input type="text" id="input-s4-contact" value="Let's build together: +91 81900 38085" oninput="updateAllPreviews()" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- Right Side: Live Carousel Previews (4:5 Ratio Display) -->
+        <main class="xl:col-span-7 bg-slate-100 overflow-y-auto p-6 space-y-8 flex flex-col items-center">
+
+            <div class="w-full max-w-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                        <i class="fa-solid fa-eye text-brand-600"></i> Live Canvas Preview
+                    </span>
+                    <span class="text-xs text-slate-500 font-semibold bg-slate-200 px-2 py-1 rounded">Scale: Actual Output (1080x1350 px)</span>
+                </div>
+            </div>
+
+            <!-- Preview Carousel Stack (Scrollable grid on desktop) -->
+            <div class="w-full max-w-lg space-y-12">
+
+                <!-- Slide 1 PREVIEW -->
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-slate-600 uppercase tracking-widest block text-center">Slide 1: Intro Hook Cover</span>
+                    <div id="slide1-canvas" class="aspect-[4/5] bg-gradient-to-br from-emerald-950 via-zinc-950 to-brand-950 text-white rounded-3xl shadow-2xl relative p-12 flex flex-col justify-between overflow-hidden">
+                        <!-- Abstract Design Elements -->
+                        <div class="absolute top-0 right-0 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute top-1/4 left-10 w-2 h-2 rounded-full bg-brand-400 animate-pulse"></div>
+                        <div class="absolute bottom-1/4 right-10 w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+
+                        <!-- Header -->
+                        <div class="flex justify-between items-center z-10">
+                            <div class="flex items-center gap-3">
+                                <img src="" class="logo-placeholder h-10 w-auto object-contain" alt="Brand Logo">
+                                <span class="font-extrabold tracking-widest text-xs text-slate-300 uppercase">SENTERNET</span>
+                            </div>
+                            <span class="series-tag-placeholder bg-brand-500/20 text-brand-300 border border-brand-500/30 font-bold text-xs px-3.5 py-1.5 rounded-full tracking-wider">DAY #1</span>
+                        </div>
+
+                        <!-- Content Body -->
+                        <div class="my-auto space-y-6 z-10">
+                            <span id="p-s1-pre" class="text-brand-400 font-extrabold text-sm tracking-widest block uppercase border-l-2 border-brand-500 pl-3">WEB DEVELOPMENT</span>
+                            <h2 id="p-s1-title" class="text-4xl sm:text-5xl font-black tracking-tight leading-tight text-white drop-shadow-sm">Build Custom Real-time Apps</h2>
+                            <div class="inline-block bg-brand-500 text-zinc-950 font-extrabold text-base px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/20">
+                                <span id="p-s1-highlight">With Google Sheets Backend</span>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="flex justify-between items-center pt-6 border-t border-white/10 z-10">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-1.5 text-xs text-brand-300 font-bold">
+                                    <i class="fa-brands fa-instagram text-brand-400"></i>
+                                    <span class="instagram-placeholder">@senternet</span>
+                                </div>
+                                <div class="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
+                                    <i class="fa-regular fa-envelope text-slate-500"></i>
+                                    <span class="email-placeholder">senternettechnologies@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-400 font-bold text-xs bg-brand-500/10 px-3.5 py-1.5 rounded-full border border-brand-500/20">
+                                <span>SWIPE NEXT</span>
+                                <i class="fa-solid fa-arrow-right animate-bounce-h"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 PREVIEW -->
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-slate-600 uppercase tracking-widest block text-center">Slide 2: Design Showcase</span>
+                    <div id="slide2-canvas" class="aspect-[4/5] bg-gradient-to-br from-emerald-950 via-zinc-950 to-brand-950 text-white rounded-3xl shadow-2xl relative p-12 flex flex-col justify-between overflow-hidden">
+                        <!-- Abstract Design Elements -->
+                        <div class="absolute -top-10 -left-10 w-60 h-60 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute top-1/2 right-0 w-80 h-80 bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <!-- Header -->
+                        <div class="flex justify-between items-center z-10">
+                            <div class="flex items-center gap-3">
+                                <img src="" class="logo-placeholder h-10 w-auto object-contain" alt="Brand Logo">
+                                <span class="font-extrabold tracking-widest text-xs text-slate-300 uppercase">SENTERNET</span>
+                            </div>
+                            <span class="series-tag-placeholder bg-brand-500/20 text-brand-300 border border-brand-500/30 font-bold text-xs px-3.5 py-1.5 rounded-full tracking-wider">DAY #1</span>
+                        </div>
+
+                        <!-- Content Body -->
+                        <div class="my-auto space-y-5 z-10">
+                            <!-- Custom mockup window -->
+                            <div class="w-full bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl relative">
+                                <div class="bg-zinc-950 px-4 py-2 border-b border-zinc-800 flex justify-between items-center">
+                                    <div class="flex gap-1.5">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                                    </div>
+                                    <div class="bg-zinc-900 text-[10px] text-zinc-500 px-6 py-0.5 rounded-md border border-zinc-800 font-mono tracking-wider">senternet.in/portfolio</div>
+                                    <div class="w-4"></div>
+                                </div>
+                                <div class="aspect-[16/9] w-full bg-emerald-950 relative overflow-hidden">
+                                    <img id="p-s2-img" src="https://picsum.photos/id/0/800/600" class="w-full h-full object-cover" alt="Portfolio Web Design">
+                                    <!-- Premium overlay card -->
+                                    <div class="absolute bottom-3 left-3 right-3 bg-zinc-950/80 backdrop-blur-md p-3 rounded-lg border border-white/10 flex items-center justify-between">
+                                        <div>
+                                            <p class="text-[9px] font-bold text-brand-400 tracking-widest uppercase">LATEST PROJECT</p>
+                                            <p class="text-xs font-bold text-white tracking-wide">Web Application Showcase</p>
+                                        </div>
+                                        <span class="bg-brand-500 text-zinc-950 font-black text-[9px] px-2 py-1 rounded">9.8/10 RATING</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <h3 id="p-s2-title" class="text-2xl font-extrabold text-white tracking-tight">Modern Creative Web App UI</h3>
+                                <p id="p-s2-desc" class="text-sm text-slate-300 leading-relaxed font-light">High performance application built using Tailwind CSS & lightweight Vanilla JS with robust responsive visual sections tailored for businesses.</p>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="flex justify-between items-center pt-6 border-t border-white/10 z-10">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-1.5 text-xs text-brand-300 font-bold">
+                                    <i class="fa-brands fa-instagram text-brand-400"></i>
+                                    <span class="instagram-placeholder">@senternet</span>
+                                </div>
+                                <div class="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
+                                    <i class="fa-regular fa-envelope text-slate-500"></i>
+                                    <span class="email-placeholder">senternettechnologies@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-400 font-bold text-xs bg-brand-500/10 px-3.5 py-1.5 rounded-full border border-brand-500/20">
+                                <span>SCROLL FOR CODE</span>
+                                <i class="fa-solid fa-code text-brand-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 PREVIEW -->
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-slate-600 uppercase tracking-widest block text-center">Slide 3: Implementation Code</span>
+                    <div id="slide3-canvas" class="aspect-[4/5] bg-gradient-to-br from-emerald-950 via-zinc-950 to-brand-950 text-white rounded-3xl shadow-2xl relative p-12 flex flex-col justify-between overflow-hidden">
+                        <!-- Abstract Design Elements -->
+                        <div class="absolute top-1/3 -right-20 w-80 h-80 bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <!-- Header -->
+                        <div class="flex justify-between items-center z-10">
+                            <div class="flex items-center gap-3">
+                                <img src="" class="logo-placeholder h-10 w-auto object-contain" alt="Brand Logo">
+                                <span class="font-extrabold tracking-widest text-xs text-slate-300 uppercase">SENTERNET</span>
+                            </div>
+                            <span class="series-tag-placeholder bg-brand-500/20 text-brand-300 border border-brand-500/30 font-bold text-xs px-3.5 py-1.5 rounded-full tracking-wider">DAY #1</span>
+                        </div>
+
+                        <!-- Content Body -->
+                        <div class="my-auto space-y-5 z-10">
+                            <div class="border-l-4 border-brand-500 pl-4 space-y-1">
+                                <span class="text-xs font-extrabold tracking-widest text-brand-400 uppercase">SOURCE CODE</span>
+                                <h3 class="text-2xl font-extrabold text-white tracking-tight">Interactive Logic Implementation</h3>
+                            </div>
+
+                            <!-- Styled Code IDE Block -->
+                            <div class="w-full bg-[#0a0f0d] border border-brand-950 rounded-2xl overflow-hidden shadow-2xl">
+                                <div class="bg-[#111915] px-4 py-3 border-b border-brand-950 flex justify-between items-center">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-terminal text-brand-400 text-xs"></i>
+                                        <span id="p-s3-file" class="text-xs font-mono text-slate-300">app-config.js</span>
+                                    </div>
+                                    <div class="flex gap-1.5">
+                                        <span class="w-2 h-2 rounded-full bg-slate-700 inline-block"></span>
+                                        <span class="w-2 h-2 rounded-full bg-slate-700 inline-block"></span>
+                                        <span class="w-2 h-2 rounded-full bg-slate-700 inline-block"></span>
+                                    </div>
+                                </div>
+                                <div class="p-6 overflow-hidden">
+                                    <pre class="text-xs text-emerald-300 font-code overflow-x-auto whitespace-pre-wrap leading-relaxed"><code id="p-s3-code">// Senternet Technologies Setup
+const senternetApp = {
+  appId: "senternet-portal",
+  features: ["Dynamic Dashboard", "Sheets Sync"],
+  status: "Ready for Launch",
+  init() {
+    console.log("Ready to build scalable business websites!");
+  }
+};</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- High Converting Notice -->
+                            <div class="bg-brand-500/10 border border-brand-500/20 rounded-xl p-3.5 flex items-center gap-3">
+                                <div class="bg-brand-500 text-zinc-950 p-2 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                                </div>
+                                <span class="text-xs font-bold text-brand-300 tracking-wide">Follow & DM "CODE" to get the complete project template file!</span>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="flex justify-between items-center pt-6 border-t border-white/10 z-10">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-1.5 text-xs text-brand-300 font-bold">
+                                    <i class="fa-brands fa-instagram text-brand-400"></i>
+                                    <span class="instagram-placeholder">@senternet</span>
+                                </div>
+                                <div class="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
+                                    <i class="fa-regular fa-envelope text-slate-500"></i>
+                                    <span class="email-placeholder">senternettechnologies@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 text-brand-400 font-bold text-xs bg-brand-500/10 px-3.5 py-1.5 rounded-full border border-brand-500/20">
+                                <span>SWIPE NEXT</span>
+                                <i class="fa-solid fa-arrow-right animate-bounce-h"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 PREVIEW -->
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-slate-600 uppercase tracking-widest block text-center">Slide 4: Thank You (Outro)</span>
+                    <div id="slide4-canvas" class="aspect-[4/5] bg-gradient-to-br from-emerald-950 via-zinc-950 to-brand-950 text-white rounded-3xl shadow-2xl relative p-12 flex flex-col justify-between overflow-hidden">
+                        <!-- Abstract Design Elements -->
+                        <div class="absolute bottom-0 right-0 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute -top-12 -left-12 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <!-- Header -->
+                        <div class="flex justify-between items-center z-10">
+                            <div class="flex items-center gap-3">
+                                <img src="" class="logo-placeholder h-10 w-auto object-contain" alt="Brand Logo">
+                                <span class="font-extrabold tracking-widest text-xs text-slate-300 uppercase">SENTERNET</span>
+                            </div>
+                            <span class="series-tag-placeholder bg-brand-500/20 text-brand-300 border border-brand-500/30 font-bold text-xs px-3.5 py-1.5 rounded-full tracking-wider">DAY #1</span>
+                        </div>
+
+                        <!-- Content Body -->
+                        <div class="my-auto text-center space-y-6 z-10">
+                            <div class="relative inline-block">
+                                <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-brand-500 to-emerald-400 blur-md opacity-70"></div>
+                                <span class="relative bg-zinc-900 border border-brand-400/30 text-white text-xs font-extrabold px-5 py-2 rounded-full tracking-widest uppercase">THANKS FOR READING</span>
+                            </div>
+
+                            <h2 class="text-4xl sm:text-5xl font-black tracking-tight text-white leading-none">SENTERNET<br><span class="text-brand-400">TECHNOLOGIES</span></h2>
+
+                            <p id="p-s4-cta" class="text-sm font-semibold text-slate-300 px-4">Interested to scale your business online?</p>
+
+                            <div class="grid grid-cols-2 gap-3 max-w-sm mx-auto text-left pt-2">
+                                <div class="bg-zinc-900/60 border border-white/5 p-3 rounded-xl flex items-center gap-2">
+                                    <i class="fa-solid fa-code text-brand-400 text-lg"></i>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 font-bold uppercase">WEBSITE DESIGN</p>
+                                        <p class="text-[9px] text-slate-300 font-medium">Premium Custom Work</p>
+                                    </div>
+                                </div>
+                                <div class="bg-zinc-900/60 border border-white/5 p-3 rounded-xl flex items-center gap-2">
+                                    <i class="fa-solid fa-mobile-screen-button text-brand-400 text-lg"></i>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 font-bold uppercase">WEB APPLICATIONS</p>
+                                        <p class="text-[9px] text-slate-300 font-medium">Sheets Integrated Apps</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-emerald-900 to-zinc-900 border border-brand-500/30 p-3 rounded-xl inline-flex items-center gap-2.5 max-w-sm">
+                                <i class="fa-brands fa-whatsapp text-brand-400 text-lg"></i>
+                                <span id="p-s4-contact" class="text-xs font-extrabold text-white">Let's build together: +91 81900 38085</span>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="flex justify-between items-center pt-6 border-t border-white/10 z-10">
+                            <div class="space-y-1 text-left">
+                                <div class="flex items-center gap-1.5 text-xs text-brand-300 font-bold">
+                                    <i class="fa-brands fa-instagram text-brand-400"></i>
+                                    <span class="instagram-placeholder">@senternet</span>
+                                </div>
+                                <div class="flex items-center gap-1.5 text-[10px] text-slate-400 font-medium">
+                                    <i class="fa-regular fa-envelope text-slate-500"></i>
+                                    <span class="email-placeholder">senternettechnologies@gmail.com</span>
+                                </div>
+                            </div>
+                            <span class="text-slate-400 font-semibold text-[10px] tracking-wider">ARANTHANGI, PUDUKKOTTAI</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Hidden PDF Export Area (Renders high-quality multi-page PDF output accurately in 1080x1350) -->
+    <div id="pdf-container" class="pdf-page-container">
+
+        <!-- Render S1 -->
+        <div id="print-slide1" class="w-[1080px] h-[1350px] bg-gradient-to-br from-emerald-950 via-zinc-950 to-brand-950 text-white p-20 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+            <!-- Header -->
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="" class="logo-placeholder h-16 w-auto object-contain" alt="Logo">
+                    <span class="font-extrabold tracking-widest text-lg text-slate-300 uppercase">SENTERNET</span>
+                </div>
+                <span class="series-tag-placeholder bg-brand-500/20 text-brand-300 border border-brand-500/30 font-bold text-xl px-6 py-2.5 rounded-full tracking-wider">DAY #1</span>
+            </div>
+            <!-- Content -->
+            <div class="my-auto space-y-10">
+                <span id="print-s1-pre" class="text-brand-400 font-extrabold text-2xl tracking-widest block uppercase border-l-4 border-brand-500 pl-4">WEB DEVELOPMENT</span>
+                <h2 id="print-s1-title" class="text-7xl font-black tracking-tight leading-tight text-white drop-shadow-md">Build Custom Real-time Apps</h2>
+                <div class="inline-block bg-brand-500 text-zinc-950 font-extrabold text-3xl px-8 py-4 rounded-2xl shadow-xl shadow-brand-500/20">
+                    <span id="print-s1-highlight">With Google Sheets Backend</span>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="flex justify-between items-center pt-8 border-t border-white/10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2.5 text-xl text-brand-300 font-bold">
+                        <i class="fa-brands fa-instagram text-brand-400"></i>
+                        <span class="instagram-placeholder">@senternet</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 text-sm text-slate-400 font-medium">
+                        <i class="fa-regular fa-envelope text-slate-500"></i>
+                        <span class="email-placeholder">senternettechnologies@gmail.com</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 text-brand-400 font-bold text-xl bg-brand-500/10 px-6 py-2.5 rounded-full border border-brand-500/20">
+                    <span>SWIPE NEXT</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Render S2 -->
+        <div id="print-slide2" class="w-[1080px] h-[1350px] bg-gradient-to-br from-emerald-950 via-zinc-950 to-brand-950 text-white p-20 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute -top-10 -left-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+            <!-- Header -->
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="" class="logo-placeholder h-16 w-auto object-contain" alt="Logo">
+                    <span class="font-extrabold tracking-widest text-lg text-slate-300 uppercase">SENTERNET</span>
+                </div>
+                <span class="series-tag-placeholder bg-brand-500/20 text-brand-300 border border-brand-500/30 font-bold text-xl px-6 py-2.5 rounded-full tracking-wider">DAY #1</span>
+            </div>
+            <!-- Content -->
+            <div class="my-auto space-y-10">
+                <div class="w-full bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl relative">
+                    <div class="bg-zinc-950 px-6 py-4 border-b border-zinc-800 flex justify-between items-center">
+                        <div class="flex gap-2">
+                            <span class="w-4 h-4 rounded-full bg-red-500 inline-block"></span>
+                            <span class="w-4 h-4 rounded-full bg-yellow-500 inline-block"></span>
+                            <span class="w-4 h-4 rounded-full bg-green-500 inline-block"></span>
+                        </div>
+                        <div class="bg-zinc-900 text-xs text-zinc-500 px-8 py-1.5 rounded-lg border border-zinc-800 font-mono tracking-wider">senternet.in/portfolio</div>
+                        <div class="w-6"></div>
+                    </div>
+                    <div class="w-full h-[450px] bg-emerald-950 relative overflow-hidden">
+                        <img id="print-s2-img" src="https://picsum.photos/id/0/800/600" class="w-full h-full object-cover" alt="Portfolio Web Design">
+                        <div class="absolute bottom-6 left-6 right-6 bg-zinc-950/80 backdrop-blur-md p-5 rounded-xl border border-white/10 flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-bold text-brand-400 tracking-widest uppercase">LATEST PROJECT</p>
+                                <p class="text-lg font-bold text-white tracking-wide">Web Application Showcase</p>
+                            </div>
+                            <span class="bg-brand-500 text-zinc-950 font-black text-xs px-4 py-2 rounded-lg">9.8/10 RATING</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h3 id="print-s2-title" class="text-4xl font-extrabold text-white tracking-tight">Modern Creative Web App UI</h3>
+                    <p id="print-s2-desc" class="text-xl text-slate-300 leading-relaxed font-light">High performance application built using Tailwind CSS & lightweight Vanilla JS with robust responsive visual sections tailored for businesses.</p>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="flex justify-between items-center pt-8 border-t border-white/10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2.5 text-xl text-brand-300 font-bold">
+                        <i class="fa-brands fa-instagram text-brand-400"></i>
+                        <span class="instagram-placeholder">@senternet</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 text-sm text-slate-400 font-medium">
+                        <i class="fa-regular fa-envelope text-slate-500"></i>
+                        <span class="email-placeholder">senternettechnologies@gmail.com</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 text-brand-400 font-bold text-xl bg-brand-500/10 px-6 py-2.5 rounded-full border border-brand-500/20">
+                    <span>SCROLL FOR CODE</span>
+                    <i class="fa-solid fa-code text-brand-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Render S3 -->
+        <div id="print-slide3" class="w-[1080px] h-[1350px] bg-gradient-to-br from-emerald-950 via-zinc-950 to-brand-950 text-white p-20 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute top-1/3 -right-20 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl"></div>
+            <!-- Header -->
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="" class="logo-placeholder h-16 w-auto object-contain" alt="Logo">
+                    <span class="font-extrabold tracking-widest text-lg text-slate-300 uppercase">SENTERNET</span>
+                </div>
+                <span class="series-tag-placeholder bg-brand-500/20 text-brand-300 border border-brand-500/30 font-bold text-xl px-6 py-2.5 rounded-full tracking-wider">DAY #1</span>
+            </div>
+            <!-- Content -->
+            <div class="my-auto space-y-8">
+                <div class="border-l-4 border-brand-500 pl-4 space-y-1">
+                    <span class="text-sm font-extrabold tracking-widest text-brand-400 uppercase">SOURCE CODE</span>
+                    <h3 class="text-4xl font-extrabold text-white tracking-tight">Interactive Logic Implementation</h3>
+                </div>
+                <div class="w-full bg-[#0a0f0d] border border-brand-950 rounded-3xl overflow-hidden shadow-2xl">
+                    <div class="bg-[#111915] px-6 py-4 border-b border-brand-950 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-terminal text-brand-400 text-sm"></i>
+                            <span id="print-s3-file" class="text-sm font-mono text-slate-300">app-config.js</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="w-3 h-3 rounded-full bg-slate-700 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-slate-700 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-slate-700 inline-block"></span>
+                        </div>
+                    </div>
+                    <div class="p-10">
+                        <pre class="text-lg text-emerald-300 font-code overflow-hidden whitespace-pre-wrap leading-relaxed"><code id="print-s3-code">// SENTERNET CODE SNIPPET</code></pre>
+                    </div>
+                </div>
+                <div class="bg-brand-500/10 border border-brand-500/20 rounded-2xl p-6 flex items-center gap-5">
+                    <div class="bg-brand-500 text-zinc-950 p-4 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-paper-plane text-lg"></i>
+                    </div>
+                    <span class="text-lg font-bold text-brand-300 tracking-wide">Follow & DM "CODE" to get the complete project template file!</span>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="flex justify-between items-center pt-8 border-t border-white/10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2.5 text-xl text-brand-300 font-bold">
+                        <i class="fa-brands fa-instagram text-brand-400"></i>
+                        <span class="instagram-placeholder">@senternet</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 text-sm text-slate-400 font-medium">
+                        <i class="fa-regular fa-envelope text-slate-500"></i>
+                        <span class="email-placeholder">senternettechnologies@gmail.com</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 text-brand-400 font-bold text-xl bg-brand-500/10 px-6 py-2.5 rounded-full border border-brand-500/20">
+                    <span>SWIPE NEXT</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Render S4 -->
+        <div id="print-slide4" class="w-[1080px] h-[1350px] bg-gradient-to-br from-emerald-950 via-zinc-950 to-brand-950 text-white p-20 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-500/15 rounded-full blur-3xl"></div>
+            <div class="absolute -top-12 -left-12 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-3xl"></div>
+            <!-- Header -->
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="" class="logo-placeholder h-16 w-auto object-contain" alt="Logo">
+                    <span class="font-extrabold tracking-widest text-lg text-slate-300 uppercase">SENTERNET</span>
+                </div>
+                <span class="series-tag-placeholder bg-brand-500/20 text-brand-300 border border-brand-500/30 font-bold text-xl px-6 py-2.5 rounded-full tracking-wider">DAY #1</span>
+            </div>
+            <!-- Content -->
+            <div class="my-auto text-center space-y-10">
+                <div class="relative inline-block">
+                    <div class="absolute -inset-2 rounded-full bg-gradient-to-r from-brand-500 to-emerald-400 blur-lg opacity-70"></div>
+                    <span class="relative bg-zinc-900 border border-brand-400/30 text-white text-lg font-extrabold px-8 py-3 rounded-full tracking-widest uppercase">THANKS FOR READING</span>
+                </div>
+                <h2 class="text-6xl font-black tracking-tight text-white leading-none">SENTERNET<br><span class="text-brand-400">TECHNOLOGIES</span></h2>
+                <p id="print-s4-cta" class="text-2xl font-semibold text-slate-300 px-10">Interested to scale your business online?</p>
+                <div class="grid grid-cols-2 gap-6 max-w-2xl mx-auto text-left pt-6">
+                    <div class="bg-zinc-900/60 border border-white/5 p-6 rounded-2xl flex items-center gap-4">
+                        <i class="fa-solid fa-code text-brand-400 text-3xl"></i>
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">WEBSITE DESIGN</p>
+                            <p class="text-base text-slate-300 font-semibold mt-1">Premium Custom Work</p>
+                        </div>
+                    </div>
+                    <div class="bg-zinc-900/60 border border-white/5 p-6 rounded-2xl flex items-center gap-4">
+                        <i class="fa-solid fa-mobile-screen-button text-brand-400 text-3xl"></i>
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">WEB APPLICATIONS</p>
+                            <p class="text-base text-slate-300 font-semibold mt-1">Sheets Integrated Apps</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-r from-emerald-900 to-zinc-900 border border-brand-500/30 p-5 rounded-2xl inline-flex items-center gap-4 max-w-xl">
+                    <i class="fa-brands fa-whatsapp text-brand-400 text-2xl"></i>
+                    <span id="print-s4-contact" class="text-lg font-extrabold text-white">Let's build together: +91 81900 38085</span>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="flex justify-between items-center pt-8 border-t border-white/10">
+                <div class="space-y-1 text-left">
+                    <div class="flex items-center gap-2.5 text-xl text-brand-300 font-bold">
+                        <i class="fa-brands fa-instagram text-brand-400"></i>
+                        <span class="instagram-placeholder">@senternet</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 text-sm text-slate-400 font-medium">
+                        <i class="fa-regular fa-envelope text-slate-500"></i>
+                        <span class="email-placeholder">senternettechnologies@gmail.com</span>
+                    </div>
+                </div>
+                <span class="text-slate-400 font-semibold text-xs tracking-wider">ARANTHANGI, PUDUKKOTTAI</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loading-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 hidden transition-all">
+        <div class="bg-white p-8 rounded-3xl max-w-sm w-full text-center shadow-2xl border border-slate-100 flex flex-col items-center">
+            <div class="relative w-16 h-16 flex items-center justify-center mb-4">
+                <div class="absolute inset-0 border-4 border-slate-100 rounded-full"></div>
+                <div class="absolute inset-0 border-4 border-brand-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+            <h4 class="font-extrabold text-lg text-slate-900 mb-1">Generating High-Res PDF</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">Processing Instagram slides & building pages...</p>
+        </div>
+    </div>
+
+    <!-- Simple Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i class="fa-solid fa-circle-check text-brand-400"></i>
+        <span id="toast-text" class="text-sm font-semibold">Done!</span>
+    </div>
+
+    <script>
+        // Global State variables
+        let uploadedLogoBase64 = "https://www.jotform.com/uploads/senternettechnologies/agent_files/avatar_images/1000009224-6944f3cfaee596.07540393.webp";
+        let uploadedMockupBase64 = "https://picsum.photos/id/0/800/600";
+
+        window.onload = function() {
+            // Apply default placeholder values first
+            updateAllPreviews();
+
+            // Setup Logo image uploader
+            document.getElementById('logo-uploader').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        uploadedLogoBase64 = event.target.result;
+                        document.getElementById('logo-preview').src = uploadedLogoBase64;
+                        updateAllPreviews();
+                        showToast("Brand Logo updated successfully!");
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Setup Showcase Image uploader
+            document.getElementById('s2-image-uploader').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        uploadedMockupBase64 = event.target.result;
+                        document.getElementById('s2-design-preview').src = uploadedMockupBase64;
+                        updateAllPreviews();
+                        showToast("Design Showcase Image updated!");
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        };
+
+        // Live Realtime Synchronization
+        function updateAllPreviews() {
+            // Read values from control inputs
+            const seriesTag = document.getElementById('input-series').value || "DAY #1";
+            const instagram = document.getElementById('input-instagram').value || "@senternet";
+            const email = document.getElementById('input-email').value || "senternettechnologies@gmail.com";
+
+            const s1Pre = document.getElementById('input-s1-pre').value || "PRE-TITLE";
+            const s1Title = document.getElementById('input-s1-title').value || "Carousel Title Here";
+            const s1Highlight = document.getElementById('input-s1-highlight').value || "Highlight Tag";
+
+            const s2Title = document.getElementById('input-s2-title').value || "Project Design Headline";
+            const s2Desc = document.getElementById('input-s2-desc').value || "Enter slide 2 description here.";
+
+            const s3File = document.getElementById('input-s3-file').value || "index.js";
+            const s3Code = document.getElementById('input-s3-code').value || "// Paste Code here";
+
+            const s4Cta = document.getElementById('input-s4-cta').value || "Your closing pitch!";
+            const s4Contact = document.getElementById('input-s4-contact').value || "Contact detail text";
+
+            // Push values directly to both Canvas screen and Print pages
+
+            // 1. Logos
+            document.querySelectorAll('.logo-placeholder').forEach(img => {
+                img.src = uploadedLogoBase64;
+            });
+
+            // 2. Mockup Designs
+            document.getElementById('p-s2-img').src = uploadedMockupBase64;
+            document.getElementById('print-s2-img').src = uploadedMockupBase64;
+
+            // 3. Series Tags
+            document.querySelectorAll('.series-tag-placeholder').forEach(el => {
+                el.innerText = seriesTag;
+            });
+
+            // 4. Handles & Emails
+            document.querySelectorAll('.instagram-placeholder').forEach(el => {
+                el.innerText = instagram;
+            });
+            document.querySelectorAll('.email-placeholder').forEach(el => {
+                el.innerText = email;
+            });
+
+            // 5. Slide 1 Texts
+            document.getElementById('p-s1-pre').innerText = s1Pre;
+            document.getElementById('print-s1-pre').innerText = s1Pre;
+            document.getElementById('p-s1-title').innerText = s1Title;
+            document.getElementById('print-s1-title').innerText = s1Title;
+            document.getElementById('p-s1-highlight').innerText = s1Highlight;
+            document.getElementById('print-s1-highlight').innerText = s1Highlight;
+
+            // 6. Slide 2 Texts
+            document.getElementById('p-s2-title').innerText = s2Title;
+            document.getElementById('print-s2-title').innerText = s2Title;
+            document.getElementById('p-s2-desc').innerText = s2Desc;
+            document.getElementById('print-s2-desc').innerText = s2Desc;
+
+            // 7. Slide 3 Texts
+            document.getElementById('p-s3-file').innerText = s3File;
+            document.getElementById('print-s3-file').innerText = s3File;
+            document.getElementById('p-s3-code').innerText = s3Code;
+            document.getElementById('print-s3-code').innerText = s3Code;
+
+            // 8. Slide 4 Texts
+            document.getElementById('p-s4-cta').innerText = s4Cta;
+            document.getElementById('print-s4-cta').innerText = s4Cta;
+            document.getElementById('p-s4-contact').innerText = s4Contact;
+            document.getElementById('print-s4-contact').innerText = s4Contact;
+        }
+
+        // Custom High Quality PDF Generation Utility
+        async function generatePDF() {
+            // Show custom loading screen inside canvas
+            const modal = document.getElementById('loading-modal');
+            modal.classList.remove('hidden');
+
+            const { jsPDF } = window.jspdf;
+
+            try {
+                // Initialize clean 4:5 aspect ratio layout with standard scale dimensions
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'px',
+                    format: [1080, 1350]
+                });
+
+                const slides = ['print-slide1', 'print-slide2', 'print-slide3', 'print-slide4'];
+
+                for (let i = 0; i < slides.length; i++) {
+                    const slideElement = document.getElementById(slides[i]);
+
+                    // Convert HTML slide container element into perfect canvas
+                    const canvas = await html2canvas(slideElement, {
+                        scale: 2, // Scale to 2x for extremely crisp print quality
+                        useCORS: true,
+                        allowTaint: true,
+                        logging: false
+                    });
+
+                    const imgData = canvas.toDataURL('image/png');
+
+                    // Add rendered slide image into PDF sheet
+                    if (i > 0) {
+                        pdf.addPage([1080, 1350]);
+                    }
+                    pdf.addImage(imgData, 'PNG', 0, 0, 1080, 1350);
+                }
+
+                // File download triggering
+                const topicVal = document.getElementById('input-s1-title').value.substring(0, 20).replace(/[^a-z0-9]/gi, '_').toLowerCase();
+                const seriesTag = document.getElementById('input-series').value.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+                const filename = `senternet_carousel_${seriesTag}_${topicVal}.pdf`;
+
+                pdf.save(filename);
+                showToast("Instagram Carousel PDF Saved!");
+            } catch (error) {
+                console.error("PDF Export Error: ", error);
+                showToast("Oops, check image paths/uploads.");
+            } finally {
+                // Remove loader state
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Action Notifications helper
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            toastText.innerText = message;
+            toast.classList.remove('opacity-0', 'translate-y-20');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-20');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
